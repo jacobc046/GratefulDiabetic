@@ -1,0 +1,32 @@
+{
+  "source": "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/Onboarding.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Welcome to the diabetic wellness app"
+      },
+      {
+        "comment": "",
+        "key": "First Name"
+      },
+      {
+        "comment": "",
+        "key": "Last Name"
+      },
+      {
+        "comment": "",
+        "key": "One or more fields are empty"
+      },
+      {
+        "comment": "",
+        "key": "logo here"
+      },
+      {
+        "comment": "",
+        "key": "Submit"
+      }
+    ]
+  },
+  "version": 1
+}

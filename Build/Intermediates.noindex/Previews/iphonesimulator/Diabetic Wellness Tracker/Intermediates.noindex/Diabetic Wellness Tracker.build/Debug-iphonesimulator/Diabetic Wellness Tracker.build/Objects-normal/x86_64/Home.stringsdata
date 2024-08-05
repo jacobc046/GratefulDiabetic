@@ -1,0 +1,20 @@
+{
+  "source": "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/Home.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "hello"
+      },
+      {
+        "comment": "",
+        "key": "Hey %@!"
+      },
+      {
+        "comment": "",
+        "key": "Today is %@"
+      }
+    ]
+  },
+  "version": 1
+}
