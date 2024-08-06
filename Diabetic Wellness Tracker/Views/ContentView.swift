@@ -49,6 +49,7 @@ struct ContentView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 50)
+                            .foregroundStyle(LinearGradient(gradient: Gradient(colors: [.primary1, .white]), startPoint: .topTrailing, endPoint: .bottomLeading))
                     }
                     
                     TabBarIcon(selectedTab: $selectedTab, tab: .recipes, imageName: "fork.knife.circle")

@@ -10,7 +10,7 @@ import SwiftUI
 
 extension TabBarIcon {
     @_dynamicReplacement(for: body) private var __preview__body: some View {
-        #sourceLocation(file: "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/ContentView.swift", line: 72)
+        #sourceLocation(file: "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/ContentView.swift", line: 73)
         Button {
             selectedTab = tab
         } label: {
@@ -60,6 +60,7 @@ extension ContentView {
                             .resizable()
                             .scaledToFit()
                             .frame(width: __designTimeInteger("#27880.[2].[1].property.[0].[0].arg[0].value.[0].arg[1].value.[1].arg[1].value.[2].arg[1].value.[0].modifier[2].arg[0].value", fallback: 50))
+                            .foregroundStyle(LinearGradient(gradient: Gradient(colors: [.primary1, .white]), startPoint: .topTrailing, endPoint: .bottomLeading))
                     }
                     
                     TabBarIcon(selectedTab: $selectedTab, tab: .recipes, imageName: __designTimeString("#27880.[2].[1].property.[0].[0].arg[0].value.[0].arg[1].value.[1].arg[1].value.[3].arg[2].value", fallback: "fork.knife.circle"))
