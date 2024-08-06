@@ -10,45 +10,41 @@ import SwiftUI
 
 extension Home {
     @_dynamicReplacement(for: body) private var __preview__body: some View {
-        #sourceLocation(file: "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/Home.swift", line: 17)
-        NavigationSplitView(columnVisibility: $showSidebar) {
-            NavigationStack {
-                ZStack {
-                    LinearGradient(colors: [.primary1, .primary1.opacity(__designTimeFloat("#24685.[1].[2].property.[0].[0].arg[1].value.[0].arg[0].value.[0].arg[0].value.[0].arg[0].value.[1].modifier[0].arg[0].value", fallback: 0.5))],
-                                   startPoint: .top, endPoint: .bottom)
-                    .ignoresSafeArea()
+        #sourceLocation(file: "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/Home.swift", line: 19)
+        NavigationStack {
+            
+            ZStack {
+                //background
+                LinearGradient(colors: [.primary1, .primary1.opacity(__designTimeFloat("#24685.[1].[3].property.[0].[0].arg[0].value.[0].arg[0].value.[0].arg[0].value.[1].modifier[0].arg[0].value", fallback: 0.5))],
+                               startPoint: .top, endPoint: .bottom)
+                .ignoresSafeArea(edges: .top)
+                
+                //foreground
+                VStack {
+                    Text("Hey \(UserDefaults.standard.string(forKey: kFirstName)!)!")
+                        .font(.largeTitle)
                     
-                    VStack {
-                        Text("Hey \(UserDefaults.standard.string(forKey: kFirstName)!)!")
-                            .font(.largeTitle)
-                        
-                        Text("Today is \(date)")
-                            .font(.title2)
-                    }
-                }
-                .toolbar {
-                    ToolbarItem(placement: .topBarLeading) {
-                        Button {
-                            
-                        } label: {
-                            Image(systemName: __designTimeString("#24685.[1].[2].property.[0].[0].arg[1].value.[0].arg[0].value.[0].modifier[0].arg[0].value.[0].arg[1].value.[0].arg[1].value.[0].arg[0].value", fallback: "gear"))
-                                .foregroundStyle(.white)
-                        }
-                    }
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button {
-                            
-                        } label: {
-                            Image(systemName: __designTimeString("#24685.[1].[2].property.[0].[0].arg[1].value.[0].arg[0].value.[0].modifier[0].arg[0].value.[1].arg[1].value.[0].arg[1].value.[0].arg[0].value", fallback: "line.3.horizontal"))
-                                .foregroundStyle(.white)
-                        }
-                    }
+                    Text("Today is \(date)")
+                        .lineLimit(__designTimeInteger("#24685.[1].[3].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[1].modifier[0].arg[0].value", fallback: 1))
+                        .font(.title)
+                        .minimumScaleFactor(__designTimeFloat("#24685.[1].[3].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[1].modifier[2].arg[0].value", fallback: 0.7))
+                        .padding([.leading, .trailing], __designTimeInteger("#24685.[1].[3].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[1].modifier[3].arg[1].value", fallback: 15))
+                    
+                    Text("Journal about \(prompt) today")
                 }
             }
-        } content: {
-            
-        } detail: {
-            
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    NavigationLink {
+                        EmptyView() //settings view
+                    } label: {
+                        Image(systemName: __designTimeString("#24685.[1].[3].property.[0].[0].arg[0].value.[0].modifier[0].arg[0].value.[0].arg[1].value.[0].arg[1].value.[0].arg[0].value", fallback: "gear"))
+                            .foregroundStyle(.white)
+                    }
+
+                }
+            }
+            .navigationBarBackButtonHidden()
         }
     
 #sourceLocation()

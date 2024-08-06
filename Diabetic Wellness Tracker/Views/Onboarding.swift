@@ -18,53 +18,69 @@ struct Onboarding: View {
     @State var isLoggedIn = false
     
     @State var showAlert = false
+    @State var fieldsAreComplete = false
     
     var body: some View {
-        Text("Welcome to the diabetic wellness app")
-            .font(.largeTitle)
-            .multilineTextAlignment(.center)
+        NavigationStack {
+            Text("Welcome to the diabetic wellness app")
+                .font(.largeTitle)
+                .multilineTextAlignment(.center)
         
-        ZStack {
-            Rectangle()
-                .frame(width: 200, height: 200)
-                .foregroundStyle(.primary1)
-            Text("logo here")
-        }
-        
-        TextField("First Name", text: $firstName)
-            .font(.title)
-            .textFieldStyle(.roundedBorder)
-            .padding()
-            .textInputAutocapitalization(.words)
-        TextField("Last Name", text: $lastName)
-            .font(.title)
-            .textFieldStyle(.roundedBorder)
-            .padding()
-            .textInputAutocapitalization(.words)
-        
-        Button {
-            if fieldsAreComplete() {
-                isLoggedIn = true
-                setUserDefaults()
-            } else {
-                showAlert.toggle()
+            ZStack {
+                Rectangle()
+                    .frame(width: 200, height: 200)
+                    .foregroundStyle(.primary1)
+                Text("logo here")
             }
-        } label: {
-            Text("Submit")
-                .foregroundStyle(fieldsAreComplete() ? .black : .white)
-                .font(.title2)
+            
+            TextField("First Name", text: $firstName)
+                .font(.title)
+                .textFieldStyle(.roundedBorder)
+                .padding()
+                .textInputAutocapitalization(.words)
+            TextField("Last Name", text: $lastName)
+                .font(.title)
+                .textFieldStyle(.roundedBorder)
+                .padding()
+                .textInputAutocapitalization(.words)
+            
+            Button {
+                if fieldsAreComplete {
+                    isLoggedIn = true
+                    setUserDefaults()
+                } else {
+                    showAlert.toggle()
+                }
+            } label: {
+                Text("Submit")
+                    .foregroundStyle(fieldsAreComplete ? .black : .white)
+                    .font(.title2)
+            }
+            .alert("One or more fields are empty", isPresented: $showAlert, actions: {})
+            .frame(width: 360, height: 60)
+            .background(fieldsAreComplete ? .primary1 : .gray)
+            .clipShape(RoundedRectangle(cornerRadius: 10.0))
+            .padding()
+            .onChange(of: [firstName, lastName], { oldValue, newValue in
+                evaluateFields()
+            })
+            .navigationDestination(isPresented: $isLoggedIn, destination: { Home() })
         }
-        .alert("One or more fields are empty", isPresented: $showAlert, actions: {})
-        .frame(width: 360, height: 60)
-        .background(fieldsAreComplete() ? .primary1 : .gray)
-        .clipShape(RoundedRectangle(cornerRadius: 10.0))
-        .padding()
-
+        
+        .onAppear {
+            if UserDefaults.standard.bool(forKey: kIsLoggedIn) {
+                isLoggedIn = true
+            }
+        }
     }
     
     
-    func fieldsAreComplete() -> Bool {
-        return !firstName.isEmpty && !lastName.isEmpty
+    func evaluateFields() {
+        if !firstName.isEmpty && !lastName.isEmpty {
+            withAnimation(.linear) {
+                fieldsAreComplete = true
+            }
+        }
     }
     
     func setUserDefaults() {
@@ -73,8 +89,6 @@ struct Onboarding: View {
         UserDefaults.standard.set(true, forKey: kIsLoggedIn)
     }
 }
-
-
 
 
 #Preview {

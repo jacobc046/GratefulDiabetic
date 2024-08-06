@@ -9,6 +9,10 @@
       {
         "comment": "",
         "key": "Today is %@"
+      },
+      {
+        "comment": "",
+        "key": "Journal about %@ today"
       }
     ]
   },

@@ -4,7 +4,11 @@
     "Localizable": [
       {
         "comment": "",
-        "key": "Home"
+        "key": "New Journal"
+      },
+      {
+        "comment": "",
+        "key": "New Recipe"
       }
     ]
   },

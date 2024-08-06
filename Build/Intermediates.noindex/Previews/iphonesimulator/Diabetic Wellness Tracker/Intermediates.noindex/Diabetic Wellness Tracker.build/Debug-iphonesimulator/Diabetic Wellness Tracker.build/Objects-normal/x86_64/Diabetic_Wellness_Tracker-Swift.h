@@ -276,6 +276,7 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #pragma clang diagnostic ignored "-Watimport-in-framework-header"
 #endif
 @import CoreData;
+@import Foundation;
 #endif
 
 #endif
@@ -299,6 +300,22 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 @class NSEntityDescription;
 @class NSManagedObjectContext;
 
+SWIFT_CLASS_NAMED("IngredientEntity")
+@interface IngredientEntity : NSManagedObject
+- (nonnull instancetype)initWithEntity:(NSEntityDescription * _Nonnull)entity insertIntoManagedObjectContext:(NSManagedObjectContext * _Nullable)context OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+@class NSString;
+@class RecipeEntity;
+
+@interface IngredientEntity (SWIFT_EXTENSION(Diabetic_Wellness_Tracker))
+@property (nonatomic, copy) NSString * _Nullable name;
+@property (nonatomic, copy) NSString * _Nullable quantity;
+@property (nonatomic, strong) RecipeEntity * _Nullable recipe;
+@end
+
+
 SWIFT_CLASS_NAMED("JournalEntryEntity")
 @interface JournalEntryEntity : NSManagedObject
 - (nonnull instancetype)initWithEntity:(NSEntityDescription * _Nonnull)entity insertIntoManagedObjectContext:(NSManagedObjectContext * _Nullable)context OBJC_DESIGNATED_INITIALIZER;
@@ -306,7 +323,6 @@ SWIFT_CLASS_NAMED("JournalEntryEntity")
 
 
 @class NSDate;
-@class NSString;
 
 @interface JournalEntryEntity (SWIFT_EXTENSION(Diabetic_Wellness_Tracker))
 @property (nonatomic, copy) NSDate * _Nullable date;
@@ -316,17 +332,46 @@ SWIFT_CLASS_NAMED("JournalEntryEntity")
 @end
 
 
+SWIFT_CLASS_NAMED("PromptEntity")
+@interface PromptEntity : NSManagedObject
+- (nonnull instancetype)initWithEntity:(NSEntityDescription * _Nonnull)entity insertIntoManagedObjectContext:(NSManagedObjectContext * _Nullable)context OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+
+@interface PromptEntity (SWIFT_EXTENSION(Diabetic_Wellness_Tracker))
+@property (nonatomic, copy) NSString * _Nullable prompt;
+@end
+
+
 SWIFT_CLASS_NAMED("RecipeEntity")
 @interface RecipeEntity : NSManagedObject
 - (nonnull instancetype)initWithEntity:(NSEntityDescription * _Nonnull)entity insertIntoManagedObjectContext:(NSManagedObjectContext * _Nullable)context OBJC_DESIGNATED_INITIALIZER;
 @end
 
 
+@class NSOrderedSet;
 
 @interface RecipeEntity (SWIFT_EXTENSION(Diabetic_Wellness_Tracker))
 @property (nonatomic, copy) NSString * _Nullable image;
 @property (nonatomic) BOOL isFavorite;
 @property (nonatomic, copy) NSString * _Nullable name;
+@property (nonatomic, strong) NSOrderedSet * _Nullable ingredientsList;
+@end
+
+@class NSIndexSet;
+
+@interface RecipeEntity (SWIFT_EXTENSION(Diabetic_Wellness_Tracker))
+- (void)insertObject:(IngredientEntity * _Nonnull)value inIngredientsListAtIndex:(NSInteger)idx;
+- (void)removeObjectFromIngredientsListAtIndex:(NSInteger)idx;
+- (void)insertIngredientsList:(NSArray<IngredientEntity *> * _Nonnull)values atIndexes:(NSIndexSet * _Nonnull)indexes;
+- (void)removeIngredientsListAtIndexes:(NSIndexSet * _Nonnull)indexes;
+- (void)replaceObjectInIngredientsListAtIndex:(NSInteger)idx withObject:(IngredientEntity * _Nonnull)value;
+- (void)replaceIngredientsListAtIndexes:(NSIndexSet * _Nonnull)indexes withIngredientsList:(NSArray<IngredientEntity *> * _Nonnull)values;
+- (void)addIngredientsListObject:(IngredientEntity * _Nonnull)value;
+- (void)removeIngredientsListObject:(IngredientEntity * _Nonnull)value;
+- (void)addIngredientsList:(NSOrderedSet * _Nonnull)values;
+- (void)removeIngredientsList:(NSOrderedSet * _Nonnull)values;
 @end
 
 

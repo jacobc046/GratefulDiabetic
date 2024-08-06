@@ -11,13 +11,17 @@
 		1217F2C82C6153170046D9E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1217F2C72C6153170046D9E5 /* Assets.xcassets */; };
 		1217F2CB2C6153170046D9E5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1217F2CA2C6153170046D9E5 /* Preview Assets.xcassets */; };
 		1217F2CD2C6153170046D9E5 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1217F2CC2C6153170046D9E5 /* Persistence.swift */; };
-		1217F2D02C6153170046D9E5 /* Diabetic_Wellness_Tracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1217F2CE2C6153170046D9E5 /* Diabetic_Wellness_Tracker.xcdatamodeld */; };
+		1217F2D02C6153170046D9E5 /* TrackerModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1217F2CE2C6153170046D9E5 /* TrackerModel.xcdatamodeld */; };
 		1217F2D72C6157E00046D9E5 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1217F2D62C6157E00046D9E5 /* Ingredient.swift */; };
 		1217F2DA2C6158750046D9E5 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1217F2D92C6158750046D9E5 /* Recipe.swift */; };
 		1217F2DC2C6158D60046D9E5 /* JournalEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1217F2DB2C6158D60046D9E5 /* JournalEntry.swift */; };
 		1217F2DF2C617F300046D9E5 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1217F2DE2C617F300046D9E5 /* Onboarding.swift */; };
 		1217F2E12C6187E10046D9E5 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1217F2E02C6187E10046D9E5 /* Home.swift */; };
 		1217F2E32C6189D30046D9E5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1217F2E22C6189D30046D9E5 /* ContentView.swift */; };
+		1217F2E52C6291890046D9E5 /* JournalPrompts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1217F2E42C6291890046D9E5 /* JournalPrompts.swift */; };
+		1217F2E72C629B7A0046D9E5 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1217F2E62C629B7A0046D9E5 /* CoreDataManager.swift */; };
+		1217F2E92C629FA40046D9E5 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1217F2E82C629FA40046D9E5 /* DownloadManager.swift */; };
+		1217F2EB2C62ABF90046D9E5 /* Journals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1217F2EA2C62ABF90046D9E5 /* Journals.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +37,10 @@
 		1217F2DE2C617F300046D9E5 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		1217F2E02C6187E10046D9E5 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		1217F2E22C6189D30046D9E5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		1217F2E42C6291890046D9E5 /* JournalPrompts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalPrompts.swift; sourceTree = "<group>"; };
+		1217F2E62C629B7A0046D9E5 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		1217F2E82C629FA40046D9E5 /* DownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
+		1217F2EA2C62ABF90046D9E5 /* Journals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Journals.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,8 +76,10 @@
 				1217F2C32C6153150046D9E5 /* Diabetic_Wellness_TrackerApp.swift */,
 				1217F2C72C6153170046D9E5 /* Assets.xcassets */,
 				1217F2CC2C6153170046D9E5 /* Persistence.swift */,
-				1217F2CE2C6153170046D9E5 /* Diabetic_Wellness_Tracker.xcdatamodeld */,
-				1217F2D82C6158310046D9E5 /* ViewModels */,
+				1217F2E62C629B7A0046D9E5 /* CoreDataManager.swift */,
+				1217F2E82C629FA40046D9E5 /* DownloadManager.swift */,
+				1217F2CE2C6153170046D9E5 /* TrackerModel.xcdatamodeld */,
+				1217F2D82C6158310046D9E5 /* DownloadModels */,
 				1217F2DD2C617F160046D9E5 /* Views */,
 				1217F2C92C6153170046D9E5 /* Preview Content */,
 			);
@@ -84,14 +94,15 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		1217F2D82C6158310046D9E5 /* ViewModels */ = {
+		1217F2D82C6158310046D9E5 /* DownloadModels */ = {
 			isa = PBXGroup;
 			children = (
 				1217F2D62C6157E00046D9E5 /* Ingredient.swift */,
 				1217F2D92C6158750046D9E5 /* Recipe.swift */,
+				1217F2E42C6291890046D9E5 /* JournalPrompts.swift */,
 				1217F2DB2C6158D60046D9E5 /* JournalEntry.swift */,
 			);
-			path = ViewModels;
+			path = DownloadModels;
 			sourceTree = "<group>";
 		};
 		1217F2DD2C617F160046D9E5 /* Views */ = {
@@ -100,6 +111,7 @@
 				1217F2DE2C617F300046D9E5 /* Onboarding.swift */,
 				1217F2E02C6187E10046D9E5 /* Home.swift */,
 				1217F2E22C6189D30046D9E5 /* ContentView.swift */,
+				1217F2EA2C62ABF90046D9E5 /* Journals.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -174,15 +186,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1217F2E92C629FA40046D9E5 /* DownloadManager.swift in Sources */,
+				1217F2EB2C62ABF90046D9E5 /* Journals.swift in Sources */,
+				1217F2E52C6291890046D9E5 /* JournalPrompts.swift in Sources */,
 				1217F2DC2C6158D60046D9E5 /* JournalEntry.swift in Sources */,
 				1217F2D72C6157E00046D9E5 /* Ingredient.swift in Sources */,
 				1217F2CD2C6153170046D9E5 /* Persistence.swift in Sources */,
 				1217F2DF2C617F300046D9E5 /* Onboarding.swift in Sources */,
-				1217F2D02C6153170046D9E5 /* Diabetic_Wellness_Tracker.xcdatamodeld in Sources */,
+				1217F2D02C6153170046D9E5 /* TrackerModel.xcdatamodeld in Sources */,
 				1217F2E32C6189D30046D9E5 /* ContentView.swift in Sources */,
 				1217F2C42C6153150046D9E5 /* Diabetic_Wellness_TrackerApp.swift in Sources */,
 				1217F2E12C6187E10046D9E5 /* Home.swift in Sources */,
 				1217F2DA2C6158750046D9E5 /* Recipe.swift in Sources */,
+				1217F2E72C629B7A0046D9E5 /* CoreDataManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,13 +406,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		1217F2CE2C6153170046D9E5 /* Diabetic_Wellness_Tracker.xcdatamodeld */ = {
+		1217F2CE2C6153170046D9E5 /* TrackerModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				1217F2CF2C6153170046D9E5 /* Diabetic_Wellness_Tracker.xcdatamodel */,
 			);
 			currentVersion = 1217F2CF2C6153170046D9E5 /* Diabetic_Wellness_Tracker.xcdatamodel */;
-			path = Diabetic_Wellness_Tracker.xcdatamodeld;
+			path = TrackerModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

@@ -13,45 +13,43 @@ struct Home: View {
         .formatted(date: .complete, time: .omitted)
     @State var showSidebar: NavigationSplitViewVisibility = .all
     
+    @State var prompt: String = "SOMETHING"
+    
     var body: some View {
-        NavigationSplitView(columnVisibility: $showSidebar) {
-            NavigationStack {
-                ZStack {
-                    LinearGradient(colors: [.primary1, .primary1.opacity(0.5)],
-                                   startPoint: .top, endPoint: .bottom)
-                    .ignoresSafeArea()
+        NavigationStack {
+            
+            ZStack {
+                //background
+                LinearGradient(colors: [.primary1, .primary1.opacity(0.5)],
+                               startPoint: .top, endPoint: .bottom)
+                .ignoresSafeArea(edges: .top)
+                
+                //foreground
+                VStack {
+                    Text("Hey \(UserDefaults.standard.string(forKey: kFirstName)!)!")
+                        .font(.largeTitle)
                     
-                    VStack {
-                        Text("Hey \(UserDefaults.standard.string(forKey: kFirstName)!)!")
-                            .font(.largeTitle)
-                        
-                        Text("Today is \(date)")
-                            .font(.title2)
-                    }
-                }
-                .toolbar {
-                    ToolbarItem(placement: .topBarLeading) {
-                        Button {
-                            
-                        } label: {
-                            Image(systemName: "gear")
-                                .foregroundStyle(.white)
-                        }
-                    }
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button {
-                            
-                        } label: {
-                            Image(systemName: "line.3.horizontal")
-                                .foregroundStyle(.white)
-                        }
-                    }
+                    Text("Today is \(date)")
+                        .lineLimit(1)
+                        .font(.title)
+                        .minimumScaleFactor(0.7)
+                        .padding([.leading, .trailing], 15)
+                    
+                    Text("Journal about \(prompt) today")
                 }
             }
-        } content: {
-            
-        } detail: {
-            
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    NavigationLink {
+                        EmptyView() //settings view
+                    } label: {
+                        Image(systemName: "gear")
+                            .foregroundStyle(.white)
+                    }
+
+                }
+            }
+            .navigationBarBackButtonHidden()
         }
     }
 }

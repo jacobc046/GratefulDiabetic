@@ -4,15 +4,15 @@
     "Localizable": [
       {
         "comment": "",
-        "key": "hello"
-      },
-      {
-        "comment": "",
         "key": "Hey %@!"
       },
       {
         "comment": "",
         "key": "Today is %@"
+      },
+      {
+        "comment": "",
+        "key": "Journal about %@ today"
       }
     ]
   },
