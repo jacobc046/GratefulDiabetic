@@ -7,17 +7,10 @@
 
 import SwiftUI
 
-func getSortDescriptors() -> [NSSortDescriptor] {
-    [
-        NSSortDescriptor(key: #keyPath(JournalEntryEntity.date), ascending: true),
-     NSSortDescriptor(key: "name", ascending: true)
-    ]
-}
-
 struct Journals: View {
     
     @EnvironmentObject var manager: CoreDataManager
-    @FetchRequest(entity: JournalEntryEntity.entity(), sortDescriptors: getSortDescriptors()) private var journals: FetchedResults<JournalEntryEntity>
+    @FetchRequest(entity: JournalEntryEntity.entity(), sortDescriptors: CoreDataManager.instance.getJournalSortDescriptors(), animation: .default) private var journals: FetchedResults<JournalEntryEntity>
     
     var body: some View {
         NavigationStack {
@@ -37,7 +30,7 @@ struct Journals: View {
                     .toolbar {
                         ToolbarItem(placement: .topBarLeading) {
                             NavigationLink {
-                                EmptyView()
+                                SearchJournals()
                             } label: {
                                 Image(systemName: "magnifyingglass")
                                     .foregroundStyle(.white)

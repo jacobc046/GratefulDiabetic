@@ -65,12 +65,11 @@ struct CreateNewJournal: View {
         let newJournal = JournalEntryEntity(context: manager.context)
         newJournal.name = title
         newJournal.date = Date()
-        newJournal.text = text        
+        newJournal.text = text
         manager.saveData()
     }
 }
 
 #Preview {
     CreateNewJournal()
-        .environmentObject(CoreDataManager.instance)
 }

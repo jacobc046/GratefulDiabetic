@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 enum SelectedTab: String {
     case home
@@ -16,6 +17,7 @@ enum SelectedTab: String {
 
 struct ContentView: View {
     
+    @EnvironmentObject var manager: CoreDataManager
     @State private var selectedTab: SelectedTab = .home
     
     var body: some View {
@@ -86,4 +88,5 @@ struct TabBarIcon: View {
 
 #Preview {
     ContentView()
+        .environmentObject(CoreDataManager.instance)
 }

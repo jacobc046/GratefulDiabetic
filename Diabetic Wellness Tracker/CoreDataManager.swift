@@ -91,12 +91,24 @@ class CoreDataManager: ObservableObject {
     }
     
     func saveData() {
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch let error {
-                print("error \(error)")
-            }
+        do {
+            try context.save()
+        } catch let error {
+            print("error \(error)")
         }
+    }
+    
+    
+    func getJournalSortDescriptors() -> [NSSortDescriptor] {
+        [
+            NSSortDescriptor(keyPath: \JournalEntryEntity.date, ascending: true),
+            NSSortDescriptor(key: "name", ascending: true)
+        ]
+    }
+    
+    func getRecipeSortDescriptors() -> [NSSortDescriptor] {
+        [
+            NSSortDescriptor(key: "name", ascending: true)
+        ]
     }
 }

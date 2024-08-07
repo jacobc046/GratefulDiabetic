@@ -9,14 +9,13 @@ import protocol SwiftUI.View
 import CoreData
 import SwiftUI
 
-extension PersistenceController {
+extension CoreDataManager {
     @_dynamicReplacement(for: sampleJournal) private var __preview__sampleJournal: JournalEntryEntity {
-        #sourceLocation(file: "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/JournalThumbnail.swift", line: 66)
-        let context = Self.shared.container.viewContext
-        let journal = JournalEntryEntity(context: context)
-        journal.name = __designTimeString("#1064.[4].[0].property.[0].[2].[0]", fallback: "My Journal")
+        #sourceLocation(file: "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/JournalThumbnail.swift", line: 67)
+        let journal = JournalEntryEntity(context: CoreDataManager.instance.context)
+        journal.name = __designTimeString("#12001.[4].[0].property.[0].[1].[0]", fallback: "My Journal")
         journal.date = Date()
-        journal.text = __designTimeString("#1064.[4].[0].property.[0].[4].[0]", fallback: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
+        journal.text = __designTimeString("#12001.[4].[0].property.[0].[3].[0]", fallback: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
         
         return journal
     
@@ -28,17 +27,17 @@ extension JournalThumbnail {
     @_dynamicReplacement(for: body) private var __preview__body: some View {
         #sourceLocation(file: "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/JournalThumbnail.swift", line: 17)
         ZStack {
-            RoundedRectangle(cornerRadius: __designTimeFloat("#1064.[2].[2].property.[0].[0].arg[0].value.[0].arg[0].value", fallback: 25.0))
+            RoundedRectangle(cornerRadius: __designTimeFloat("#12001.[2].[2].property.[0].[0].arg[0].value.[0].arg[0].value", fallback: 25.0))
                 .foregroundStyle(.white)
             
             VStack {
-                HStack(spacing: __designTimeInteger("#1064.[2].[2].property.[0].[0].arg[0].value.[1].arg[0].value.[0].arg[0].value", fallback: 100)) {
-                    Text(journal.name ?? __designTimeString("#1064.[2].[2].property.[0].[0].arg[0].value.[1].arg[0].value.[0].arg[1].value.[0].arg[0].value.[0]", fallback: "Title"))
+                HStack(spacing: __designTimeInteger("#12001.[2].[2].property.[0].[0].arg[0].value.[1].arg[0].value.[0].arg[0].value", fallback: 100)) {
+                    Text(journal.name ?? __designTimeString("#12001.[2].[2].property.[0].[0].arg[0].value.[1].arg[0].value.[0].arg[1].value.[0].arg[0].value.[0]", fallback: "Title"))
                         .font(.title)
-                    Text(journal.date?.formatted(date: .numeric, time: .omitted) ?? __designTimeString("#1064.[2].[2].property.[0].[0].arg[0].value.[1].arg[0].value.[0].arg[1].value.[1].arg[0].value.[0]", fallback: "Date"))
+                    Text(journal.date?.formatted(date: .numeric, time: .omitted) ?? __designTimeString("#12001.[2].[2].property.[0].[0].arg[0].value.[1].arg[0].value.[0].arg[1].value.[1].arg[0].value.[0]", fallback: "Date"))
                 }
                 
-                Text(journal.text ?? __designTimeString("#1064.[2].[2].property.[0].[0].arg[0].value.[1].arg[0].value.[1].arg[0].value.[0]", fallback: "Text"))
+                Text(journal.text ?? __designTimeString("#12001.[2].[2].property.[0].[0].arg[0].value.[1].arg[0].value.[1].arg[0].value.[0]", fallback: "Text"))
                     .padding()
                 
                 Menu {
@@ -46,16 +45,16 @@ extension JournalThumbnail {
                     Button(role: .destructive) {
                         
                     } label: {
-                        Label(__designTimeString("#1064.[2].[2].property.[0].[0].arg[0].value.[1].arg[0].value.[2].arg[0].value.[0].arg[2].value.[0].arg[0].value", fallback: "Delete"), systemImage: __designTimeString("#1064.[2].[2].property.[0].[0].arg[0].value.[1].arg[0].value.[2].arg[0].value.[0].arg[2].value.[0].arg[1].value", fallback: "trash"))
+                        Label(__designTimeString("#12001.[2].[2].property.[0].[0].arg[0].value.[1].arg[0].value.[2].arg[0].value.[0].arg[2].value.[0].arg[0].value", fallback: "Delete"), systemImage: __designTimeString("#12001.[2].[2].property.[0].[0].arg[0].value.[1].arg[0].value.[2].arg[0].value.[0].arg[2].value.[0].arg[1].value", fallback: "trash"))
                     }
                     Button {
                         
                     } label: {
-                        Label(__designTimeString("#1064.[2].[2].property.[0].[0].arg[0].value.[1].arg[0].value.[2].arg[0].value.[1].arg[1].value.[0].arg[0].value", fallback: "Edit"), systemImage: __designTimeString("#1064.[2].[2].property.[0].[0].arg[0].value.[1].arg[0].value.[2].arg[0].value.[1].arg[1].value.[0].arg[1].value", fallback: "pencil"))
+                        Label(__designTimeString("#12001.[2].[2].property.[0].[0].arg[0].value.[1].arg[0].value.[2].arg[0].value.[1].arg[1].value.[0].arg[0].value", fallback: "Edit"), systemImage: __designTimeString("#12001.[2].[2].property.[0].[0].arg[0].value.[1].arg[0].value.[2].arg[0].value.[1].arg[1].value.[0].arg[1].value", fallback: "pencil"))
                     }
                     
                 } label: {
-                    Image(systemName: __designTimeString("#1064.[2].[2].property.[0].[0].arg[0].value.[1].arg[0].value.[2].arg[1].value.[0].arg[0].value", fallback: "ellipsis"))
+                    Image(systemName: __designTimeString("#12001.[2].[2].property.[0].[0].arg[0].value.[1].arg[0].value.[2].arg[1].value.[0].arg[0].value", fallback: "ellipsis"))
                 }
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .padding(.trailing)
@@ -63,8 +62,8 @@ extension JournalThumbnail {
             .foregroundStyle(.black)
             .padding()
         }
-        .clipShape(RoundedRectangle(cornerRadius: __designTimeFloat("#1064.[2].[2].property.[0].[0].modifier[0].arg[0].value.arg[0].value", fallback: 25.0)))
-        .frame(maxWidth: .infinity, maxHeight: __designTimeInteger("#1064.[2].[2].property.[0].[0].modifier[1].arg[1].value", fallback: 300))
+        .clipShape(RoundedRectangle(cornerRadius: __designTimeFloat("#12001.[2].[2].property.[0].[0].modifier[0].arg[0].value.arg[0].value", fallback: 25.0)))
+        .frame(maxWidth: .infinity, maxHeight: __designTimeInteger("#12001.[2].[2].property.[0].[0].modifier[1].arg[1].value", fallback: 300))
         .padding()
     
 #sourceLocation()
@@ -73,7 +72,8 @@ extension JournalThumbnail {
 
 import struct Diabetic_Wellness_Tracker.JournalThumbnail
 #Preview {
-    JournalThumbnail(journal: PersistenceController.shared.sampleJournal)
+    JournalThumbnail(journal: CoreDataManager
+        .instance.sampleJournal)
         .previewLayout(.sizeThatFits)
 }
 

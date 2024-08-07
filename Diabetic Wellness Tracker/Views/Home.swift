@@ -14,7 +14,6 @@ struct Home: View {
     @State var showSidebar: NavigationSplitViewVisibility = .all
     
     @State var prompt: String = "SOMETHING"
-    @StateObject var dataManager = CoreDataManager.instance
     
     
     var body: some View {
@@ -26,7 +25,7 @@ struct Home: View {
                 
                 //foreground
                 VStack {
-                    Text("Hey \(UserDefaults.standard.string(forKey: kFirstName) ?? "there") !")
+                    Text("Hey \(UserDefaults.standard.string(forKey: kFirstName) ?? "there")!")
                         .font(.largeTitle)
                     
                     Text("Today is \(date)")
@@ -51,7 +50,6 @@ struct Home: View {
             }
             .navigationBarBackButtonHidden()
         }
-        .environmentObject(dataManager)
     }
 }
 

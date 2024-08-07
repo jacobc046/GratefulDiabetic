@@ -9,12 +9,11 @@ import SwiftUI
 
 @main
 struct Diabetic_Wellness_TrackerApp: App {
-    let persistenceController = PersistenceController.shared
-
+    let persistenceController = CoreDataManager.instance
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(CoreDataManager.instance)
         }
     }
 }

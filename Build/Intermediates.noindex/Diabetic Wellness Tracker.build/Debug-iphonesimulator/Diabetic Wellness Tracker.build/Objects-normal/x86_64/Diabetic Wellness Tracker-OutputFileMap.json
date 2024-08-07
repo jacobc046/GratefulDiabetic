@@ -165,15 +165,15 @@
     "swift-dependencies" : "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Build/Intermediates.noindex/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/Recipe.swiftdeps",
     "swiftmodule" : "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Build/Intermediates.noindex/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/Recipe~partial.swiftmodule"
   },
-  "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Persistence.swift" : {
-    "const-values" : "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Build/Intermediates.noindex/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/Persistence.swiftconstvalues",
-    "dependencies" : "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Build/Intermediates.noindex/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/Persistence.d",
-    "diagnostics" : "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Build/Intermediates.noindex/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/Persistence.dia",
-    "index-unit-output-path" : "/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/Persistence.o",
-    "llvm-bc" : "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Build/Intermediates.noindex/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/Persistence.bc",
-    "object" : "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Build/Intermediates.noindex/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/Persistence.o",
-    "swift-dependencies" : "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Build/Intermediates.noindex/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/Persistence.swiftdeps",
-    "swiftmodule" : "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Build/Intermediates.noindex/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/Persistence~partial.swiftmodule"
+  "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/Background.swift" : {
+    "const-values" : "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Build/Intermediates.noindex/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/Background.swiftconstvalues",
+    "dependencies" : "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Build/Intermediates.noindex/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/Background.d",
+    "diagnostics" : "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Build/Intermediates.noindex/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/Background.dia",
+    "index-unit-output-path" : "/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/Background.o",
+    "llvm-bc" : "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Build/Intermediates.noindex/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/Background.bc",
+    "object" : "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Build/Intermediates.noindex/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/Background.o",
+    "swift-dependencies" : "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Build/Intermediates.noindex/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/Background.swiftdeps",
+    "swiftmodule" : "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Build/Intermediates.noindex/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/Background~partial.swiftmodule"
   },
   "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/ContentView.swift" : {
     "const-values" : "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Build/Intermediates.noindex/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/ContentView.swiftconstvalues",
@@ -184,6 +184,16 @@
     "object" : "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Build/Intermediates.noindex/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/ContentView.o",
     "swift-dependencies" : "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Build/Intermediates.noindex/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/ContentView.swiftdeps",
     "swiftmodule" : "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Build/Intermediates.noindex/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/ContentView~partial.swiftmodule"
+  },
+  "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/CreateNewJournal.swift" : {
+    "const-values" : "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Build/Intermediates.noindex/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/CreateNewJournal.swiftconstvalues",
+    "dependencies" : "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Build/Intermediates.noindex/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/CreateNewJournal.d",
+    "diagnostics" : "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Build/Intermediates.noindex/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/CreateNewJournal.dia",
+    "index-unit-output-path" : "/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/CreateNewJournal.o",
+    "llvm-bc" : "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Build/Intermediates.noindex/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/CreateNewJournal.bc",
+    "object" : "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Build/Intermediates.noindex/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/CreateNewJournal.o",
+    "swift-dependencies" : "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Build/Intermediates.noindex/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/CreateNewJournal.swiftdeps",
+    "swiftmodule" : "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Build/Intermediates.noindex/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/CreateNewJournal~partial.swiftmodule"
   },
   "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/Home.swift" : {
     "const-values" : "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Build/Intermediates.noindex/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/Home.swiftconstvalues",
@@ -204,6 +214,16 @@
     "object" : "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Build/Intermediates.noindex/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/Journals.o",
     "swift-dependencies" : "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Build/Intermediates.noindex/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/Journals.swiftdeps",
     "swiftmodule" : "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Build/Intermediates.noindex/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/Journals~partial.swiftmodule"
+  },
+  "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/JournalThumbnail.swift" : {
+    "const-values" : "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Build/Intermediates.noindex/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/JournalThumbnail.swiftconstvalues",
+    "dependencies" : "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Build/Intermediates.noindex/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/JournalThumbnail.d",
+    "diagnostics" : "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Build/Intermediates.noindex/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/JournalThumbnail.dia",
+    "index-unit-output-path" : "/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/JournalThumbnail.o",
+    "llvm-bc" : "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Build/Intermediates.noindex/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/JournalThumbnail.bc",
+    "object" : "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Build/Intermediates.noindex/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/JournalThumbnail.o",
+    "swift-dependencies" : "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Build/Intermediates.noindex/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/JournalThumbnail.swiftdeps",
+    "swiftmodule" : "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Build/Intermediates.noindex/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/JournalThumbnail~partial.swiftmodule"
   },
   "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/Onboarding.swift" : {
     "const-values" : "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Build/Intermediates.noindex/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/Onboarding.swiftconstvalues",

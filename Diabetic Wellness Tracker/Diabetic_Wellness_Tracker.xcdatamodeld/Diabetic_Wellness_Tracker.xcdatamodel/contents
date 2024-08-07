@@ -17,6 +17,6 @@
         <attribute name="image" optional="YES" attributeType="String"/>
         <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="ingredientsList" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="IngredientEntity" inverseName="recipe" inverseEntity="IngredientEntity"/>
+        <relationship name="ingredientsList" toMany="YES" deletionRule="Nullify" destinationEntity="IngredientEntity" inverseName="recipe" inverseEntity="IngredientEntity"/>
     </entity>
 </model>

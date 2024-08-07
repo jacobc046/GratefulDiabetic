@@ -276,7 +276,6 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #pragma clang diagnostic ignored "-Watimport-in-framework-header"
 #endif
 @import CoreData;
-@import Foundation;
 #endif
 
 #endif
@@ -349,28 +348,21 @@ SWIFT_CLASS_NAMED("RecipeEntity")
 @end
 
 
-@class NSOrderedSet;
+@class NSSet;
+
+@interface RecipeEntity (SWIFT_EXTENSION(Diabetic_Wellness_Tracker))
+- (void)addIngredientsListObject:(IngredientEntity * _Nonnull)value;
+- (void)removeIngredientsListObject:(IngredientEntity * _Nonnull)value;
+- (void)addIngredientsList:(NSSet * _Nonnull)values;
+- (void)removeIngredientsList:(NSSet * _Nonnull)values;
+@end
+
 
 @interface RecipeEntity (SWIFT_EXTENSION(Diabetic_Wellness_Tracker))
 @property (nonatomic, copy) NSString * _Nullable image;
 @property (nonatomic) BOOL isFavorite;
 @property (nonatomic, copy) NSString * _Nullable name;
-@property (nonatomic, strong) NSOrderedSet * _Nullable ingredientsList;
-@end
-
-@class NSIndexSet;
-
-@interface RecipeEntity (SWIFT_EXTENSION(Diabetic_Wellness_Tracker))
-- (void)insertObject:(IngredientEntity * _Nonnull)value inIngredientsListAtIndex:(NSInteger)idx;
-- (void)removeObjectFromIngredientsListAtIndex:(NSInteger)idx;
-- (void)insertIngredientsList:(NSArray<IngredientEntity *> * _Nonnull)values atIndexes:(NSIndexSet * _Nonnull)indexes;
-- (void)removeIngredientsListAtIndexes:(NSIndexSet * _Nonnull)indexes;
-- (void)replaceObjectInIngredientsListAtIndex:(NSInteger)idx withObject:(IngredientEntity * _Nonnull)value;
-- (void)replaceIngredientsListAtIndexes:(NSIndexSet * _Nonnull)indexes withIngredientsList:(NSArray<IngredientEntity *> * _Nonnull)values;
-- (void)addIngredientsListObject:(IngredientEntity * _Nonnull)value;
-- (void)removeIngredientsListObject:(IngredientEntity * _Nonnull)value;
-- (void)addIngredientsList:(NSOrderedSet * _Nonnull)values;
-- (void)removeIngredientsList:(NSOrderedSet * _Nonnull)values;
+@property (nonatomic, strong) NSSet * _Nullable ingredientsList;
 @end
 
 

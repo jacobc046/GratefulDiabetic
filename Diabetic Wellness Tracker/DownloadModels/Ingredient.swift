@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Ingredient: Decodable {
+struct Ingredient: Decodable, Hashable {
     let name: String
     let quantity: String
 }
