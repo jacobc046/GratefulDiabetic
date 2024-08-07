@@ -13,8 +13,8 @@ struct Diabetic_Wellness_TrackerApp: App {
 
     var body: some Scene {
         WindowGroup {
-            //ContentView()
-                //.environment(\.managedObjectContext, persistenceController.container.viewContext)
+            ContentView()
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }

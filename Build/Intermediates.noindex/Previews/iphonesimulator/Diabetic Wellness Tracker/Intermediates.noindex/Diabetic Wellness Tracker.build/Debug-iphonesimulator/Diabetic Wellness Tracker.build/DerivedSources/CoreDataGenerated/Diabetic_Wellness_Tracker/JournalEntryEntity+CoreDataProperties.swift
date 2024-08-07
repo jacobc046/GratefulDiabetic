@@ -2,7 +2,7 @@
 //  JournalEntryEntity+CoreDataProperties.swift
 //  
 //
-//  Created by Jacob Croket on 8/5/24.
+//  Created by Jacob Croket on 8/6/24.
 //
 //  This file was automatically generated and should not be edited.
 //
@@ -18,7 +18,6 @@ extension JournalEntryEntity {
     }
 
     @NSManaged public var date: Date?
-    @NSManaged public var image: String?
     @NSManaged public var name: String?
     @NSManaged public var text: String?
 

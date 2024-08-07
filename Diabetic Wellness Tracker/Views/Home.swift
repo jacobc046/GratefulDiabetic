@@ -14,19 +14,19 @@ struct Home: View {
     @State var showSidebar: NavigationSplitViewVisibility = .all
     
     @State var prompt: String = "SOMETHING"
+    @StateObject var dataManager = CoreDataManager.instance
+    
     
     var body: some View {
         NavigationStack {
             
             ZStack {
                 //background
-                LinearGradient(colors: [.primary1, .primary1.opacity(0.5)],
-                               startPoint: .top, endPoint: .bottom)
-                .ignoresSafeArea(edges: .top)
+                Background()
                 
                 //foreground
                 VStack {
-                    Text("Hey \(UserDefaults.standard.string(forKey: kFirstName)!)!")
+                    Text("Hey \(UserDefaults.standard.string(forKey: kFirstName) ?? "there") !")
                         .font(.largeTitle)
                     
                     Text("Today is \(date)")
@@ -35,7 +35,7 @@ struct Home: View {
                         .minimumScaleFactor(0.7)
                         .padding([.leading, .trailing], 15)
                     
-                    Text("Journal about \(prompt) today")
+                    Text("Journal about **\(prompt)** today")
                 }
             }
             .toolbar {
@@ -51,6 +51,7 @@ struct Home: View {
             }
             .navigationBarBackButtonHidden()
         }
+        .environmentObject(dataManager)
     }
 }
 

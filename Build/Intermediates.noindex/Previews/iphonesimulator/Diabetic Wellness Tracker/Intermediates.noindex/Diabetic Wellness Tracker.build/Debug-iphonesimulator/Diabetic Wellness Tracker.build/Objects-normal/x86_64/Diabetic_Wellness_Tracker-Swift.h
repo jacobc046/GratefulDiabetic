@@ -326,13 +326,12 @@ SWIFT_CLASS_NAMED("JournalEntryEntity")
 
 @interface JournalEntryEntity (SWIFT_EXTENSION(Diabetic_Wellness_Tracker))
 @property (nonatomic, copy) NSDate * _Nullable date;
-@property (nonatomic, copy) NSString * _Nullable image;
 @property (nonatomic, copy) NSString * _Nullable name;
 @property (nonatomic, copy) NSString * _Nullable text;
 @end
 
 
-SWIFT_CLASS_NAMED("PromptEntity")
+SWIFT_CLASS("_TtC25Diabetic_Wellness_Tracker12PromptEntity")
 @interface PromptEntity : NSManagedObject
 - (nonnull instancetype)initWithEntity:(NSEntityDescription * _Nonnull)entity insertIntoManagedObjectContext:(NSManagedObjectContext * _Nullable)context OBJC_DESIGNATED_INITIALIZER;
 @end

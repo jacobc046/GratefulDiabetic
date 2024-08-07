@@ -4,7 +4,7 @@
     "Localizable": [
       {
         "comment": "",
-        "key": "Hey %@!"
+        "key": "Hey %@ !"
       },
       {
         "comment": "",
@@ -12,7 +12,7 @@
       },
       {
         "comment": "",
-        "key": "Journal about %@ today"
+        "key": "Journal about **%@** today"
       }
     ]
   },
