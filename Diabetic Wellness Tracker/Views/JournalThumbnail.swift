@@ -30,15 +30,15 @@ struct JournalThumbnail: View {
                 
                 Menu {
                     
-                    Button(role: .destructive) {
-                        
-                    } label: {
-                        Label("Delete", systemImage: "trash")
-                    }
                     Button {
                         
                     } label: {
                         Label("Edit", systemImage: "pencil")
+                    }
+                    Button(role: .destructive) {
+                        
+                    } label: {
+                        Label("Delete", systemImage: "trash")
                     }
                     
                 } label: {

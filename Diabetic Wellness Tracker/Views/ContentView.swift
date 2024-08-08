@@ -29,7 +29,7 @@ struct ContentView: View {
                     case .journals:
                         Journals()
                     case .recipes:
-                        EmptyView()
+                        RecipesView()
                     case .featured:
                         EmptyView()
                 }
@@ -41,10 +41,10 @@ struct ContentView: View {
                     
                     Menu {
                         NavigationLink("New Journal") {
-                            EmptyView()
+                            CreateNewJournal()
                         }
                         NavigationLink("New Recipe") {
-                            EmptyView()
+                            RecipeEditor(recipe: nil)
                         }
                     } label: {
                         Image(systemName: "plus.circle.fill")
@@ -88,5 +88,6 @@ struct TabBarIcon: View {
 
 #Preview {
     ContentView()
+        .environment(\.managedObjectContext, CoreDataManager.instance.container.viewContext)
         .environmentObject(CoreDataManager.instance)
 }

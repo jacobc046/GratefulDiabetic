@@ -301,18 +301,45 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 @class NSEntityDescription;
 @class NSManagedObjectContext;
 
+SWIFT_CLASS_NAMED("FeaturedRecipeEntity")
+@interface FeaturedRecipeEntity : NSManagedObject
+- (nonnull instancetype)initWithEntity:(NSEntityDescription * _Nonnull)entity insertIntoManagedObjectContext:(NSManagedObjectContext * _Nullable)context OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+@class IngredientEntity;
+@class NSSet;
+
+@interface FeaturedRecipeEntity (SWIFT_EXTENSION(Diabetic_Wellness_Tracker))
+- (void)addIngredientsListObject:(IngredientEntity * _Nonnull)value;
+- (void)removeIngredientsListObject:(IngredientEntity * _Nonnull)value;
+- (void)addIngredientsList:(NSSet * _Nonnull)values;
+- (void)removeIngredientsList:(NSSet * _Nonnull)values;
+@end
+
+@class NSString;
+
+@interface FeaturedRecipeEntity (SWIFT_EXTENSION(Diabetic_Wellness_Tracker))
+@property (nonatomic, copy) NSString * _Nullable image;
+@property (nonatomic, copy) NSString * _Nullable name;
+@property (nonatomic, strong) NSSet * _Nullable ingredientsList;
+@end
+
+
 SWIFT_CLASS_NAMED("IngredientEntity")
 @interface IngredientEntity : NSManagedObject
 - (nonnull instancetype)initWithEntity:(NSEntityDescription * _Nonnull)entity insertIntoManagedObjectContext:(NSManagedObjectContext * _Nullable)context OBJC_DESIGNATED_INITIALIZER;
 @end
 
 
-@class NSString;
 @class RecipeEntity;
 
 @interface IngredientEntity (SWIFT_EXTENSION(Diabetic_Wellness_Tracker))
+@property (nonatomic, copy) NSString * _Nullable fractionalQuantity;
 @property (nonatomic, copy) NSString * _Nullable name;
-@property (nonatomic, copy) NSString * _Nullable quantity;
+@property (nonatomic, copy) NSString * _Nullable units;
+@property (nonatomic, copy) NSString * _Nullable wholeQuantity;
+@property (nonatomic, strong) FeaturedRecipeEntity * _Nullable featuredRecipe;
 @property (nonatomic, strong) RecipeEntity * _Nullable recipe;
 @end
 
@@ -350,7 +377,6 @@ SWIFT_CLASS_NAMED("RecipeEntity")
 @end
 
 
-@class NSSet;
 
 @interface RecipeEntity (SWIFT_EXTENSION(Diabetic_Wellness_Tracker))
 - (void)addIngredientsListObject:(IngredientEntity * _Nonnull)value;
@@ -361,8 +387,6 @@ SWIFT_CLASS_NAMED("RecipeEntity")
 
 
 @interface RecipeEntity (SWIFT_EXTENSION(Diabetic_Wellness_Tracker))
-@property (nonatomic, copy) NSString * _Nullable image;
-@property (nonatomic) BOOL isFavorite;
 @property (nonatomic, copy) NSString * _Nullable name;
 @property (nonatomic, strong) NSSet * _Nullable ingredientsList;
 @end

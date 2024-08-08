@@ -24,7 +24,7 @@ class CoreDataManager: ObservableObject {
         context = container.viewContext
         
         downloadJournalPrompts()
-        downloadRecipes()
+        downloadFeaturedRecipes()
     }
     
     func downloadJournalPrompts() {
@@ -53,7 +53,7 @@ class CoreDataManager: ObservableObject {
         }
     }
     
-    func downloadRecipes() {
+    func downloadFeaturedRecipes() {
         DispatchQueue.global(qos: .background).async {
             guard let url = URL(string: "https://raw.githubusercontent.com/jacobc046/WellnessData/main/Recipes.json") else { return }
             let request = URLRequest(url: url)
@@ -66,7 +66,7 @@ class CoreDataManager: ObservableObject {
                         
                         self.context.perform {
                             for recipe in recipes {
-                                let newRecipe = RecipeEntity(context: self.context)
+                                let newRecipe = FeaturedRecipeEntity(context: self.context)
                                 newRecipe.name = recipe.name
                                 newRecipe.image = recipe.image
                                 
@@ -74,7 +74,9 @@ class CoreDataManager: ObservableObject {
                                 for ingredient in ingredients {
                                     let newIngredient = IngredientEntity(context: self.context)
                                     newIngredient.name = ingredient.name
-                                    newIngredient.quantity = ingredient.quantity
+                                    newIngredient.wholeQuantity = ingredient.wholeQuantity
+                                    newIngredient.fractionalQuantity = ingredient.fractionalQuantity
+                                    newIngredient.units = ingredient.units
                                     
                                     newRecipe.addToIngredientsList(newIngredient)
                                 }
@@ -92,12 +94,15 @@ class CoreDataManager: ObservableObject {
     
     func saveData() {
         do {
-            try context.save()
+            try container.viewContext.save()
         } catch let error {
             print("error \(error)")
         }
     }
     
+    func deleteEntity(_ entity: JournalEntryEntity?, _ recipeEntity: FeaturedRecipeEntity?) {
+        
+    }
     
     func getJournalSortDescriptors() -> [NSSortDescriptor] {
         [

@@ -36,16 +36,9 @@ struct Journals: View {
                                     .foregroundStyle(.white)
                             }
                         }
-                        ToolbarItem(placement: .topBarTrailing) {
-                            NavigationLink {
-                                CreateNewJournal()
-                            } label: {
-                                Image(systemName: "plus")
-                                    .foregroundStyle(.white)
-                            }
-                        }
                     }
                 }
+                .scrollIndicators(.hidden)
             }
         }
     }
@@ -53,5 +46,6 @@ struct Journals: View {
 
 #Preview {
     Journals()
+        .environment(\.managedObjectContext, CoreDataManager.instance.container.viewContext)
         .environmentObject(CoreDataManager.instance)
 }

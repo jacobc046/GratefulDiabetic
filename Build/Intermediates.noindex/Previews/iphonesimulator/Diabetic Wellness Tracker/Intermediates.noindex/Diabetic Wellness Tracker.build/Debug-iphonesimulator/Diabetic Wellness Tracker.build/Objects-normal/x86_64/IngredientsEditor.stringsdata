@@ -1,0 +1,32 @@
+{
+  "source": "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/IngredientsEditor.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Name"
+      },
+      {
+        "comment": "",
+        "key": "Units"
+      },
+      {
+        "comment": "",
+        "key": "Amount:"
+      },
+      {
+        "comment": "",
+        "key": ""
+      },
+      {
+        "comment": "",
+        "key": "Cancel"
+      },
+      {
+        "comment": "",
+        "key": "Save"
+      }
+    ]
+  },
+  "version": 1
+}

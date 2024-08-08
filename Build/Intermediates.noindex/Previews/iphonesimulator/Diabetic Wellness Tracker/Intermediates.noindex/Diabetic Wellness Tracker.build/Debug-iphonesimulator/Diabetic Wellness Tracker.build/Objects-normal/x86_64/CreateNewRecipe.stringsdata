@@ -1,0 +1,36 @@
+{
+  "source": "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/CreateNewRecipe.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Create New Recipe"
+      },
+      {
+        "comment": "",
+        "key": "Title"
+      },
+      {
+        "comment": "",
+        "key": "Cancel"
+      },
+      {
+        "comment": "",
+        "key": "Confirm"
+      },
+      {
+        "comment": "",
+        "key": "Delete"
+      },
+      {
+        "comment": "",
+        "key": "Are you sure you want to delete your recipe?"
+      },
+      {
+        "comment": "",
+        "key": "Save"
+      }
+    ]
+  },
+  "version": 1
+}

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct RecipeThumbnail: View {
     @EnvironmentObject var manager: CoreDataManager
@@ -17,26 +18,24 @@ struct RecipeThumbnail: View {
                 .foregroundStyle(.white)
             
             VStack {
-                HStack(alignment: .top ,spacing: 50) {
-                    VStack {
+                HStack {
+                    VStack(alignment: .leading) {
                         Text(recipe.name ?? "Title")
                             .font(.title)
                         if let ingredients = recipe.ingredientsList as? Set<IngredientEntity> {
                             ForEach(Array(ingredients), id: \.self) { ingredient in
                                 HStack {
                                     Text(ingredient.name ?? "")
-                                    Text(ingredient.quantity ?? "")
+                                    Text(ingredient.wholeQuantity ?? "")
+                                    Text(ingredient.fractionalQuantity ?? "")
+                                    Text(ingredient.units ?? "")
                                 }
                             }
                         }
-                        
                     }
-                    AsyncImage(url: URL(string: recipe.image ?? "")) { image in
-                        image.image?.resizable()
-                            .scaledToFit()
-                            .frame(width: 125)
-                    }
+                    //image
                 }
+                .frame(maxWidth: .infinity)
                 
                 Menu {
                     
@@ -76,15 +75,18 @@ extension CoreDataManager {
         
         let newIngredient1 = IngredientEntity(context: context)
         newIngredient1.name = "Strawberries"
-        newIngredient1.quantity = "1"
+        newIngredient1.wholeQuantity = "1"
+        newIngredient1.fractionalQuantity = ""
+        newIngredient1.units = "cups"
         
         let newIngredient2 = IngredientEntity(context: context)
         newIngredient2.name = "Blueberries"
-        newIngredient2.quantity = "2"
+        newIngredient2.wholeQuantity = "2"
+        newIngredient2.fractionalQuantity = "1/4"
+        newIngredient2.units = "tbsp"
         
         let newRecipe = RecipeEntity(context: context)
         newRecipe.name = "Smoothie"
-        newRecipe.image = "https://www.jessicagavin.com/wp-content/uploads/2020/07/berry-smoothie-8-1200-500x500.jpg"
         newRecipe.ingredientsList = [newIngredient1, newIngredient2]
         
         return newRecipe

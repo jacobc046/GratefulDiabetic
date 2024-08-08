@@ -2,7 +2,7 @@
 //  RecipeEntity+CoreDataProperties.swift
 //  
 //
-//  Created by Jacob Croket on 8/7/24.
+//  Created by Jacob Croket on 8/8/24.
 //
 //  This file was automatically generated and should not be edited.
 //
@@ -17,8 +17,6 @@ extension RecipeEntity {
         return NSFetchRequest<RecipeEntity>(entityName: "RecipeEntity")
     }
 
-    @NSManaged public var image: String?
-    @NSManaged public var isFavorite: Bool
     @NSManaged public var name: String?
     @NSManaged public var ingredientsList: NSSet?
 

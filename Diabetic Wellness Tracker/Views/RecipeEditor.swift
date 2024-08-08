@@ -6,32 +6,67 @@
 //
 
 import SwiftUI
+import CoreData
 
-struct CreateNewRecipe: View {
+struct RecipeEditor: View {
     
-    @State var title: String = ""
-    @State var text: String = ""
+    let recipe: RecipeEntity?
+    let sortDescriptors = [NSSortDescriptor(key: "name", ascending: false)]
+    
+    @State var title: String
+    @State var ingredients: NSSet
+    
+    init(recipe: RecipeEntity?) {
+        self.recipe = recipe
+        title = recipe?.name ?? ""
+        ingredients = recipe?.ingredientsList ?? []
+    }
+    
+    func convertIngredients() -> [IngredientEntity] {
+        let ingredientsArr = ingredients.allObjects as NSArray
+        guard let ingredients = ingredientsArr.sortedArray(using: sortDescriptors) as NSArray as? [IngredientEntity] else { return [] }
+        return ingredients
+    }
     
     @State var showAlert: Bool = false
+    
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var manager: CoreDataManager
     
-    @State var selection: Int = 1
     
     var body: some View {
         NavigationStack {
             VStack {
-                TextField("Title", text: $title)
-                    .font(.title3)
+                HStack {
+                    TextField("Title", text: $title)
                     .textInputAutocapitalization(.words)
+                    .textFieldStyle(.roundedBorder)
+                }
+                .font(.title3)
+                .padding([.leading, .trailing, .bottom], 15)
+                
+                List {
+                    ForEach(convertIngredients()) { ingredient in
+                        HStack(spacing: 20) {
+                            Text(ingredient.name ?? "")
+                            Spacer()
+                            Text(ingredient.wholeQuantity ?? "")
+                            Text(ingredient.fractionalQuantity ?? "")
+                            Text(ingredient.units ?? "")
+                        }
+                    }
+                }
+                .listStyle(InsetListStyle())
+//                .listRowSpacing(50)
+//                .scrollContentBackground(.hidden)
             }
             .padding()
-            .navigationTitle("Create New Recipe")
+            //.navigationTitle(recipe?.name ?? "Create New Recipe")
             .navigationBarBackButtonHidden()
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button("Cancel") {
-                        if title.isEmpty && text.isEmpty {
+                        if title.isEmpty {
                             dismiss()
                         } else {
                             showAlert.toggle()
@@ -44,7 +79,6 @@ struct CreateNewRecipe: View {
                     } message: {
                         Text("Are you sure you want to delete your recipe?")
                     }
-                    
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Save") {
@@ -66,5 +100,5 @@ struct CreateNewRecipe: View {
 }
 
 #Preview {
-    CreateNewRecipe()
+    RecipeEditor(recipe: CoreDataManager.instance.sampleRecipe)
 }

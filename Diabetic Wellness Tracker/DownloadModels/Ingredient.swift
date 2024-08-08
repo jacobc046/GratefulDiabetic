@@ -9,5 +9,7 @@ import Foundation
 
 struct Ingredient: Decodable, Hashable {
     let name: String
-    let quantity: String
+    let wholeQuantity: String
+    let fractionalQuantity: String
+    let units: String
 }

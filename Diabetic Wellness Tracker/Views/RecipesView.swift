@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct RecipesView: View {
     
@@ -36,16 +37,9 @@ struct RecipesView: View {
                                     .foregroundStyle(.white)
                             }
                         }
-                        ToolbarItem(placement: .topBarTrailing) {
-                            NavigationLink {
-                                EmptyView()
-                            } label: {
-                                Image(systemName: "plus")
-                                    .foregroundStyle(.white)
-                            }
-                        }
                     }
                 }
+                .scrollIndicators(.hidden)
             }
         }
     }
@@ -53,5 +47,6 @@ struct RecipesView: View {
 
 #Preview {
     RecipesView()
+        .environment(\.managedObjectContext, CoreDataManager.instance.context)
         .environmentObject(CoreDataManager.instance)
 }

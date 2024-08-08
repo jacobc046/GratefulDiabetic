@@ -21,7 +21,7 @@ extension Journals {
                     ForEach(journals) { journal in
                         JournalThumbnail(journal: journal)
                     }
-                    .navigationTitle(__designTimeString("#3800.[1].[2].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[0].modifier[0].arg[0].value", fallback: "Journals"))
+                    .navigationTitle(__designTimeString("#2316.[1].[2].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[0].modifier[0].arg[0].value", fallback: "Journals"))
                     .navigationBarTitleDisplayMode(.inline)
                     .toolbarBackground(.visible, for: .navigationBar)
                     .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
@@ -30,20 +30,13 @@ extension Journals {
                             NavigationLink {
                                 SearchJournals()
                             } label: {
-                                Image(systemName: __designTimeString("#3800.[1].[2].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[0].modifier[4].arg[0].value.[0].arg[1].value.[0].arg[1].value.[0].arg[0].value", fallback: "magnifyingglass"))
-                                    .foregroundStyle(.white)
-                            }
-                        }
-                        ToolbarItem(placement: .topBarTrailing) {
-                            NavigationLink {
-                                CreateNewJournal()
-                            } label: {
-                                Image(systemName: __designTimeString("#3800.[1].[2].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[0].modifier[4].arg[0].value.[1].arg[1].value.[0].arg[1].value.[0].arg[0].value", fallback: "plus"))
+                                Image(systemName: __designTimeString("#2316.[1].[2].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[0].modifier[4].arg[0].value.[0].arg[1].value.[0].arg[1].value.[0].arg[0].value", fallback: "magnifyingglass"))
                                     .foregroundStyle(.white)
                             }
                         }
                     }
                 }
+                .scrollIndicators(.hidden)
             }
         }
     
@@ -54,6 +47,7 @@ extension Journals {
 import struct Diabetic_Wellness_Tracker.Journals
 #Preview {
     Journals()
+        .environment(\.managedObjectContext, CoreDataManager.instance.container.viewContext)
         .environmentObject(CoreDataManager.instance)
 }
 

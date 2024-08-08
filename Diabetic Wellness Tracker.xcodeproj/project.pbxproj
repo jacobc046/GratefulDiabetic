@@ -25,6 +25,8 @@
 		123335DC2C63DCDD000F3361 /* SearchJournals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123335DB2C63DCDD000F3361 /* SearchJournals.swift */; };
 		123335E02C63E204000F3361 /* RecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123335DF2C63E204000F3361 /* RecipesView.swift */; };
 		123335E22C63E542000F3361 /* RecipeThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123335E12C63E542000F3361 /* RecipeThumbnail.swift */; };
+		12934E292C64131F00BC74A0 /* RecipeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12934E282C64131F00BC74A0 /* RecipeEditor.swift */; };
+		12934E2D2C65348000BC74A0 /* IngredientsEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12934E2C2C65348000BC74A0 /* IngredientsEditor.swift */; };
 		12C004742C63264200D7C102 /* CreateNewJournal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C004732C63264200D7C102 /* CreateNewJournal.swift */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +50,8 @@
 		123335DB2C63DCDD000F3361 /* SearchJournals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchJournals.swift; sourceTree = "<group>"; };
 		123335DF2C63E204000F3361 /* RecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesView.swift; sourceTree = "<group>"; };
 		123335E12C63E542000F3361 /* RecipeThumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeThumbnail.swift; sourceTree = "<group>"; };
+		12934E282C64131F00BC74A0 /* RecipeEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeEditor.swift; sourceTree = "<group>"; };
+		12934E2C2C65348000BC74A0 /* IngredientsEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsEditor.swift; sourceTree = "<group>"; };
 		12C004732C63264200D7C102 /* CreateNewJournal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewJournal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -123,6 +127,8 @@
 				12C004732C63264200D7C102 /* CreateNewJournal.swift */,
 				123335DF2C63E204000F3361 /* RecipesView.swift */,
 				123335E12C63E542000F3361 /* RecipeThumbnail.swift */,
+				12934E282C64131F00BC74A0 /* RecipeEditor.swift */,
+				12934E2C2C65348000BC74A0 /* IngredientsEditor.swift */,
 				1217F2F02C631A020046D9E5 /* Background.swift */,
 			);
 			path = Views;
@@ -204,8 +210,10 @@
 				12C004742C63264200D7C102 /* CreateNewJournal.swift in Sources */,
 				1217F2DC2C6158D60046D9E5 /* JournalEntry.swift in Sources */,
 				1217F2D72C6157E00046D9E5 /* Ingredient.swift in Sources */,
+				12934E292C64131F00BC74A0 /* RecipeEditor.swift in Sources */,
 				1217F2DF2C617F300046D9E5 /* Onboarding.swift in Sources */,
 				1217F2F32C631CD30046D9E5 /* JournalThumbnail.swift in Sources */,
+				12934E2D2C65348000BC74A0 /* IngredientsEditor.swift in Sources */,
 				1217F2D02C6153170046D9E5 /* Diabetic_Wellness_Tracker.xcdatamodeld in Sources */,
 				123335E22C63E542000F3361 /* RecipeThumbnail.swift in Sources */,
 				1217F2E32C6189D30046D9E5 /* ContentView.swift in Sources */,

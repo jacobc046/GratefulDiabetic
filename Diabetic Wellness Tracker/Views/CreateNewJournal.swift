@@ -30,16 +30,11 @@ struct CreateNewJournal: View {
             .navigationBarBackButtonHidden()
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    Button {
+                    Button("Cancel") {
                         if title.isEmpty && text.isEmpty {
                             dismiss()
                         } else {
                             showAlert.toggle()
-                        }
-                    } label: {
-                        HStack {
-                            Image(systemName: "chevron.backward")
-                            Text("Back")
                         }
                     }
                     .alert("Confirm", isPresented: $showAlert) {
@@ -56,6 +51,7 @@ struct CreateNewJournal: View {
                         saveJournal()
                         dismiss()
                     }
+                    .bold()
                 }
             }
         }
