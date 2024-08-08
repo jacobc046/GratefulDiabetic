@@ -14,18 +14,20 @@ struct RecipeEditor: View {
     let sortDescriptors = [NSSortDescriptor(key: "name", ascending: false)]
     
     @State var title: String
-    @State var ingredients: NSSet
+    var originalIngredients: NSSet
     
     init(recipe: RecipeEntity?) {
         self.recipe = recipe
         title = recipe?.name ?? ""
-        ingredients = recipe?.ingredientsList ?? []
+        originalIngredients = recipe?.ingredientsList ?? []
     }
     
-    func convertIngredients() -> [IngredientEntity] {
-        let ingredientsArr = ingredients.allObjects as NSArray
-        guard let ingredients = ingredientsArr.sortedArray(using: sortDescriptors) as NSArray as? [IngredientEntity] else { return [] }
-        return ingredients
+    var sortedIngredients: [IngredientEntity] {
+        let ingredientsArr = originalIngredients.allObjects as NSArray
+        
+        guard let sortedIngredients = ingredientsArr.sortedArray(using: sortDescriptors) as NSArray as? [IngredientEntity] else { return [] }
+        
+        return sortedIngredients
     }
     
     @State var showAlert: Bool = false
@@ -46,22 +48,28 @@ struct RecipeEditor: View {
                 .padding([.leading, .trailing, .bottom], 15)
                 
                 List {
-                    ForEach(convertIngredients()) { ingredient in
+                    ForEach(sortedIngredients) { ingredient in
                         HStack(spacing: 20) {
                             Text(ingredient.name ?? "")
                             Spacer()
                             Text(ingredient.wholeQuantity ?? "")
+                                .frame(width: 20, alignment: .center)
                             Text(ingredient.fractionalQuantity ?? "")
+                                .frame(width: 30, alignment: .center)
                             Text(ingredient.units ?? "")
+                                .frame(width: 50, alignment: .center)
                         }
                     }
+                    .onDelete(perform: { indexSet in
+                        guard let index = indexSet.first else { return }
+                        let entityToDelete = sortedIngredients[index]
+                        manager.context.delete(entityToDelete)
+                        
+                    })
                 }
                 .listStyle(InsetListStyle())
-//                .listRowSpacing(50)
-//                .scrollContentBackground(.hidden)
             }
             .padding()
-            //.navigationTitle(recipe?.name ?? "Create New Recipe")
             .navigationBarBackButtonHidden()
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
@@ -92,13 +100,24 @@ struct RecipeEditor: View {
     }
     
     func saveRecipe() {
-        let newRecipe = RecipeEntity(context: manager.context)
-        newRecipe.name = title
-        //newRecipe.ingredientsList
+        let ingredientsSet: NSSet = []
+        ingredientsSet.addingObjects(from: sortedIngredients)
+        
+        if let recipe = recipe {
+            recipe.removeFromIngredientsList(originalIngredients)
+            recipe.addToIngredientsList(ingredientsSet)
+            
+        } else {
+            let newRecipe = RecipeEntity(context: manager.context)
+            newRecipe.name = title
+            newRecipe.ingredientsList = ingredientsSet
+        }
         manager.saveData()
     }
 }
 
 #Preview {
     RecipeEditor(recipe: CoreDataManager.instance.sampleRecipe)
+        .environment(\.managedObjectContext, CoreDataManager.instance.context)
+        .environmentObject(CoreDataManager.instance)
 }

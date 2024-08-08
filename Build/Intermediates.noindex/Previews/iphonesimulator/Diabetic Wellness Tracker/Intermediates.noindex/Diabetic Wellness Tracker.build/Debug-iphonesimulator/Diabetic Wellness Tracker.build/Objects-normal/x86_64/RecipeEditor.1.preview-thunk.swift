@@ -11,10 +11,19 @@ import SwiftUI
 
 extension RecipeEditor {
     @_dynamicReplacement(for: saveRecipe()) private func __preview__saveRecipe() {
-        #sourceLocation(file: "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/RecipeEditor.swift", line: 95)
-        let newRecipe = RecipeEntity(context: manager.context)
-        newRecipe.name = title
-        //newRecipe.ingredientsList
+        #sourceLocation(file: "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/RecipeEditor.swift", line: 103)
+        let ingredientsSet: NSSet = []
+        ingredientsSet.addingObjects(from: sortedIngredients)
+        
+        if let recipe = recipe {
+            recipe.removeFromIngredientsList(originalIngredients)
+            recipe.addToIngredientsList(ingredientsSet)
+            
+        } else {
+            let newRecipe = RecipeEntity(context: manager.context)
+            newRecipe.name = title
+            newRecipe.ingredientsList = ingredientsSet
+        }
         manager.saveData()
     
 #sourceLocation()
@@ -23,7 +32,7 @@ extension RecipeEditor {
 
 extension RecipeEditor {
     @_dynamicReplacement(for: body) private var __preview__body: some View {
-        #sourceLocation(file: "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/RecipeEditor.swift", line: 38)
+        #sourceLocation(file: "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/RecipeEditor.swift", line: 40)
         NavigationStack {
             VStack {
                 HStack {
@@ -35,22 +44,28 @@ extension RecipeEditor {
                 .padding([.leading, .trailing, .bottom], __designTimeInteger("#35635.[2].[9].property.[0].[0].arg[0].value.[0].arg[0].value.[0].modifier[1].arg[1].value", fallback: 15))
                 
                 List {
-                    ForEach(convertIngredients()) { ingredient in
+                    ForEach(sortedIngredients) { ingredient in
                         HStack(spacing: __designTimeInteger("#35635.[2].[9].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[0].arg[1].value.[0].arg[0].value", fallback: 20)) {
                             Text(ingredient.name ?? __designTimeString("#35635.[2].[9].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[0].arg[1].value.[0].arg[1].value.[0].arg[0].value.[0]", fallback: ""))
                             Spacer()
                             Text(ingredient.wholeQuantity ?? __designTimeString("#35635.[2].[9].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[0].arg[1].value.[0].arg[1].value.[2].arg[0].value.[0]", fallback: ""))
+                                .frame(width: __designTimeInteger("#35635.[2].[9].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[0].arg[1].value.[0].arg[1].value.[2].modifier[0].arg[0].value", fallback: 20), alignment: .center)
                             Text(ingredient.fractionalQuantity ?? __designTimeString("#35635.[2].[9].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[0].arg[1].value.[0].arg[1].value.[3].arg[0].value.[0]", fallback: ""))
+                                .frame(width: __designTimeInteger("#35635.[2].[9].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[0].arg[1].value.[0].arg[1].value.[3].modifier[0].arg[0].value", fallback: 30), alignment: .center)
                             Text(ingredient.units ?? __designTimeString("#35635.[2].[9].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[0].arg[1].value.[0].arg[1].value.[4].arg[0].value.[0]", fallback: ""))
+                                .frame(width: __designTimeInteger("#35635.[2].[9].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[0].arg[1].value.[0].arg[1].value.[4].modifier[0].arg[0].value", fallback: 50), alignment: .center)
                         }
                     }
+                    .onDelete(perform: { indexSet in
+                        guard let index = indexSet.first else { return }
+                        let entityToDelete = sortedIngredients[index]
+                        manager.context.delete(entityToDelete)
+                        
+                    })
                 }
                 .listStyle(InsetListStyle())
-//                .listRowSpacing(50)
-//                .scrollContentBackground(.hidden)
             }
             .padding()
-            //.navigationTitle(recipe?.name ?? "Create New Recipe")
             .navigationBarBackButtonHidden()
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
@@ -84,11 +99,13 @@ extension RecipeEditor {
 }
 
 extension RecipeEditor {
-    @_dynamicReplacement(for: convertIngredients()) private func __preview__convertIngredients() -> [IngredientEntity] {
+    @_dynamicReplacement(for: sortedIngredients) private var __preview__sortedIngredients: [IngredientEntity] {
         #sourceLocation(file: "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/RecipeEditor.swift", line: 26)
-        let ingredientsArr = ingredients.allObjects as NSArray
-        guard let ingredients = ingredientsArr.sortedArray(using: sortDescriptors) as NSArray as? [IngredientEntity] else { return [] }
-        return ingredients
+        let ingredientsArr = originalIngredients.allObjects as NSArray
+        
+        guard let sortedIngredients = ingredientsArr.sortedArray(using: sortDescriptors) as NSArray as? [IngredientEntity] else { return [] }
+        
+        return sortedIngredients
     
 #sourceLocation()
     }
@@ -97,6 +114,8 @@ extension RecipeEditor {
 import struct Diabetic_Wellness_Tracker.RecipeEditor
 #Preview {
     RecipeEditor(recipe: CoreDataManager.instance.sampleRecipe)
+        .environment(\.managedObjectContext, CoreDataManager.instance.context)
+        .environmentObject(CoreDataManager.instance)
 }
 
 
