@@ -121,17 +121,33 @@
 				1217F2DE2C617F300046D9E5 /* Onboarding.swift */,
 				1217F2E22C6189D30046D9E5 /* ContentView.swift */,
 				1217F2E02C6187E10046D9E5 /* Home.swift */,
-				123335DB2C63DCDD000F3361 /* SearchJournals.swift */,
-				1217F2EA2C62ABF90046D9E5 /* Journals.swift */,
-				1217F2F22C631CD30046D9E5 /* JournalThumbnail.swift */,
-				12C004732C63264200D7C102 /* CreateNewJournal.swift */,
+				12D7EFFA2C65836E00934890 /* Journal */,
+				12D7EFF92C65835900934890 /* Recipe */,
+				1217F2F02C631A020046D9E5 /* Background.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		12D7EFF92C65835900934890 /* Recipe */ = {
+			isa = PBXGroup;
+			children = (
 				123335DF2C63E204000F3361 /* RecipesView.swift */,
 				123335E12C63E542000F3361 /* RecipeThumbnail.swift */,
 				12934E282C64131F00BC74A0 /* RecipeEditor.swift */,
 				12934E2C2C65348000BC74A0 /* IngredientsEditor.swift */,
-				1217F2F02C631A020046D9E5 /* Background.swift */,
 			);
-			path = Views;
+			path = Recipe;
+			sourceTree = "<group>";
+		};
+		12D7EFFA2C65836E00934890 /* Journal */ = {
+			isa = PBXGroup;
+			children = (
+				123335DB2C63DCDD000F3361 /* SearchJournals.swift */,
+				1217F2EA2C62ABF90046D9E5 /* Journals.swift */,
+				1217F2F22C631CD30046D9E5 /* JournalThumbnail.swift */,
+				12C004732C63264200D7C102 /* CreateNewJournal.swift */,
+			);
+			path = Journal;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
