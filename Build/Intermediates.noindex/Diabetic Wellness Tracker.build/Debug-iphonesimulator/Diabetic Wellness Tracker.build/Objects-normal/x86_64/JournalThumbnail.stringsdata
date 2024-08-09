@@ -1,0 +1,16 @@
+{
+  "source": "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/Journal/JournalThumbnail.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Edit"
+      },
+      {
+        "comment": "",
+        "key": "Delete"
+      }
+    ]
+  },
+  "version": 1
+}

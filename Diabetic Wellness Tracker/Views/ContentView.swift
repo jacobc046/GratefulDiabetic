@@ -41,7 +41,7 @@ struct ContentView: View {
                     
                     Menu {
                         NavigationLink("New Journal") {
-                            CreateNewJournal()
+                            //journal editor
                         }
                         NavigationLink("New Recipe") {
                             RecipeEditor(recipe: nil)

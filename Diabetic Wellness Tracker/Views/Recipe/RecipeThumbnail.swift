@@ -10,15 +10,16 @@ import CoreData
 
 struct RecipeThumbnail: View {
     @EnvironmentObject var manager: CoreDataManager
+    @State var showActions: Bool = false
+    @State var isEditing: Bool = false
     let recipe: RecipeEntity
     
     var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 25.0)
-                .foregroundStyle(.white)
-            
-            VStack {
-                HStack {
+        NavigationStack {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 25.0)
+                        .foregroundStyle(.white)
+                    
                     VStack(alignment: .leading) {
                         Text(recipe.name ?? "Title")
                             .font(.title)
@@ -32,41 +33,42 @@ struct RecipeThumbnail: View {
                                 }
                             }
                         }
-                    }
-                    //image
-                }
-                .frame(maxWidth: .infinity)
-                
-                Menu {
-                    
-                    Button(role: .destructive) {
                         
-                    } label: {
-                        Label("Delete", systemImage: "trash")
+                        Button {
+                            showActions.toggle()
+                        } label: {
+                            Image(systemName: "ellipsis")
+                        }
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                        .padding(.trailing)
+                        .confirmationDialog("", isPresented: $showActions) {
+                            Button {
+                                isEditing.toggle()
+                            } label: {
+                                Label("Edit", systemImage: "pencil")
+                            }
+                            Button(role: .destructive) {
+                                manager.context.delete(recipe)
+                            } label: {
+                                Label("Delete", systemImage: "trash")
+                            }
+                        }
                     }
-                    Button {
-                        
-                    } label: {
-                        Label("Edit", systemImage: "pencil")
-                    }
-                    
-                } label: {
-                    Image(systemName: "ellipsis")
+                    .foregroundStyle(.black)
+                    .padding()
                 }
-                .frame(maxWidth: .infinity, alignment: .trailing)
-                .padding(.trailing)
-            }
-            .foregroundStyle(.black)
+                .clipShape(RoundedRectangle(cornerRadius: 25.0))
+                .frame(maxWidth: .infinity, maxHeight: 300)
             .padding()
+            .navigationDestination(isPresented: $isEditing, destination: {RecipeEditor(recipe: recipe)})
         }
-        .clipShape(RoundedRectangle(cornerRadius: 25.0))
-        .frame(maxWidth: .infinity, maxHeight: 300)
-        .padding()
     }
 }
 
 #Preview {
     RecipeThumbnail(recipe: CoreDataManager.instance.sampleRecipe)
+        .environment(\.managedObjectContext, CoreDataManager.instance.context)
+        .environmentObject(CoreDataManager.instance)
 }
 
 extension CoreDataManager {

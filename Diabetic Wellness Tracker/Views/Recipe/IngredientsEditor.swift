@@ -35,7 +35,7 @@ class IngredientEditorViewModel: ObservableObject {
 struct IngredientsEditor: View {
     let unitChoices: [String] = ["cups", "ounces", "tbsp", "tsp"]
     let wholeChoices = Array(0...20).map { String($0) }
-    let fractionalChoices: [String] = [" - ", "1/8", "1/4", "2/3", "3/8", "1/2", "5/8", "2/3", "7/8"]
+    let fractionalChoices: [String] = [" - ", "1/8", "1/4", "1/3", "3/8", "1/2", "5/8", "2/3", "7/8"]
     
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var manager: CoreDataManager
@@ -81,11 +81,6 @@ struct IngredientsEditor: View {
         Spacer()
             
             .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button("Cancel") {
-                        dismiss()
-                    }
-                }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Save") {
                         viewModel.saveIngredient()
@@ -100,6 +95,8 @@ struct IngredientsEditor: View {
 
 #Preview {
     IngredientsEditor(ingredient: nil)
+        .environmentObject(CoreDataManager.instance)
+        .environment(\.managedObjectContext, CoreDataManager.instance.context)
 }
 
 extension CoreDataManager {

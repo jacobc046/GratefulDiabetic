@@ -51,7 +51,7 @@ extension ContentView {
                     
                     Menu {
                         NavigationLink(__designTimeString("#4144.[3].[2].property.[0].[0].arg[0].value.[0].arg[1].value.[1].arg[1].value.[2].arg[0].value.[0].arg[0].value", fallback: "New Journal")) {
-                            CreateNewJournal()
+                            //journal editor
                         }
                         NavigationLink(__designTimeString("#4144.[3].[2].property.[0].[0].arg[0].value.[0].arg[1].value.[1].arg[1].value.[2].arg[0].value.[1].arg[0].value", fallback: "New Recipe")) {
                             RecipeEditor(recipe: nil)

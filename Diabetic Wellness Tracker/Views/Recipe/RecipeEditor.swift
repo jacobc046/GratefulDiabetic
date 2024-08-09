@@ -30,11 +30,9 @@ struct RecipeEditor: View {
         return sortedIngredients
     }
     
-    @State var showAlert: Bool = false
-    
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var manager: CoreDataManager
-    
+    @State var showAlert: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -49,24 +47,28 @@ struct RecipeEditor: View {
                 
                 List {
                     ForEach(sortedIngredients) { ingredient in
-                        HStack(spacing: 20) {
-                            Text(ingredient.name ?? "")
-                            Spacer()
-                            Text(ingredient.wholeQuantity ?? "")
-                                .frame(width: 20, alignment: .center)
-                            Text(ingredient.fractionalQuantity ?? "")
-                                .frame(width: 30, alignment: .center)
-                            Text(ingredient.units ?? "")
-                                .frame(width: 50, alignment: .center)
-                        }
+                        NavigationLink(destination: {
+                            IngredientsEditor(ingredient: ingredient)
+                        }, label: {
+                            HStack(spacing: 20) {
+                                Text(ingredient.name ?? "")
+                                Spacer()
+                                Text(ingredient.wholeQuantity ?? "")
+                                    .frame(width: 20, alignment: .center)
+                                Text(ingredient.fractionalQuantity ?? "")
+                                    .frame(width: 30, alignment: .center)
+                                Text(ingredient.units ?? "")
+                                    .frame(width: 50, alignment: .center)
+                            }
+                        })
                     }
                     .onDelete(perform: { indexSet in
                         guard let index = indexSet.first else { return }
                         let entityToDelete = sortedIngredients[index]
                         manager.context.delete(entityToDelete)
                     })
-                    .onTapGesture {
-                        //IngredientsEditor(ingredient: nil)
+                    NavigationLink("New Ingredient") {
+                        IngredientsEditor(ingredient: nil)
                     }
                 }
                 .listStyle(InsetListStyle())
@@ -87,7 +89,7 @@ struct RecipeEditor: View {
                             dismiss()
                         }
                     } message: {
-                        Text("Are you sure you want to delete your recipe?")
+                        Text("Are you sure you want to cancel your changes?")
                     }
                 }
                 ToolbarItem(placement: .topBarTrailing) {

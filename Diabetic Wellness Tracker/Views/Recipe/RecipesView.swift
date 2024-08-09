@@ -22,7 +22,11 @@ struct RecipesView: View {
                 //foreground
                 ScrollView {
                     ForEach(recipes) { recipe in
-                        RecipeThumbnail(recipe: recipe)
+                        NavigationLink(destination: {
+                            RecipeEditor(recipe: recipe)
+                        }, label: {
+                            RecipeThumbnail(recipe: recipe)
+                        })
                     }
                     .navigationTitle("Recipes")
                     .navigationBarTitleDisplayMode(.inline)

@@ -1,0 +1,16 @@
+{
+  "source": "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/ContentView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "New Journal"
+      },
+      {
+        "comment": "",
+        "key": "New Recipe"
+      }
+    ]
+  },
+  "version": 1
+}

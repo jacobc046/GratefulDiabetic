@@ -10,7 +10,7 @@ import SwiftUI
 
 extension CoreDataManager {
     @_dynamicReplacement(for: sampleIngredient) private var __preview__sampleIngredient: IngredientEntity {
-        #sourceLocation(file: "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/Recipe/IngredientsEditor.swift", line: 110)
+        #sourceLocation(file: "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/Recipe/IngredientsEditor.swift", line: 104)
         let newIngredient = IngredientEntity(context: CoreDataManager.instance.context)
         newIngredient.name = __designTimeString("#4919.[4].[0].property.[0].[1].[0]", fallback: "Strawberries")
         newIngredient.wholeQuantity = __designTimeString("#4919.[4].[0].property.[0].[2].[0]", fallback: "1")
@@ -23,17 +23,8 @@ extension CoreDataManager {
 }
 
 extension IngredientsEditor {
-    @_dynamicReplacement(for: saveIngredient()) private func __preview__saveIngredient() {
-        #sourceLocation(file: "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/Recipe/IngredientsEditor.swift", line: 100)
-        manager.saveData()
-    
-#sourceLocation()
-    }
-}
-
-extension IngredientsEditor {
     @_dynamicReplacement(for: body) private var __preview__body: some View {
-        #sourceLocation(file: "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/Recipe/IngredientsEditor.swift", line: 49)
+        #sourceLocation(file: "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/Recipe/IngredientsEditor.swift", line: 50)
         NavigationStack {
             
             TextField(__designTimeString("#4919.[2].[7].property.[0].[0].arg[0].value.[0].arg[0].value", fallback: "Name"), text: $viewModel.name)
@@ -68,14 +59,9 @@ extension IngredientsEditor {
         Spacer()
             
             .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button(__designTimeString("#4919.[2].[7].property.[0].[0].arg[0].value.[3].modifier[0].arg[0].value.[0].arg[1].value.[0].arg[0].value", fallback: "Cancel")) {
-                        dismiss()
-                    }
-                }
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(__designTimeString("#4919.[2].[7].property.[0].[0].arg[0].value.[3].modifier[0].arg[0].value.[1].arg[1].value.[0].arg[0].value", fallback: "Save")) {
-                        saveIngredient()
+                    Button(__designTimeString("#4919.[2].[7].property.[0].[0].arg[0].value.[3].modifier[0].arg[0].value.[0].arg[1].value.[0].arg[0].value", fallback: "Save")) {
+                        viewModel.saveIngredient()
                         dismiss()
                     }
                     .bold()
@@ -94,6 +80,7 @@ extension IngredientEditorViewModel {
         self.ingredient?.units = units
         self.ingredient?.wholeQuantity = wholeQuantity
         self.ingredient?.fractionalQuantity = fractionalQuantity
+        CoreDataManager.instance.saveData()
     
 #sourceLocation()
     }
@@ -103,6 +90,8 @@ import class Diabetic_Wellness_Tracker.IngredientEditorViewModel
 import struct Diabetic_Wellness_Tracker.IngredientsEditor
 #Preview {
     IngredientsEditor(ingredient: nil)
+        .environmentObject(CoreDataManager.instance)
+        .environment(\.managedObjectContext, CoreDataManager.instance.context)
 }
 
 

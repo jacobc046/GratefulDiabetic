@@ -13,34 +13,28 @@ struct JournalThumbnail: View {
     @EnvironmentObject var manager: CoreDataManager
     let journal: JournalEntryEntity
     
+    @State var showActions: Bool = false
+    
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 25.0)
                 .foregroundStyle(.white)
             
             VStack {
-                HStack(spacing: 100) {
+                HStack {
                     Text(journal.name ?? "Title")
                         .font(.title)
+                    Spacer()
                     Text(journal.date?.formatted(date: .numeric, time: .omitted) ?? "Date")
+                        .frame(alignment: .trailing)
                 }
+                .padding([.leading, .trailing], 15)
                 
                 Text(journal.text ?? "Text")
-                    .padding()
+                    .padding([.leading, .trailing], 15)
                 
-                Menu {
-                    
-                    Button {
-                        
-                    } label: {
-                        Label("Edit", systemImage: "pencil")
-                    }
-                    Button(role: .destructive) {
-                        
-                    } label: {
-                        Label("Delete", systemImage: "trash")
-                    }
-                    
+                Button {
+                    showActions.toggle()
                 } label: {
                     Image(systemName: "ellipsis")
                 }
@@ -53,6 +47,18 @@ struct JournalThumbnail: View {
         .clipShape(RoundedRectangle(cornerRadius: 25.0))
         .frame(maxWidth: .infinity, maxHeight: 300)
         .padding()
+        .confirmationDialog("", isPresented: $showActions) {
+            Button {
+                //journal editor
+            } label: {
+                Label("Edit", systemImage: "pencil")
+            }
+            Button(role: .destructive) {
+                manager.context.delete(journal)
+            } label: {
+                Label("Delete", systemImage: "trash")
+            }
+        }
     }
 }
 

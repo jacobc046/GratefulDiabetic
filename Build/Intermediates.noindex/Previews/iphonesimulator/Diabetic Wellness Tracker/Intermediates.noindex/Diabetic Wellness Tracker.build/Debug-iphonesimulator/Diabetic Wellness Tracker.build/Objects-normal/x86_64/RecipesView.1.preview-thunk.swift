@@ -20,7 +20,11 @@ extension RecipesView {
                 //foreground
                 ScrollView {
                     ForEach(recipes) { recipe in
-                        RecipeThumbnail(recipe: recipe)
+                        NavigationLink(destination: {
+                            RecipeEditor(recipe: recipe)
+                        }, label: {
+                            RecipeThumbnail(recipe: recipe)
+                        })
                     }
                     .navigationTitle(__designTimeString("#3990.[2].[2].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[0].modifier[0].arg[0].value", fallback: "Recipes"))
                     .navigationBarTitleDisplayMode(.inline)

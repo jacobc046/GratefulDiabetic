@@ -4,11 +4,15 @@
     "Localizable": [
       {
         "comment": "",
-        "key": "Delete"
+        "key": ""
       },
       {
         "comment": "",
         "key": "Edit"
+      },
+      {
+        "comment": "",
+        "key": "Delete"
       }
     ]
   },

@@ -8,6 +8,10 @@
       },
       {
         "comment": "",
+        "key": "New Ingredient"
+      },
+      {
+        "comment": "",
         "key": "Cancel"
       },
       {
@@ -20,7 +24,7 @@
       },
       {
         "comment": "",
-        "key": "Are you sure you want to delete your recipe?"
+        "key": "Are you sure you want to cancel your changes?"
       },
       {
         "comment": "",
