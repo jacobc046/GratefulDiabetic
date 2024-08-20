@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SearchJournals: View {
     
-    @EnvironmentObject var manager: CoreDataManager
+    @StateObject var manager = CoreDataManager.instance
     
     var body: some View {
         ScrollView {

@@ -9,24 +9,39 @@ import SwiftUI
 
 struct JournalEditor: View {
     
-    @State var title: String = ""
-    @State var text: String = ""
+    @StateObject var viewModel = CoreDataManagerViewModel()
+    @State var title: String
+    @State var text: String
+    let date: Date
     
     @State var showAlert: Bool = false
     @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var manager: CoreDataManager
+    
+    let journal: JournalEntryEntity?
+    init(journal: JournalEntryEntity?) {
+        if let journal = journal {
+            self.journal = journal
+            title = journal.name ?? ""
+            date = journal.date ?? Date()
+            text = journal.text ?? ""
+        } else {
+            self.journal = nil
+            title = ""
+            date = Date()
+            text = ""
+        }
+    }
     
     var body: some View {
         NavigationStack {
             VStack {
                 TextField("Title", text: $title)
-                    .font(.title3)
+                    .font(.title)
                     .textInputAutocapitalization(.words)
                 TextField("Journal your thoughts...", text: $text, axis: .vertical)
                 Spacer()
             }
             .padding()
-            .navigationTitle("Create New Journal")
             .navigationBarBackButtonHidden()
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
@@ -58,16 +73,20 @@ struct JournalEditor: View {
     }
     
     func saveJournal() {
-        let newJournal = JournalEntryEntity(context: manager.context)
-        newJournal.name = title
-        newJournal.date = Date()
-        newJournal.text = text
-        manager.saveData()
+        if let journal = journal {
+            journal.name = title
+            journal.text = text
+            journal.date = date
+        } else {
+            let newJournal = JournalEntryEntity(context: viewModel.manager.context)
+            newJournal.name = title
+            newJournal.date = date
+            newJournal.text = text
+        }
+        viewModel.manager.saveData()
     }
 }
 
 #Preview {
-    JournalEditor()
-        .environment(\.managedObjectContext, CoreDataManager.instance.context)
-        .environmentObject(CoreDataManager.instance)
+    JournalEditor(journal: CoreDataManager.instance.sampleJournal)
 }

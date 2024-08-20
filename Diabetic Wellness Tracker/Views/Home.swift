@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct Home: View {
     
@@ -14,6 +15,8 @@ struct Home: View {
     @State var showSidebar: NavigationSplitViewVisibility = .all
     
     @State var prompt: String = "SOMETHING"
+    
+    @FetchRequest(entity: RecipeEntity.entity(), sortDescriptors: CoreDataManager.instance.getRecipeSortDescriptors(), animation: .default) private var recipes: FetchedResults<RecipeEntity>
     
     
     var body: some View {
@@ -40,7 +43,7 @@ struct Home: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     NavigationLink {
-                        EmptyView() //settings view
+                        SettingsView()
                     } label: {
                         Image(systemName: "gear")
                             .foregroundStyle(.white)

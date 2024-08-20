@@ -9,7 +9,6 @@ import SwiftUI
 
 struct Journals: View {
     
-    @EnvironmentObject var manager: CoreDataManager
     @FetchRequest(entity: JournalEntryEntity.entity(), sortDescriptors: CoreDataManager.instance.getJournalSortDescriptors(), animation: .default) private var journals: FetchedResults<JournalEntryEntity>
     
     var body: some View {
@@ -46,6 +45,4 @@ struct Journals: View {
 
 #Preview {
     Journals()
-        .environment(\.managedObjectContext, CoreDataManager.instance.container.viewContext)
-        .environmentObject(CoreDataManager.instance)
 }

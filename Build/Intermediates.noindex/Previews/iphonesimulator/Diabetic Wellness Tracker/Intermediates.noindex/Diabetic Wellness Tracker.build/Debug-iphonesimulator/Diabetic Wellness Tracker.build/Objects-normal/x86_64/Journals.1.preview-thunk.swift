@@ -10,7 +10,7 @@ import SwiftUI
 
 extension Journals {
     @_dynamicReplacement(for: body) private var __preview__body: some View {
-        #sourceLocation(file: "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/Journal/Journals.swift", line: 16)
+        #sourceLocation(file: "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/Journal/Journals.swift", line: 15)
         NavigationStack {
             ZStack {
                 //background
@@ -21,7 +21,7 @@ extension Journals {
                     ForEach(journals) { journal in
                         JournalThumbnail(journal: journal)
                     }
-                    .navigationTitle(__designTimeString("#27692.[1].[2].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[0].modifier[0].arg[0].value", fallback: "Journals"))
+                    .navigationTitle(__designTimeString("#13522.[1].[1].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[0].modifier[0].arg[0].value", fallback: "Journals"))
                     .navigationBarTitleDisplayMode(.inline)
                     .toolbarBackground(.visible, for: .navigationBar)
                     .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
@@ -30,7 +30,7 @@ extension Journals {
                             NavigationLink {
                                 SearchJournals()
                             } label: {
-                                Image(systemName: __designTimeString("#27692.[1].[2].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[0].modifier[4].arg[0].value.[0].arg[1].value.[0].arg[1].value.[0].arg[0].value", fallback: "magnifyingglass"))
+                                Image(systemName: __designTimeString("#13522.[1].[1].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[0].modifier[4].arg[0].value.[0].arg[1].value.[0].arg[1].value.[0].arg[0].value", fallback: "magnifyingglass"))
                                     .foregroundStyle(.white)
                             }
                         }
@@ -47,8 +47,6 @@ extension Journals {
 import struct Diabetic_Wellness_Tracker.Journals
 #Preview {
     Journals()
-        .environment(\.managedObjectContext, CoreDataManager.instance.container.viewContext)
-        .environmentObject(CoreDataManager.instance)
 }
 
 

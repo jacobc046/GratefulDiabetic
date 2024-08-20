@@ -9,26 +9,45 @@ import SwiftUI
 
 class IngredientEditorViewModel: ObservableObject {
     let ingredient: IngredientEntity?
+    let recipe: RecipeEntity
+    @StateObject var manager = CoreDataManager.instance
     
     @Published var name: String
     @Published var units: String
     @Published var wholeQuantity: String
     @Published var fractionalQuantity: String
     
-    init(ingredient: IngredientEntity?) {
-        self.ingredient = ingredient ?? IngredientEntity(context: CoreDataManager.instance.context)
-        name = ingredient?.name ?? ""
-        units = ingredient?.units ?? "ounces"
-        wholeQuantity = ingredient?.wholeQuantity ?? "0"
-        fractionalQuantity  = ingredient?.fractionalQuantity ?? "-"
+    init(ingredient: IngredientEntity?, recipe: RecipeEntity) {
+        if let ingredient = ingredient {
+            self.ingredient = ingredient
+            name = ingredient.name ?? ""
+            units = ingredient.units ?? "ounces"
+            wholeQuantity = ingredient.wholeQuantity ?? "0"
+            fractionalQuantity  = ingredient.fractionalQuantity ?? "-"
+        } else {
+            self.ingredient = nil
+            name = ""
+            units = "ounces"
+            wholeQuantity = "0"
+            fractionalQuantity = "-"
+        }
+        self.recipe = recipe
     }
     
     func saveIngredient() {
-        self.ingredient?.name = name
-        self.ingredient?.units = units
-        self.ingredient?.wholeQuantity = wholeQuantity
-        self.ingredient?.fractionalQuantity = fractionalQuantity
-        CoreDataManager.instance.saveData()
+        if let ingredient = ingredient {
+            ingredient.name = name
+            ingredient.units = units
+            ingredient.wholeQuantity = wholeQuantity
+            ingredient.fractionalQuantity = fractionalQuantity
+        } else {
+            let newIngredient = IngredientEntity(context: manager.context)
+            newIngredient.name = name
+            newIngredient.wholeQuantity = wholeQuantity
+            newIngredient.fractionalQuantity = fractionalQuantity
+            recipe.addToIngredientsList(newIngredient)
+        }
+        manager.saveData()
     }
 }
 
@@ -38,12 +57,11 @@ struct IngredientsEditor: View {
     let fractionalChoices: [String] = [" - ", "1/8", "1/4", "1/3", "3/8", "1/2", "5/8", "2/3", "7/8"]
     
     @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var manager: CoreDataManager
     
     @ObservedObject var viewModel: IngredientEditorViewModel
     
-    init(ingredient: IngredientEntity?) {
-        viewModel = IngredientEditorViewModel(ingredient: ingredient)
+    init(ingredient: IngredientEntity?, recipe: RecipeEntity) {
+        viewModel = IngredientEditorViewModel(ingredient: ingredient, recipe: recipe)
     }
     
     var body: some View {
@@ -94,9 +112,7 @@ struct IngredientsEditor: View {
 }
 
 #Preview {
-    IngredientsEditor(ingredient: nil)
-        .environmentObject(CoreDataManager.instance)
-        .environment(\.managedObjectContext, CoreDataManager.instance.context)
+    IngredientsEditor(ingredient: CoreDataManager.instance.sampleIngredient, recipe: CoreDataManager.instance.sampleRecipe)
 }
 
 extension CoreDataManager {

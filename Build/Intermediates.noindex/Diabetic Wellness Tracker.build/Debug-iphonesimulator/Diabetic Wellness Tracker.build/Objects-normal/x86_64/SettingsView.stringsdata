@@ -1,0 +1,20 @@
+{
+  "source": "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/SettingsView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Delete all recipes"
+      },
+      {
+        "comment": "",
+        "key": "Delete all journals"
+      },
+      {
+        "comment": "",
+        "key": "Logout"
+      }
+    ]
+  },
+  "version": 1
+}

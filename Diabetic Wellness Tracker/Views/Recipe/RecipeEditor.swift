@@ -8,47 +8,107 @@
 import SwiftUI
 import CoreData
 
-struct RecipeEditor: View {
-    
+class RecipeEditorViewModel: ObservableObject {
     let recipe: RecipeEntity?
     let sortDescriptors = [NSSortDescriptor(key: "name", ascending: false)]
     
-    @State var title: String
+    @Published var title: String
+    @Published var ingredients: NSSet = []
     var originalIngredients: NSSet
     
+    //initialize recipe entity
     init(recipe: RecipeEntity?) {
-        self.recipe = recipe
-        title = recipe?.name ?? ""
-        originalIngredients = recipe?.ingredientsList ?? []
+        if let recipe = recipe {
+            self.recipe = recipe
+            title = recipe.name ?? ""
+            originalIngredients = recipe.ingredientsList ?? []
+        } else {
+            self.recipe = nil
+            title = ""
+            originalIngredients = []
+        }
     }
     
-    var sortedIngredients: [IngredientEntity] {
-        let ingredientsArr = originalIngredients.allObjects as NSArray
+//    var sortedIngredients: [IngredientEntity] {
+//        let ingredientsArr = originalIngredients.allObjects as NSArray
+//        
+//        guard let sortedIngredients = ingredientsArr.sortedArray(using: sortDescriptors) as NSArray as? [IngredientEntity] else { return [] }
+//        
+//        return sortedIngredients
+//    }
+    
+//    func deleteIngredient(indexSet: IndexSet) {
+//        guard let index = indexSet.first else { return }
+//        let entityToDelete = sortedIngredients[index]
+//        self.recipe?.removeFromIngredientsList(entityToDelete)
+//        CoreDataManager.instance.context.delete(entityToDelete)
+//        CoreDataManager.instance.saveData()
+//    }
+}
+
+
+struct RecipeEditor: View {
+    
+    @ObservedObject var viewModel: RecipeEditorViewModel
+    
+    func getSortedIngredients(recipe: RecipeEntity) -> [IngredientEntity] {
+        let ingredientsArr = recipe.ingredientsList?.allObjects as? NSArray
+        let sortDescriptors = [NSSortDescriptor(key: "name", ascending: false)]
         
-        guard let sortedIngredients = ingredientsArr.sortedArray(using: sortDescriptors) as NSArray as? [IngredientEntity] else { return [] }
+        guard let sortedIngredients = ingredientsArr?.sortedArray(using: sortDescriptors) as? NSArray as? [IngredientEntity] else { return [] }
         
         return sortedIngredients
     }
     
+    func getIngredients(recipe: RecipeEntity) -> [IngredientEntity] {
+        var ingredients: [IngredientEntity] = []
+        let request = NSFetchRequest<IngredientEntity>(entityName: "IngredientEntity")
+                
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \RecipeEntity.name, ascending: true)]
+        request.predicate = NSPredicate(format: "name == %@", recipe.name!)
+                
+        do {
+            ingredients = try manager.context.fetch(request)
+            return ingredients
+        } catch let error {
+            print("error \(error)")
+            return []
+        }
+    }
+    
+    let recipe: RecipeEntity?
+    @State var ingredients: [IngredientEntity]
+    init(recipe: RecipeEntity?) {
+        if let recipe = recipe {
+            viewModel = RecipeEditorViewModel(recipe: recipe)
+            self.recipe = recipe
+            ingredients = recipe.ingredientsList?.allObjects as? NSArray as? [IngredientEntity] ?? []
+        } else {
+            viewModel = RecipeEditorViewModel(recipe: nil)
+            self.recipe = nil
+            ingredients = []
+        }
+    }
+    
     @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var manager: CoreDataManager
+    @StateObject var manager = CoreDataManager.instance
     @State var showAlert: Bool = false
     
     var body: some View {
         NavigationStack {
             VStack {
                 HStack {
-                    TextField("Title", text: $title)
-                    .textInputAutocapitalization(.words)
-                    .textFieldStyle(.roundedBorder)
+                    TextField("Title", text: $viewModel.title)
+                        .textInputAutocapitalization(.words)
+                        .textFieldStyle(.roundedBorder)
                 }
-                .font(.title3)
+                .font(.title)
                 .padding([.leading, .trailing, .bottom], 15)
                 
                 List {
-                    ForEach(sortedIngredients) { ingredient in
+                    ForEach(ingredients) { ingredient in
                         NavigationLink(destination: {
-                            IngredientsEditor(ingredient: ingredient)
+                            //IngredientsEditor(ingredient: ingredient, recipe: recipe)
                         }, label: {
                             HStack(spacing: 20) {
                                 Text(ingredient.name ?? "")
@@ -62,13 +122,12 @@ struct RecipeEditor: View {
                             }
                         })
                     }
-                    .onDelete(perform: { indexSet in
-                        guard let index = indexSet.first else { return }
-                        let entityToDelete = sortedIngredients[index]
-                        manager.context.delete(entityToDelete)
-                    })
+                    .onDelete { indexSet in
+                        deleteIngredient(indexSet: indexSet)
+                    }
+                    
                     NavigationLink("New Ingredient") {
-                        IngredientsEditor(ingredient: nil)
+                       // IngredientsEditor(ingredient: nil, recipe: recipe)
                     }
                 }
                 .listStyle(InsetListStyle())
@@ -78,7 +137,7 @@ struct RecipeEditor: View {
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button("Cancel") {
-                        if title.isEmpty {
+                        if viewModel.title.isEmpty {
                             dismiss()
                         } else {
                             showAlert.toggle()
@@ -86,6 +145,7 @@ struct RecipeEditor: View {
                     }
                     .alert("Confirm", isPresented: $showAlert) {
                         Button("Delete", role: .destructive) {
+                            // Add logic to clean up if necessary
                             dismiss()
                         }
                     } message: {
@@ -103,18 +163,21 @@ struct RecipeEditor: View {
         }
     }
     
+    func deleteIngredient(indexSet: IndexSet) {
+        guard let index = indexSet.first else { return }
+        let entityToDelete = ingredients[index]
+        CoreDataManager.instance.context.delete(entityToDelete)
+        CoreDataManager.instance.saveData()
+    }
+    
     func saveRecipe() {
-        let ingredientsSet: NSSet = []
-        ingredientsSet.addingObjects(from: sortedIngredients)
-        
-        if let recipe = recipe {
-            recipe.removeFromIngredientsList(originalIngredients)
-            recipe.addToIngredientsList(ingredientsSet)
-            
+        if let recipe = self.recipe {
+            recipe.name = viewModel.title
+            recipe.ingredientsList = Set(ingredients) as NSSet
         } else {
             let newRecipe = RecipeEntity(context: manager.context)
-            newRecipe.name = title
-            newRecipe.ingredientsList = ingredientsSet
+            newRecipe.name = viewModel.title
+            newRecipe.ingredientsList = Set(ingredients) as NSSet
         }
         manager.saveData()
     }
@@ -122,6 +185,4 @@ struct RecipeEditor: View {
 
 #Preview {
     RecipeEditor(recipe: CoreDataManager.instance.sampleRecipe)
-        .environment(\.managedObjectContext, CoreDataManager.instance.context)
-        .environmentObject(CoreDataManager.instance)
 }

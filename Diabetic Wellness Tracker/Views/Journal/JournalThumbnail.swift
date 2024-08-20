@@ -10,54 +10,60 @@ import CoreData
 
 struct JournalThumbnail: View {
     
-    @EnvironmentObject var manager: CoreDataManager
-    let journal: JournalEntryEntity
+    @StateObject var viewModel = CoreDataManagerViewModel()
+    @StateObject var journal: JournalEntryEntity
     
     @State var showActions: Bool = false
+    @State var isEditing: Bool = false
     
     var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 25.0)
-                .foregroundStyle(.white)
-            
-            VStack {
-                HStack {
-                    Text(journal.name ?? "Title")
-                        .font(.title)
-                    Spacer()
-                    Text(journal.date?.formatted(date: .numeric, time: .omitted) ?? "Date")
-                        .frame(alignment: .trailing)
-                }
-                .padding([.leading, .trailing], 15)
+        NavigationStack {
+            ZStack {
+                RoundedRectangle(cornerRadius: 25.0)
+                    .foregroundStyle(.white)
                 
-                Text(journal.text ?? "Text")
+                VStack {
+                    HStack {
+                        Text(journal.name ?? "Title")
+                            .font(.title)
+                        Spacer()
+                        Text(journal.date?.formatted(date: .numeric, time: .omitted) ?? "Date")
+                            .frame(alignment: .trailing)
+                    }
                     .padding([.leading, .trailing], 15)
-                
-                Button {
-                    showActions.toggle()
-                } label: {
-                    Image(systemName: "ellipsis")
+                    
+                    Text(journal.text ?? "Text")
+                        .padding([.leading, .trailing], 15)
+                    
+                    Button {
+                        showActions.toggle()
+                    } label: {
+                        Image(systemName: "ellipsis")
+                    }
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .padding([.trailing, .top])
                 }
-                .frame(maxWidth: .infinity, alignment: .trailing)
-                .padding(.trailing)
+                .foregroundStyle(.black)
+                .padding()
             }
-            .foregroundStyle(.black)
+            .clipShape(RoundedRectangle(cornerRadius: 25.0))
+            .frame(maxWidth: .infinity, maxHeight: 300)
             .padding()
+            .confirmationDialog("", isPresented: $showActions) {
+                Button {
+                    isEditing.toggle()
+                } label: {
+                    Label("Edit", systemImage: "pencil")
+                }
+                Button(role: .destructive) {
+                    viewModel.deleteEntity(journal)
+                } label: {
+                    Label("Delete", systemImage: "trash")
+                }
+            }
         }
-        .clipShape(RoundedRectangle(cornerRadius: 25.0))
-        .frame(maxWidth: .infinity, maxHeight: 300)
-        .padding()
-        .confirmationDialog("", isPresented: $showActions) {
-            Button {
-                //journal editor
-            } label: {
-                Label("Edit", systemImage: "pencil")
-            }
-            Button(role: .destructive) {
-                manager.context.delete(journal)
-            } label: {
-                Label("Delete", systemImage: "trash")
-            }
+        .navigationDestination(isPresented: $isEditing) {
+            JournalEditor(journal: journal)
         }
     }
 }
@@ -65,7 +71,6 @@ struct JournalThumbnail: View {
 #Preview {
     JournalThumbnail(journal: CoreDataManager
         .instance.sampleJournal)
-        .previewLayout(.sizeThatFits)
 }
 
 extension CoreDataManager {

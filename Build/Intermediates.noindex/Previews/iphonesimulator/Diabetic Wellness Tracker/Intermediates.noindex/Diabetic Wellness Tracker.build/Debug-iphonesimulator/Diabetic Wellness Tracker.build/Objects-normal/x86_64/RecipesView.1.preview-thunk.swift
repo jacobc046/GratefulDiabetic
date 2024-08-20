@@ -11,22 +11,22 @@ import SwiftUI
 
 extension RecipesView {
     @_dynamicReplacement(for: body) private var __preview__body: some View {
-        #sourceLocation(file: "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/Recipe/RecipesView.swift", line: 17)
+        #sourceLocation(file: "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/Recipe/RecipesView.swift", line: 18)
         NavigationStack {
             ZStack {
                 //background
                 Background()
-            
+                
                 //foreground
                 ScrollView {
                     ForEach(recipes) { recipe in
-                        NavigationLink(destination: {
+                        NavigationLink(destination: {   
                             RecipeEditor(recipe: recipe)
                         }, label: {
                             RecipeThumbnail(recipe: recipe)
                         })
                     }
-                    .navigationTitle(__designTimeString("#3990.[2].[2].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[0].modifier[0].arg[0].value", fallback: "Recipes"))
+                    .navigationTitle(__designTimeString("#10215.[2].[2].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[0].modifier[0].arg[0].value", fallback: "Recipes"))
                     .navigationBarTitleDisplayMode(.inline)
                     .toolbarBackground(.visible, for: .navigationBar)
                     .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
@@ -35,7 +35,7 @@ extension RecipesView {
                             NavigationLink {
                                 EmptyView()
                             } label: {
-                                Image(systemName: __designTimeString("#3990.[2].[2].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[0].modifier[4].arg[0].value.[0].arg[1].value.[0].arg[1].value.[0].arg[0].value", fallback: "magnifyingglass"))
+                                Image(systemName: __designTimeString("#10215.[2].[2].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[0].modifier[4].arg[0].value.[0].arg[1].value.[0].arg[1].value.[0].arg[0].value", fallback: "magnifyingglass"))
                                     .foregroundStyle(.white)
                             }
                         }
@@ -52,8 +52,6 @@ extension RecipesView {
 import struct Diabetic_Wellness_Tracker.RecipesView
 #Preview {
     RecipesView()
-        .environment(\.managedObjectContext, CoreDataManager.instance.context)
-        .environmentObject(CoreDataManager.instance)
 }
 
 

@@ -22,7 +22,7 @@ struct Onboarding: View {
     
     var body: some View {
         NavigationStack {
-            Text("Welcome to the diabetic wellness app")
+            Text("Welcome to Greatfully Diabetic")
                 .font(.largeTitle)
                 .multilineTextAlignment(.center)
         
@@ -64,7 +64,7 @@ struct Onboarding: View {
             .onChange(of: [firstName, lastName], { oldValue, newValue in
                 evaluateFields()
             })
-            .navigationDestination(isPresented: $isLoggedIn, destination: { Home() })
+            .navigationDestination(isPresented: $isLoggedIn, destination: { ContentView() })
         }
         
         .onAppear {

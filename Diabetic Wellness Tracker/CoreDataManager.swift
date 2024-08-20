@@ -100,10 +100,6 @@ class CoreDataManager: ObservableObject {
         }
     }
     
-    func deleteEntity(_ entity: JournalEntryEntity?, _ recipeEntity: FeaturedRecipeEntity?) {
-        
-    }
-    
     func getJournalSortDescriptors() -> [NSSortDescriptor] {
         [
             NSSortDescriptor(keyPath: \JournalEntryEntity.date, ascending: true),
@@ -115,5 +111,84 @@ class CoreDataManager: ObservableObject {
         [
             NSSortDescriptor(key: "name", ascending: true)
         ]
+    }
+    
+    func deleteAllEntities(entityName: String, context: NSManagedObjectContext) {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+        fetchRequest.includesPropertyValues = false // Optimize fetch since we only care about the existence of the objects
+        
+        do {
+            if let objects = try context.fetch(fetchRequest) as? [NSManagedObject] {
+                for object in objects {
+                    context.delete(object)
+                }
+                try context.save() // Save changes after deleting
+            }
+        } catch let error {
+            print("Failed to delete objects from \(entityName): \(error)")
+        }
+    }
+}
+
+
+class CoreDataManagerViewModel: ObservableObject {
+    let manager = CoreDataManager.instance
+    @Published var journalPrompts: [PromptEntity] = []
+    @Published var journals: [JournalEntryEntity] = []
+    @Published var recipes: [RecipeEntity] = []
+    @Published var featuredRecipes: [FeaturedRecipeEntity] = []
+    
+    init() {
+        getRecipes()
+        getJournals()
+        getFeaturedRecipes()
+    }
+    
+    func getRecipes() {
+        let request = NSFetchRequest<RecipeEntity>(entityName: "RecipeEntity")
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \RecipeEntity.name, ascending: true)]
+        
+        do {
+            recipes = try manager.context.fetch(request)
+        } catch let error {
+            print("error \(error)")
+        }
+    }
+    
+    func getJournals() {
+        let request = NSFetchRequest<JournalEntryEntity>(entityName: "JournalEntryEntity")
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \JournalEntryEntity.name, ascending: true)]
+        
+        do {
+            journals = try manager.context.fetch(request)
+        } catch let error {
+            print("error \(error)")
+        }
+    }
+    
+    func getFeaturedRecipes() {
+        let request = NSFetchRequest<FeaturedRecipeEntity>(entityName: "FeaturedRecipeEntity")
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \FeaturedRecipeEntity.name, ascending: true)]
+        
+        do {
+            featuredRecipes = try manager.context.fetch(request)
+        } catch let error {
+            print("error \(error)")
+        }
+    }
+    
+    func getJournalPrompts() {
+        let request = NSFetchRequest<PromptEntity>(entityName: "PromptEntity")
+        
+        do {
+            journalPrompts = try manager.context.fetch(request)
+        } catch let error {
+            print("error \(error)")
+        }
+    }
+    
+    func deleteEntity(_ entity: NSManagedObject) {
+        manager.context.delete(entity)
+        manager.saveData()
     }
 }

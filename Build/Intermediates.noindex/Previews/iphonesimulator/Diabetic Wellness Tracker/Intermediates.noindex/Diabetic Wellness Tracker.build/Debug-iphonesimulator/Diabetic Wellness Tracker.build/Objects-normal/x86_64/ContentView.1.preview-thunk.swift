@@ -11,18 +11,30 @@ import SwiftUI
 
 extension TabBarIcon {
     @_dynamicReplacement(for: body) private var __preview__body: some View {
-        #sourceLocation(file: "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/ContentView.swift", line: 75)
+        #sourceLocation(file: "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/ContentView.swift", line: 83)
         Button {
             selectedTab = tab
         } label: {
             VStack {
-                Image(systemName: selectedTab == tab ? imageName + __designTimeString("#4144.[4].[3].property.[0].[0].arg[1].value.[0].arg[0].value.[0].arg[0].value.then.[0]", fallback: ".fill") : imageName)
+                Image(systemName: selectedTab == tab ? imageName + __designTimeString("#9568.[4].[3].property.[0].[0].arg[1].value.[0].arg[0].value.[0].arg[0].value.then.[0]", fallback: ".fill") : imageName)
                     .imageScale(.large)
                 Text(tab.rawValue.capitalized)
             }
             .foregroundStyle(Color.white)
         }
-        .frame(width: __designTimeInteger("#4144.[4].[3].property.[0].[0].modifier[0].arg[0].value", fallback: 70))
+        .frame(width: __designTimeInteger("#9568.[4].[3].property.[0].[0].modifier[0].arg[0].value", fallback: 70))
+    
+#sourceLocation()
+    }
+}
+
+extension ContentView {
+    @_dynamicReplacement(for: createNewRecipe()) private func __preview__createNewRecipe() -> RecipeEntity {
+        #sourceLocation(file: "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/ContentView.swift", line: 69)
+        let newRecipe = RecipeEntity(context: manager.context)
+        newRecipe.name = __designTimeString("#9568.[3].[4].[1].[0]", fallback: "")
+        newRecipe.ingredientsList = []
+        return newRecipe
     
 #sourceLocation()
     }
@@ -30,9 +42,9 @@ extension TabBarIcon {
 
 extension ContentView {
     @_dynamicReplacement(for: body) private var __preview__body: some View {
-        #sourceLocation(file: "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/ContentView.swift", line: 24)
+        #sourceLocation(file: "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/ContentView.swift", line: 25)
         NavigationStack {
-            VStack(spacing: __designTimeInteger("#4144.[3].[2].property.[0].[0].arg[0].value.[0].arg[0].value", fallback: 0)) {
+            VStack(spacing: __designTimeInteger("#9568.[3].[3].property.[0].[0].arg[0].value.[0].arg[0].value", fallback: 0)) {
                 switch selectedTab {
                     case .home:
                         Home()
@@ -45,29 +57,29 @@ extension ContentView {
                 }
                 
                 //tab bar
-                HStack(spacing: __designTimeInteger("#4144.[3].[2].property.[0].[0].arg[0].value.[0].arg[1].value.[1].arg[0].value", fallback: 10)) {
-                    TabBarIcon(selectedTab: $selectedTab, tab: .home, imageName: __designTimeString("#4144.[3].[2].property.[0].[0].arg[0].value.[0].arg[1].value.[1].arg[1].value.[0].arg[2].value", fallback: "house"))
-                    TabBarIcon(selectedTab: $selectedTab, tab: .journals, imageName: __designTimeString("#4144.[3].[2].property.[0].[0].arg[0].value.[0].arg[1].value.[1].arg[1].value.[1].arg[2].value", fallback: "text.book.closed"))
+                HStack(spacing: __designTimeInteger("#9568.[3].[3].property.[0].[0].arg[0].value.[0].arg[1].value.[1].arg[0].value", fallback: 10)) {
+                    TabBarIcon(selectedTab: $selectedTab, tab: .home, imageName: __designTimeString("#9568.[3].[3].property.[0].[0].arg[0].value.[0].arg[1].value.[1].arg[1].value.[0].arg[2].value", fallback: "house"))
+                    TabBarIcon(selectedTab: $selectedTab, tab: .journals, imageName: __designTimeString("#9568.[3].[3].property.[0].[0].arg[0].value.[0].arg[1].value.[1].arg[1].value.[1].arg[2].value", fallback: "text.book.closed"))
                     
                     Menu {
-                        NavigationLink(__designTimeString("#4144.[3].[2].property.[0].[0].arg[0].value.[0].arg[1].value.[1].arg[1].value.[2].arg[0].value.[0].arg[0].value", fallback: "New Journal")) {
-                            //journal editor
+                        NavigationLink(__designTimeString("#9568.[3].[3].property.[0].[0].arg[0].value.[0].arg[1].value.[1].arg[1].value.[2].arg[0].value.[0].arg[0].value", fallback: "New Journal")) {
+                            JournalEditor(journal: nil)
                         }
-                        NavigationLink(__designTimeString("#4144.[3].[2].property.[0].[0].arg[0].value.[0].arg[1].value.[1].arg[1].value.[2].arg[0].value.[1].arg[0].value", fallback: "New Recipe")) {
+                        NavigationLink(__designTimeString("#9568.[3].[3].property.[0].[0].arg[0].value.[0].arg[1].value.[1].arg[1].value.[2].arg[0].value.[1].arg[0].value", fallback: "New Recipe")) {
                             RecipeEditor(recipe: nil)
                         }
                     } label: {
-                        Image(systemName: __designTimeString("#4144.[3].[2].property.[0].[0].arg[0].value.[0].arg[1].value.[1].arg[1].value.[2].arg[1].value.[0].arg[0].value", fallback: "plus.circle.fill"))
+                        Image(systemName: __designTimeString("#9568.[3].[3].property.[0].[0].arg[0].value.[0].arg[1].value.[1].arg[1].value.[2].arg[1].value.[0].arg[0].value", fallback: "plus.circle.fill"))
                             .resizable()
                             .scaledToFit()
-                            .frame(width: __designTimeInteger("#4144.[3].[2].property.[0].[0].arg[0].value.[0].arg[1].value.[1].arg[1].value.[2].arg[1].value.[0].modifier[2].arg[0].value", fallback: 50))
+                            .frame(width: __designTimeInteger("#9568.[3].[3].property.[0].[0].arg[0].value.[0].arg[1].value.[1].arg[1].value.[2].arg[1].value.[0].modifier[2].arg[0].value", fallback: 50))
                             .foregroundStyle(LinearGradient(gradient: Gradient(colors: [.primary1, .white]), startPoint: .topTrailing, endPoint: .bottomLeading))
                     }
                     
-                    TabBarIcon(selectedTab: $selectedTab, tab: .recipes, imageName: __designTimeString("#4144.[3].[2].property.[0].[0].arg[0].value.[0].arg[1].value.[1].arg[1].value.[3].arg[2].value", fallback: "fork.knife.circle"))
-                    TabBarIcon(selectedTab: $selectedTab, tab: .featured, imageName: __designTimeString("#4144.[3].[2].property.[0].[0].arg[0].value.[0].arg[1].value.[1].arg[1].value.[4].arg[2].value", fallback: "star.circle"))
+                    TabBarIcon(selectedTab: $selectedTab, tab: .recipes, imageName: __designTimeString("#9568.[3].[3].property.[0].[0].arg[0].value.[0].arg[1].value.[1].arg[1].value.[3].arg[2].value", fallback: "fork.knife.circle"))
+                    TabBarIcon(selectedTab: $selectedTab, tab: .featured, imageName: __designTimeString("#9568.[3].[3].property.[0].[0].arg[0].value.[0].arg[1].value.[1].arg[1].value.[4].arg[2].value", fallback: "star.circle"))
                 }
-                .frame(maxWidth: .infinity, minHeight: __designTimeInteger("#4144.[3].[2].property.[0].[0].arg[0].value.[0].arg[1].value.[1].modifier[0].arg[1].value", fallback: 65))
+                .frame(maxWidth: .infinity, minHeight: __designTimeInteger("#9568.[3].[3].property.[0].[0].arg[0].value.[0].arg[1].value.[1].modifier[0].arg[1].value", fallback: 65))
                 .background(.secondary1)
                 .ignoresSafeArea()
             }
@@ -82,8 +94,7 @@ import struct Diabetic_Wellness_Tracker.ContentView
 import struct Diabetic_Wellness_Tracker.TabBarIcon
 #Preview {
     ContentView()
-        .environment(\.managedObjectContext, CoreDataManager.instance.container.viewContext)
-        .environmentObject(CoreDataManager.instance)
+        .environment(\.managedObjectContext, CoreDataManager.instance.context)
 }
 
 

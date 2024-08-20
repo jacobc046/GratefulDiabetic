@@ -10,19 +10,20 @@ import CoreData
 
 struct RecipesView: View {
     
-    @EnvironmentObject var manager: CoreDataManager
+    @StateObject var manager = CoreDataManager.instance
     @FetchRequest(entity: RecipeEntity.entity(), sortDescriptors: CoreDataManager.instance.getRecipeSortDescriptors(), animation: .default) private var recipes: FetchedResults<RecipeEntity>
+    
     
     var body: some View {
         NavigationStack {
             ZStack {
                 //background
                 Background()
-            
+                
                 //foreground
                 ScrollView {
                     ForEach(recipes) { recipe in
-                        NavigationLink(destination: {
+                        NavigationLink(destination: {   
                             RecipeEditor(recipe: recipe)
                         }, label: {
                             RecipeThumbnail(recipe: recipe)
@@ -51,6 +52,4 @@ struct RecipesView: View {
 
 #Preview {
     RecipesView()
-        .environment(\.managedObjectContext, CoreDataManager.instance.context)
-        .environmentObject(CoreDataManager.instance)
 }

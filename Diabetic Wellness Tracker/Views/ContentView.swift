@@ -17,8 +17,9 @@ enum SelectedTab: String {
 
 struct ContentView: View {
     
-    @EnvironmentObject var manager: CoreDataManager
+    @StateObject var manager = CoreDataManager.instance
     @State private var selectedTab: SelectedTab = .home
+    @State private var showJournalEditor: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -41,7 +42,7 @@ struct ContentView: View {
                     
                     Menu {
                         NavigationLink("New Journal") {
-                            //journal editor
+                            JournalEditor(journal: nil)
                         }
                         NavigationLink("New Recipe") {
                             RecipeEditor(recipe: nil)
@@ -62,6 +63,13 @@ struct ContentView: View {
                 .ignoresSafeArea()
             }
         }
+    }
+    
+    func createNewRecipe() -> RecipeEntity {
+        let newRecipe = RecipeEntity(context: manager.context)
+        newRecipe.name = ""
+        newRecipe.ingredientsList = []
+        return newRecipe
     }
 }
 
@@ -88,6 +96,5 @@ struct TabBarIcon: View {
 
 #Preview {
     ContentView()
-        .environment(\.managedObjectContext, CoreDataManager.instance.container.viewContext)
-        .environmentObject(CoreDataManager.instance)
+        .environment(\.managedObjectContext, CoreDataManager.instance.context)
 }
