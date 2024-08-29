@@ -12,6 +12,7 @@ struct Diabetic_Wellness_TrackerApp: App {
     var body: some Scene {
         WindowGroup {
             Onboarding()
+                .environment(\.managedObjectContext, CoreDataManager.instance.context)
         }
     }
 }

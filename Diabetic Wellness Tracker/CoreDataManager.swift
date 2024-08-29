@@ -14,17 +14,17 @@ class CoreDataManager: ObservableObject {
     let container: NSPersistentContainer
     let context: NSManagedObjectContext
     
-    init() {
+    init(inMemory: Bool = false) {
         container = NSPersistentContainer(name: "Diabetic_Wellness_Tracker")
+        if inMemory {
+            container.persistentStoreDescriptions.first!.url = URL(filePath: "/dev/null")
+        }
         container.loadPersistentStores { description, error in
             if let error = error {
                 debugPrint("Unable to load core data \(error)")
             }
         }
         context = container.viewContext
-        
-        downloadJournalPrompts()
-        downloadFeaturedRecipes()
     }
     
     func downloadJournalPrompts() {
@@ -123,6 +123,34 @@ class CoreDataManager: ObservableObject {
         } catch let error {
             print("Failed to delete objects from \(entityName): \(error)")
         }
+    }
+}
+
+extension CoreDataManager {
+    static var preview: CoreDataManager {
+        let result = CoreDataManager(inMemory: true)
+        let viewContext = result.context
+        
+        //sample recipe
+        let newRecipe = RecipeEntity(context: viewContext)
+        newRecipe.name = "Smoothie"
+        newRecipe.steps = " • line one \n • line two"
+        newRecipe.ingredients = " • line one \n • line two"
+        newRecipe.notes = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        
+        //sample journal
+        let journal = JournalEntryEntity(context: viewContext)
+        journal.name = "My Journal"
+        journal.date = Date()
+        journal.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        
+        do {
+            try viewContext.save()
+        } catch {
+            let error = error
+            fatalError("error in CD extension \(error)")
+        }
+        return result
     }
 }
 

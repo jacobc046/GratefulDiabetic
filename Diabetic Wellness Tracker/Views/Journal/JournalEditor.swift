@@ -36,6 +36,7 @@ struct JournalEditor: View {
         NavigationStack {
             VStack {
                 TextField("Title", text: $title)
+                    .textFieldStyle(.roundedBorder)
                     .font(.title)
                     .textInputAutocapitalization(.words)
                 TextField("Journal your thoughts...", text: $text, axis: .vertical)

@@ -23,10 +23,10 @@ extension CoreDataManager {
 //        }
         
         let newRecipe = RecipeEntity(context: context)
-        newRecipe.name = __designTimeString("#4204.[4].[0].property.[0].[2].[0]", fallback: "Smoothie")
+        newRecipe.name = __designTimeString("#28277.[4].[0].property.[0].[2].[0]", fallback: "Smoothie")
         newRecipe.steps = " • line one \n • line two"
         newRecipe.ingredients = " • line one \n • line two"
-        newRecipe.notes = __designTimeString("#4204.[4].[0].property.[0].[5].[0]", fallback: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
+        newRecipe.notes = __designTimeString("#28277.[4].[0].property.[0].[5].[0]", fallback: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
         
         return newRecipe
     
@@ -39,32 +39,32 @@ extension RecipeThumbnail {
         #sourceLocation(file: "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/Recipe/RecipeThumbnail.swift", line: 28)
         NavigationStack {
             ZStack {
-                RoundedRectangle(cornerRadius: __designTimeFloat("#4204.[2].[6].property.[0].[0].arg[0].value.[0].arg[0].value.[0].arg[0].value", fallback: 25.0))
+                RoundedRectangle(cornerRadius: __designTimeFloat("#28277.[2].[6].property.[0].[0].arg[0].value.[0].arg[0].value.[0].arg[0].value", fallback: 25.0))
                     .foregroundStyle(.white)
                 
                 VStack(alignment: .leading) {
-                    Text(recipe.name ?? __designTimeString("#4204.[2].[6].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[1].value.[0].arg[0].value.[0]", fallback: "title"))
+                    Text(recipe.name ?? __designTimeString("#28277.[2].[6].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[1].value.[0].arg[0].value.[0]", fallback: "title"))
                         .font(.title)
                     
                     Button {
                         showActions.toggle()
                     } label: {
-                        Image(systemName: __designTimeString("#4204.[2].[6].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[1].value.[1].arg[1].value.[0].arg[0].value", fallback: "ellipsis"))
+                        Image(systemName: __designTimeString("#28277.[2].[6].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[1].value.[1].arg[1].value.[0].arg[0].value", fallback: "ellipsis"))
                             .foregroundStyle(.black)
                             .frame(maxWidth: .infinity, alignment: .trailing)
                     }
                     .padding()
-                    .confirmationDialog(__designTimeString("#4204.[2].[6].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[1].value.[1].modifier[1].arg[0].value", fallback: ""), isPresented: $showActions) {
+                    .confirmationDialog(__designTimeString("#28277.[2].[6].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[1].value.[1].modifier[1].arg[0].value", fallback: ""), isPresented: $showActions) {
                         Button {
                             isEditing.toggle()
                         } label: {
-                            Label(__designTimeString("#4204.[2].[6].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[1].value.[1].modifier[1].arg[2].value.[0].arg[1].value.[0].arg[0].value", fallback: "Edit"), systemImage: __designTimeString("#4204.[2].[6].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[1].value.[1].modifier[1].arg[2].value.[0].arg[1].value.[0].arg[1].value", fallback: "pencil"))
+                            Label(__designTimeString("#28277.[2].[6].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[1].value.[1].modifier[1].arg[2].value.[0].arg[1].value.[0].arg[0].value", fallback: "Edit"), systemImage: __designTimeString("#28277.[2].[6].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[1].value.[1].modifier[1].arg[2].value.[0].arg[1].value.[0].arg[1].value", fallback: "pencil"))
                         }
                         Button(role: .destructive) {
                             manager.context.delete(recipe)
                             manager.saveData()
                         } label: {
-                            Label(__designTimeString("#4204.[2].[6].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[1].value.[1].modifier[1].arg[2].value.[1].arg[2].value.[0].arg[0].value", fallback: "Delete"), systemImage: __designTimeString("#4204.[2].[6].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[1].value.[1].modifier[1].arg[2].value.[1].arg[2].value.[0].arg[1].value", fallback: "trash"))
+                            Label(__designTimeString("#28277.[2].[6].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[1].value.[1].modifier[1].arg[2].value.[1].arg[2].value.[0].arg[0].value", fallback: "Delete"), systemImage: __designTimeString("#28277.[2].[6].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[1].value.[1].modifier[1].arg[2].value.[1].arg[2].value.[0].arg[1].value", fallback: "trash"))
                         }
                     }
                 }
@@ -72,8 +72,8 @@ extension RecipeThumbnail {
             .padding()
             }
         }
-        .clipShape(RoundedRectangle(cornerRadius: __designTimeFloat("#4204.[2].[6].property.[0].[0].modifier[0].arg[0].value.arg[0].value", fallback: 25.0)))
-        .frame(maxWidth: .infinity, maxHeight: __designTimeInteger("#4204.[2].[6].property.[0].[0].modifier[1].arg[1].value", fallback: 300))
+        .clipShape(RoundedRectangle(cornerRadius: __designTimeFloat("#28277.[2].[6].property.[0].[0].modifier[0].arg[0].value.arg[0].value", fallback: 25.0)))
+        .frame(maxWidth: .infinity, maxHeight: __designTimeInteger("#28277.[2].[6].property.[0].[0].modifier[1].arg[1].value", fallback: 300))
         .padding()
         .navigationDestination(isPresented: $isEditing, destination: { RecipeEditor(recipe: recipe)
         })

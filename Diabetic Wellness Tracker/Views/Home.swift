@@ -9,6 +9,11 @@ import SwiftUI
 import CoreData
 
 struct Home: View {
+    let manager = CoreDataManager.instance
+    
+    init() {
+        manager.downloadJournalPrompts()
+    }
     
     @State var date = Date()
         .formatted(date: .complete, time: .omitted)
@@ -58,4 +63,5 @@ struct Home: View {
 
 #Preview {
     Home()
+        .environment(\.managedObjectContext, CoreDataManager.instance.context)
 }

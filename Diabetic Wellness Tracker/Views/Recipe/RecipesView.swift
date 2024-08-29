@@ -46,6 +46,7 @@ struct RecipesView: View {
                 }
                 .scrollIndicators(.hidden)
             }
+            .navigationBarBackButtonHidden()
         }
     }
 }

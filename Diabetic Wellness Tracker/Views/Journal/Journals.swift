@@ -39,6 +39,7 @@ struct Journals: View {
                 }
                 .scrollIndicators(.hidden)
             }
+            .navigationBarBackButtonHidden()
         }
     }
 }

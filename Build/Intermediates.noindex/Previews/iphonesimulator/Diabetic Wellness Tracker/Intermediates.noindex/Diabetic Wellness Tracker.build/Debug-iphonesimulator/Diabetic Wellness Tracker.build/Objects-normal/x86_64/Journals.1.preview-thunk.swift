@@ -21,7 +21,7 @@ extension Journals {
                     ForEach(journals) { journal in
                         JournalThumbnail(journal: journal)
                     }
-                    .navigationTitle(__designTimeString("#4983.[1].[1].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[0].modifier[0].arg[0].value", fallback: "Journals"))
+                    .navigationTitle(__designTimeString("#30008.[1].[1].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[0].modifier[0].arg[0].value", fallback: "Journals"))
                     .navigationBarTitleDisplayMode(.inline)
                     .toolbarBackground(.visible, for: .navigationBar)
                     .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
@@ -30,7 +30,7 @@ extension Journals {
                             NavigationLink {
                                 SearchJournals()
                             } label: {
-                                Image(systemName: __designTimeString("#4983.[1].[1].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[0].modifier[4].arg[0].value.[0].arg[1].value.[0].arg[1].value.[0].arg[0].value", fallback: "magnifyingglass"))
+                                Image(systemName: __designTimeString("#30008.[1].[1].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[0].modifier[4].arg[0].value.[0].arg[1].value.[0].arg[1].value.[0].arg[0].value", fallback: "magnifyingglass"))
                             }
                             .foregroundStyle(.primary)
                         }
@@ -38,6 +38,7 @@ extension Journals {
                 }
                 .scrollIndicators(.hidden)
             }
+            .navigationBarBackButtonHidden()
         }
     
 #sourceLocation()

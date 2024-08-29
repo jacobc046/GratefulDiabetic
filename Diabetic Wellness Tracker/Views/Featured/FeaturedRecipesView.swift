@@ -9,7 +9,12 @@ import SwiftUI
 
 struct FeaturedRecipesView: View {
     
+    let manager = CoreDataManager.instance
+    init() {
+        manager.downloadFeaturedRecipes()
+    }
     @FetchRequest(entity: FeaturedRecipeEntity.entity(), sortDescriptors: CoreDataManager.instance.getRecipeSortDescriptors()) var featuredRecipes: FetchedResults<FeaturedRecipeEntity>
+    
     
     var body: some View {
         List {
@@ -18,11 +23,12 @@ struct FeaturedRecipesView: View {
                     FeaturedRecipeDetails(recipe: recipe)
                 } label: {
                     FeaturedRecipeThumbnail(recipe: recipe)
-                        .frame(maxHeight: 100)
+                        .frame(height: 100)
                 }
-
             }
         }
+        .scrollContentBackground(.hidden)
+        .listStyle(.grouped)
     }
 }
 
@@ -33,10 +39,11 @@ struct FeaturedRecipeThumbnail: View {
             AsyncImage(url: URL(string: recipe.image ?? "")) { image in
                 image
                     .resizable()
-                    .scaledToFill()
+                    .scaledToFit()
             } placeholder: {
                 ProgressView()
             }
+            .frame(height: 90)
 
             Text(recipe.name ?? "")
         }

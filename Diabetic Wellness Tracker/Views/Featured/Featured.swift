@@ -35,6 +35,8 @@ struct Featured: View {
             }
             .scrollContentBackground(.hidden)
             .listStyle(.inset)
+            
+            .navigationBarBackButtonHidden()
         }
     }
 }
