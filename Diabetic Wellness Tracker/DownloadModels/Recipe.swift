@@ -10,8 +10,9 @@ import Foundation
 struct Recipe: Decodable {
     let name: String
     let image: String
-    let ingredients: [Ingredient]
-    let isFavorite: Bool
+    let ingredients: String
+    let steps: String
+    let notes: String
 }
 
 struct Recipes: Decodable {

@@ -1,0 +1,2 @@
+Target dependency graph (1 target)
+Target 'Diabetic Wellness Tracker' in project 'Diabetic Wellness Tracker' (no dependencies)

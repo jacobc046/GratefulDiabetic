@@ -32,8 +32,8 @@ struct Journals: View {
                                 SearchJournals()
                             } label: {
                                 Image(systemName: "magnifyingglass")
-                                    .foregroundStyle(.white)
                             }
+                            .foregroundStyle(.primary)
                         }
                     }
                 }

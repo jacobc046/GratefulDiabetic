@@ -32,7 +32,7 @@ struct ContentView: View {
                     case .recipes:
                         RecipesView()
                     case .featured:
-                        EmptyView()
+                        Featured()
                 }
                 
                 //tab bar
@@ -52,7 +52,7 @@ struct ContentView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 50)
-                            .foregroundStyle(LinearGradient(gradient: Gradient(colors: [.primary1, .white]), startPoint: .topTrailing, endPoint: .bottomLeading))
+                            .foregroundStyle(LinearGradient(gradient: Gradient(colors: [.primary1, Color(UIColor.tertiarySystemBackground)]), startPoint: .topTrailing, endPoint: .bottomLeading))
                     }
                     
                     TabBarIcon(selectedTab: $selectedTab, tab: .recipes, imageName: "fork.knife.circle")
@@ -68,7 +68,9 @@ struct ContentView: View {
     func createNewRecipe() -> RecipeEntity {
         let newRecipe = RecipeEntity(context: manager.context)
         newRecipe.name = ""
-        newRecipe.ingredientsList = []
+        newRecipe.ingredients = "• "
+        newRecipe.steps = "• "
+        newRecipe.notes = ""
         return newRecipe
     }
 }

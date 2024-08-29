@@ -7,19 +7,27 @@
 
 import SwiftUI
 
-struct Bulleted_List: View {
+struct RecipeEditor: View {
     @State var title: String
     @State var ingredients: String
     @State var steps: String
     @State var notes: String
     
+    @State var showAlert: Bool = false
+    
+    @StateObject var manager = CoreDataManager.instance
+    @Environment(\.dismiss) var dismiss
+    
+    let recipe: RecipeEntity?
     init(recipe: RecipeEntity?) {
         if let recipe = recipe {
+            self.recipe = recipe
             title = recipe.name ?? ""
             ingredients = recipe.ingredients ?? "• "
             steps = recipe.steps ?? "• "
             notes = recipe.notes ?? ""
         } else {
+            self.recipe = nil
             title = ""
             ingredients = "• "
             steps = "• "
@@ -27,40 +35,89 @@ struct Bulleted_List: View {
         }
     }
     
+    func saveRecipe() {
+        if let recipe = recipe {
+            recipe.name = title
+            recipe.ingredients = ingredients
+            recipe.steps = steps
+            recipe.notes = notes
+        } else {
+            let newRecipe = RecipeEntity(context: manager.context)
+            newRecipe.name = title
+            newRecipe.ingredients = ingredients
+            newRecipe.steps = steps
+            newRecipe.notes = notes
+        }
+        manager.saveData()
+    }
+    
     
     var body: some View {
-        TextField("Title", text: $title)
-            .textInputAutocapitalization(.words)
-            .textFieldStyle(.roundedBorder)
-            .font(.title)
-            .padding([.leading, .trailing, .bottom], 15)
-        
-        Form {
-            Section("Ingredients") {
-                TextEditor(text: $ingredients)
-                    .onKeyPress(.return) {
-                        ingredients += "• "
-                        return .ignored
+        NavigationStack {
+                Form {
+                    TextField("Title", text: $title)
+                        .textInputAutocapitalization(.words)
+                        .textFieldStyle(.roundedBorder)
+                        .font(.title)
+                        .padding([.trailing, .bottom], 15)
+                    
+                    Section("Ingredients") {
+                        TextEditor(text: $ingredients)
+                            .onKeyPress(.return) {
+                                ingredients += "• "
+                                return .ignored
+                            }
+                            .border(.gray)
+                    }
+                    
+                    Section("Steps") {
+                        TextEditor(text: $steps)
+                            .onKeyPress(.return) {
+                                steps += "• "
+                                return .ignored
+                            }
+                            .border(.gray)
+                            .frame(minHeight: 40, maxHeight: 400)
+                    }
+                    Section("Notes") {
+                        TextEditor(text: $notes)
+                            .border(.gray)
+                    }
+                }
+                .formStyle(.columns)
+                .padding([.leading, .trailing])
+            
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("Cancel") {
+                        if title.isEmpty {
+                            dismiss()
+                        } else {
+                            showAlert.toggle()
+                        }
+                    }
+                    .alert("Confirm", isPresented: $showAlert) {
+                        Button("Delete", role: .destructive) {
+                            // Add logic to clean up if necessary
+                            dismiss()
+                        }
+                    } message: {
+                        Text("Are you sure you want to cancel your changes?")
+                    }
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Save") {
+                        saveRecipe()
+                        dismiss()
+                    }
+                    .bold()
                 }
             }
-            
-            Section("Steps") {
-                TextEditor(text: $steps)
-                    .onKeyPress(.return) {
-                        steps += "• "
-                        return .ignored
-                    }
-                    .frame(height: 150)
-            }
-            Section("Notes") {
-                TextEditor(text: $notes)
-            }
         }
-        .formStyle(.columns)
-        .padding(.leading)
+        .navigationBarBackButtonHidden()
     }
 }
 
 #Preview {
-    Bulleted_List(recipe: CoreDataManager.instance.sampleRecipe)
+    RecipeEditor(recipe: CoreDataManager.instance.sampleRecipe)
 }

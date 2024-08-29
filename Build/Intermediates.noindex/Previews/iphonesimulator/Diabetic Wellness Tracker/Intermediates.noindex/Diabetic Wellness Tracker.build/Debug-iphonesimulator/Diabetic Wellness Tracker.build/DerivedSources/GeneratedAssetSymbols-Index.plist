@@ -8,6 +8,16 @@
 			<key>catalogPath</key>
 			<string>/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Assets.xcassets</string>
 			<key>objcSymbol</key>
+			<string>ACColorNameAccentColor</string>
+			<key>relativePath</key>
+			<string>./AccentColor.colorset</string>
+			<key>swiftSymbol</key>
+			<string>accent</string>
+		</dict>
+		<dict>
+			<key>catalogPath</key>
+			<string>/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Assets.xcassets</string>
+			<key>objcSymbol</key>
 			<string>ACColorNamePrimary1</string>
 			<key>relativePath</key>
 			<string>./Primary 1.colorset</string>

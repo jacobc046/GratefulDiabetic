@@ -34,6 +34,7 @@ struct JournalThumbnail: View {
                     
                     Text(journal.text ?? "Text")
                         .padding([.leading, .trailing], 15)
+                        .frame(maxWidth: .infinity ,alignment: .leading)
                     
                     Button {
                         showActions.toggle()
@@ -75,7 +76,7 @@ struct JournalThumbnail: View {
 
 extension CoreDataManager {
     var sampleJournal: JournalEntryEntity {
-        let journal = JournalEntryEntity(context: CoreDataManager.instance.context)
+        let journal = JournalEntryEntity(context: Self.instance.context)
         journal.name = "My Journal"
         journal.date = Date()
         journal.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."

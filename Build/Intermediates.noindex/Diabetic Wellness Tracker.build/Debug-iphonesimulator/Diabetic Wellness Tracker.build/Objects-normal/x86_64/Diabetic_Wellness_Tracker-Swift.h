@@ -319,7 +319,10 @@ SWIFT_CLASS_NAMED("FeaturedRecipeEntity")
 
 @interface FeaturedRecipeEntity (SWIFT_EXTENSION(Diabetic_Wellness_Tracker))
 @property (nonatomic, copy) NSString * _Nullable image;
+@property (nonatomic, copy) NSString * _Nullable ingredients;
 @property (nonatomic, copy) NSString * _Nullable name;
+@property (nonatomic, copy) NSString * _Nullable notes;
+@property (nonatomic, copy) NSString * _Nullable steps;
 @property (nonatomic, strong) NSSet * _Nullable ingredientsList;
 @end
 
@@ -385,7 +388,10 @@ SWIFT_CLASS_NAMED("RecipeEntity")
 
 
 @interface RecipeEntity (SWIFT_EXTENSION(Diabetic_Wellness_Tracker))
+@property (nonatomic, copy) NSString * _Nullable ingredients;
 @property (nonatomic, copy) NSString * _Nullable name;
+@property (nonatomic, copy) NSString * _Nullable notes;
+@property (nonatomic, copy) NSString * _Nullable steps;
 @property (nonatomic, strong) NSSet * _Nullable ingredientsList;
 @end
 

@@ -20,14 +20,14 @@ extension Home {
                 
                 //foreground
                 VStack {
-                    Text("Hey \(UserDefaults.standard.string(forKey: kFirstName) ?? __designTimeString("#10559.[2].[4].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[0].arg[0].value.[1].value.arg[0].value.[0]", fallback: "there"))!")
+                    Text("Hey \(UserDefaults.standard.string(forKey: kFirstName) ?? __designTimeString("#13000.[2].[4].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[0].arg[0].value.[1].value.arg[0].value.[0]", fallback: "there"))!")
                         .font(.largeTitle)
                     
                     Text("Today is \(date)")
-                        .lineLimit(__designTimeInteger("#10559.[2].[4].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[1].modifier[0].arg[0].value", fallback: 1))
+                        .lineLimit(__designTimeInteger("#13000.[2].[4].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[1].modifier[0].arg[0].value", fallback: 1))
                         .font(.title)
-                        .minimumScaleFactor(__designTimeFloat("#10559.[2].[4].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[1].modifier[2].arg[0].value", fallback: 0.7))
-                        .padding([.leading, .trailing], __designTimeInteger("#10559.[2].[4].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[1].modifier[3].arg[1].value", fallback: 15))
+                        .minimumScaleFactor(__designTimeFloat("#13000.[2].[4].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[1].modifier[2].arg[0].value", fallback: 0.7))
+                        .padding([.leading, .trailing], __designTimeInteger("#13000.[2].[4].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[1].modifier[3].arg[1].value", fallback: 15))
                     
                     Text("Journal about **\(prompt)** today")
                 }
@@ -37,7 +37,7 @@ extension Home {
                     NavigationLink {
                         SettingsView()
                     } label: {
-                        Image(systemName: __designTimeString("#10559.[2].[4].property.[0].[0].arg[0].value.[0].modifier[0].arg[0].value.[0].arg[1].value.[0].arg[1].value.[0].arg[0].value", fallback: "gear"))
+                        Image(systemName: __designTimeString("#13000.[2].[4].property.[0].[0].arg[0].value.[0].modifier[0].arg[0].value.[0].arg[1].value.[0].arg[1].value.[0].arg[0].value", fallback: "gear"))
                             .foregroundStyle(.white)
                     }
 

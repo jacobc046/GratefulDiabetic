@@ -1,0 +1,24 @@
+{
+  "source": "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Build/Intermediates.noindex/Previews/iphonesimulator/Diabetic Wellness Tracker/Intermediates.noindex/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/Bulleted List.1.preview-thunk.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Title"
+      },
+      {
+        "comment": "",
+        "key": "Ingredients"
+      },
+      {
+        "comment": "",
+        "key": "Steps"
+      },
+      {
+        "comment": "",
+        "key": "Notes"
+      }
+    ]
+  },
+  "version": 1
+}

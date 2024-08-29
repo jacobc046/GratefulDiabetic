@@ -28,6 +28,8 @@ class CoreDataManager: ObservableObject {
     }
     
     func downloadJournalPrompts() {
+        deleteAllEntities(entityName: "PromptEntity", context: self.context)
+        
         DispatchQueue.global(qos: .background).async {
             guard let url = URL(string: "https://raw.githubusercontent.com/jacobc046/WellnessData/main/JournalPrompts.json") else { return }
             let request = URLRequest(url: url)
@@ -54,6 +56,8 @@ class CoreDataManager: ObservableObject {
     }
     
     func downloadFeaturedRecipes() {
+        deleteAllEntities(entityName: "FeaturedRecipeEntity", context: self.context)
+        
         DispatchQueue.global(qos: .background).async {
             guard let url = URL(string: "https://raw.githubusercontent.com/jacobc046/WellnessData/main/Recipes.json") else { return }
             let request = URLRequest(url: url)
@@ -69,20 +73,12 @@ class CoreDataManager: ObservableObject {
                                 let newRecipe = FeaturedRecipeEntity(context: self.context)
                                 newRecipe.name = recipe.name
                                 newRecipe.image = recipe.image
-                                
-                                let ingredients = recipe.ingredients
-                                for ingredient in ingredients {
-                                    let newIngredient = IngredientEntity(context: self.context)
-                                    newIngredient.name = ingredient.name
-                                    newIngredient.wholeQuantity = ingredient.wholeQuantity
-                                    newIngredient.fractionalQuantity = ingredient.fractionalQuantity
-                                    newIngredient.units = ingredient.units
-                                    
-                                    newRecipe.addToIngredientsList(newIngredient)
-                                }
+                                newRecipe.ingredients = recipe.ingredients
+                                newRecipe.steps = recipe.steps
+                                newRecipe.notes = recipe.notes
                             }
-                            self.saveData()
                         }
+                        self.saveData()
                     } catch {
                         print("Error decoding JSON: \(error)")
                     }
@@ -122,7 +118,7 @@ class CoreDataManager: ObservableObject {
                 for object in objects {
                     context.delete(object)
                 }
-                try context.save() // Save changes after deleting
+                self.saveData()
             }
         } catch let error {
             print("Failed to delete objects from \(entityName): \(error)")

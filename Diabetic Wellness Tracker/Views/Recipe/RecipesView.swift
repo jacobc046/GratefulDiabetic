@@ -24,7 +24,7 @@ struct RecipesView: View {
                 ScrollView {
                     ForEach(recipes) { recipe in
                         NavigationLink(destination: {   
-                            RecipeEditor(recipe: recipe)
+                            RecipeDetails(recipe: recipe)
                         }, label: {
                             RecipeThumbnail(recipe: recipe)
                         })
@@ -39,8 +39,8 @@ struct RecipesView: View {
                                 EmptyView()
                             } label: {
                                 Image(systemName: "magnifyingglass")
-                                    .foregroundStyle(.white)
                             }
+                            .foregroundStyle(.primary)
                         }
                     }
                 }

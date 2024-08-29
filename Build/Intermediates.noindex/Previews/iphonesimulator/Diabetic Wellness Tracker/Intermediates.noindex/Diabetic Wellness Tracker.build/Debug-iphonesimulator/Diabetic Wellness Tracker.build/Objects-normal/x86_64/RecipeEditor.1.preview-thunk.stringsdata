@@ -8,7 +8,15 @@
       },
       {
         "comment": "",
-        "key": "New Ingredient"
+        "key": "Ingredients"
+      },
+      {
+        "comment": "",
+        "key": "Steps"
+      },
+      {
+        "comment": "",
+        "key": "Notes"
       },
       {
         "comment": "",

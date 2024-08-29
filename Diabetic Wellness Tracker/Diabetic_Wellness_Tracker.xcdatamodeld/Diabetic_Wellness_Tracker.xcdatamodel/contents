@@ -2,16 +2,10 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23E224" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="FeaturedRecipeEntity" representedClassName="FeaturedRecipeEntity" syncable="YES" codeGenerationType="class">
         <attribute name="image" optional="YES" attributeType="String"/>
+        <attribute name="ingredients" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="ingredientsList" toMany="YES" deletionRule="Cascade" destinationEntity="IngredientEntity" inverseName="featuredRecipe" inverseEntity="IngredientEntity"/>
-    </entity>
-    <entity name="IngredientEntity" representedClassName="IngredientEntity" syncable="YES" codeGenerationType="class">
-        <attribute name="fractionalQuantity" optional="YES" attributeType="String"/>
-        <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="units" optional="YES" attributeType="String"/>
-        <attribute name="wholeQuantity" optional="YES" attributeType="String"/>
-        <relationship name="featuredRecipe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FeaturedRecipeEntity" inverseName="ingredientsList" inverseEntity="FeaturedRecipeEntity"/>
-        <relationship name="recipe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RecipeEntity" inverseName="ingredientsList" inverseEntity="RecipeEntity"/>
+        <attribute name="notes" optional="YES" attributeType="String"/>
+        <attribute name="steps" optional="YES" attributeType="String"/>
     </entity>
     <entity name="JournalEntryEntity" representedClassName="JournalEntryEntity" syncable="YES" codeGenerationType="class">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -22,7 +16,9 @@
         <attribute name="prompt" optional="YES" attributeType="String"/>
     </entity>
     <entity name="RecipeEntity" representedClassName="RecipeEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="ingredients" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="ingredientsList" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="IngredientEntity" inverseName="recipe" inverseEntity="IngredientEntity"/>
+        <attribute name="notes" optional="YES" attributeType="String"/>
+        <attribute name="steps" optional="YES" attributeType="String"/>
     </entity>
 </model>

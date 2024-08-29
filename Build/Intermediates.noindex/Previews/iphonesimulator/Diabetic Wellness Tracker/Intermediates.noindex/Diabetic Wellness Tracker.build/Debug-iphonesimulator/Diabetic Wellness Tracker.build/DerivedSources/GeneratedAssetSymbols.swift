@@ -24,6 +24,9 @@ private let resourceBundle = Foundation.Bundle(for: ResourceBundleClass.self)
 @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 extension DeveloperToolsSupport.ColorResource {
 
+    /// The "AccentColor" asset catalog color resource.
+    static let accent = DeveloperToolsSupport.ColorResource(name: "AccentColor", bundle: resourceBundle)
+
     /// The "Primary 1" asset catalog color resource.
     static let primary1 = DeveloperToolsSupport.ColorResource(name: "Primary 1", bundle: resourceBundle)
 
@@ -45,6 +48,15 @@ extension DeveloperToolsSupport.ImageResource {
 @available(macOS 14.0, *)
 @available(macCatalyst, unavailable)
 extension AppKit.NSColor {
+
+    /// The "AccentColor" asset catalog color.
+    static var accent: AppKit.NSColor {
+#if !targetEnvironment(macCatalyst)
+        .init(resource: .accent)
+#else
+        .init()
+#endif
+    }
 
     /// The "Primary 1" asset catalog color.
     static var primary1: AppKit.NSColor {
@@ -72,6 +84,15 @@ extension AppKit.NSColor {
 @available(watchOS, unavailable)
 extension UIKit.UIColor {
 
+    /// The "AccentColor" asset catalog color.
+    static var accent: UIKit.UIColor {
+#if !os(watchOS)
+        .init(resource: .accent)
+#else
+        .init()
+#endif
+    }
+
     /// The "Primary 1" asset catalog color.
     static var primary1: UIKit.UIColor {
 #if !os(watchOS)
@@ -97,6 +118,9 @@ extension UIKit.UIColor {
 @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 extension SwiftUI.Color {
 
+    /// The "AccentColor" asset catalog color.
+    static var accent: SwiftUI.Color { .init(.accent) }
+
     /// The "Primary 1" asset catalog color.
     static var primary1: SwiftUI.Color { .init(.primary1) }
 
@@ -107,6 +131,9 @@ extension SwiftUI.Color {
 
 @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 extension SwiftUI.ShapeStyle where Self == SwiftUI.Color {
+
+    /// The "AccentColor" asset catalog color.
+    static var accent: SwiftUI.Color { .init(.accent) }
 
     /// The "Primary 1" asset catalog color.
     static var primary1: SwiftUI.Color { .init(.primary1) }

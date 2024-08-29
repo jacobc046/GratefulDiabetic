@@ -1,0 +1,16 @@
+{
+  "source": "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/Featured/Featured.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "OpenLink"
+      },
+      {
+        "comment": "",
+        "key": "Featured Recipes"
+      }
+    ]
+  },
+  "version": 1
+}

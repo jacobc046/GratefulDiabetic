@@ -9,6 +9,9 @@
 /// The resource bundle ID.
 static NSString * const ACBundleID AC_SWIFT_PRIVATE = @"Jacob-Croket.Diabetic-Wellness-Tracker";
 
+/// The "AccentColor" asset catalog color resource.
+static NSString * const ACColorNameAccentColor AC_SWIFT_PRIVATE = @"AccentColor";
+
 /// The "Primary 1" asset catalog color resource.
 static NSString * const ACColorNamePrimary1 AC_SWIFT_PRIVATE = @"Primary 1";
 

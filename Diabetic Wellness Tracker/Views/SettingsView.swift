@@ -16,6 +16,9 @@ struct SettingsView: View {
         Button("Delete all journals") {
             manager.deleteAllEntities(entityName: "JournalEntryEntity", context: manager.context)
         }
+        Button("Delete all featured recipes") {
+            manager.deleteAllEntities(entityName: "FeaturedRecipeEntity", context: manager.context)
+        }
         Button("Logout") {
             UserDefaults.standard.set(false, forKey: kIsLoggedIn)
         }
