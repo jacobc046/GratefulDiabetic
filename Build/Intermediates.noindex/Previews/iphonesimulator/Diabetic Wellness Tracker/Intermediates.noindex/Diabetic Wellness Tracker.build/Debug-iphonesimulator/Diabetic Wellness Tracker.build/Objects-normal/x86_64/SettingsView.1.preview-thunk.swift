@@ -17,8 +17,8 @@ extension SettingsView {
         Button(__designTimeString("#13994.[1].[1].property.[0].[1].arg[0].value", fallback: "Delete all journals")) {
             manager.deleteAllEntities(entityName: __designTimeString("#13994.[1].[1].property.[0].[1].arg[1].value.[0].modifier[0].arg[0].value", fallback: "JournalEntryEntity"), context: manager.context)
         }
-        Button(__designTimeString("#13994.[1].[1].property.[0].[2].arg[0].value", fallback: "Delete all journals")) {
-            manager.deleteAllEntities(entityName: __designTimeString("#13994.[1].[1].property.[0].[2].arg[1].value.[0].modifier[0].arg[0].value", fallback: "JournalEntryEntity"), context: manager.context)
+        Button(__designTimeString("#13994.[1].[1].property.[0].[2].arg[0].value", fallback: "Delete all featured recipes")) {
+            manager.deleteAllEntities(entityName: __designTimeString("#13994.[1].[1].property.[0].[2].arg[1].value.[0].modifier[0].arg[0].value", fallback: "FeaturedRecipeEntity"), context: manager.context)
         }
         Button(__designTimeString("#13994.[1].[1].property.[0].[3].arg[0].value", fallback: "Logout")) {
             UserDefaults.standard.set(__designTimeBoolean("#13994.[1].[1].property.[0].[3].arg[1].value.[0].modifier[0].arg[0].value", fallback: false), forKey: kIsLoggedIn)

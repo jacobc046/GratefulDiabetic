@@ -26,16 +26,16 @@ extension RecipesView {
                             RecipeThumbnail(recipe: recipe)
                         })
                     }
-                    .navigationTitle(__designTimeString("#4703.[2].[2].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[0].modifier[0].arg[0].value", fallback: "Recipes"))
+                    .navigationTitle(__designTimeString("#5181.[2].[2].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[0].modifier[0].arg[0].value", fallback: "Recipes"))
                     .navigationBarTitleDisplayMode(.inline)
                     .toolbarBackground(.visible, for: .navigationBar)
                     .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
                     .toolbar {
                         ToolbarItem(placement: .topBarLeading) {
                             NavigationLink {
-                                EmptyView()
+                                SearchRecipes()
                             } label: {
-                                Image(systemName: __designTimeString("#4703.[2].[2].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[0].modifier[4].arg[0].value.[0].arg[1].value.[0].arg[1].value.[0].arg[0].value", fallback: "magnifyingglass"))
+                                Image(systemName: __designTimeString("#5181.[2].[2].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[0].modifier[4].arg[0].value.[0].arg[1].value.[0].arg[1].value.[0].arg[0].value", fallback: "magnifyingglass"))
                             }
                             .foregroundStyle(.primary)
                         }
@@ -43,6 +43,7 @@ extension RecipesView {
                 }
                 .scrollIndicators(.hidden)
             }
+            .navigationBarBackButtonHidden()
         }
     
 #sourceLocation()

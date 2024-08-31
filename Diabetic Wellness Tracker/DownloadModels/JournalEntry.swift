@@ -9,7 +9,7 @@ import Foundation
 
 struct JournalEntry: Decodable {
     let name: String
-    let date: Date
+    let date: String
     let image: String
     let text: String
 }

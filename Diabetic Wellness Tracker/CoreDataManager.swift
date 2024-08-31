@@ -25,6 +25,9 @@ class CoreDataManager: ObservableObject {
             }
         }
         context = container.viewContext
+        
+        downloadJournalPrompts()
+        downloadFeaturedRecipes()
     }
     
     func downloadJournalPrompts() {
@@ -98,7 +101,7 @@ class CoreDataManager: ObservableObject {
     
     func getJournalSortDescriptors() -> [NSSortDescriptor] {
         [
-            NSSortDescriptor(keyPath: \JournalEntryEntity.date, ascending: true),
+            NSSortDescriptor(key: "date", ascending: true),
             NSSortDescriptor(key: "name", ascending: true)
         ]
     }

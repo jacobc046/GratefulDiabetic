@@ -64,7 +64,9 @@ struct Onboarding: View {
             .onChange(of: [firstName, lastName], { oldValue, newValue in
                 evaluateFields()
             })
-            .navigationDestination(isPresented: $isLoggedIn, destination: { ContentView() })
+            .navigationDestination(isPresented: $isLoggedIn, destination: { 
+                ContentView().environment(\.managedObjectContext, CoreDataManager.instance.context)
+            })
         }
         
         .onAppear {

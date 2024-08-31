@@ -64,7 +64,7 @@ struct RecipeEditor: View {
                     Section("Ingredients") {
                         TextEditor(text: $ingredients)
                             .onKeyPress(.return) {
-                                ingredients += "• "
+                                ingredients += "\n• "
                                 return .ignored
                             }
                             .border(.gray)
@@ -73,7 +73,7 @@ struct RecipeEditor: View {
                     Section("Steps") {
                         TextEditor(text: $steps)
                             .onKeyPress(.return) {
-                                steps += "• "
+                                steps += "\n• "
                                 return .ignored
                             }
                             .border(.gray)
@@ -90,7 +90,7 @@ struct RecipeEditor: View {
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button("Cancel") {
-                        if title.isEmpty {
+                        if title.isEmpty && ingredients == "• " && steps == "• " && notes.isEmpty {
                             dismiss()
                         } else {
                             showAlert.toggle()
@@ -98,7 +98,6 @@ struct RecipeEditor: View {
                     }
                     .alert("Confirm", isPresented: $showAlert) {
                         Button("Delete", role: .destructive) {
-                            // Add logic to clean up if necessary
                             dismiss()
                         }
                     } message: {

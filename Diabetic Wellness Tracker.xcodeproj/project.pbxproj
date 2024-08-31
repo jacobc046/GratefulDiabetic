@@ -11,7 +11,6 @@
 		1217F2C82C6153170046D9E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1217F2C72C6153170046D9E5 /* Assets.xcassets */; };
 		1217F2CB2C6153170046D9E5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1217F2CA2C6153170046D9E5 /* Preview Assets.xcassets */; };
 		1217F2D02C6153170046D9E5 /* Diabetic_Wellness_Tracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1217F2CE2C6153170046D9E5 /* Diabetic_Wellness_Tracker.xcdatamodeld */; };
-		1217F2D72C6157E00046D9E5 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1217F2D62C6157E00046D9E5 /* Ingredient.swift */; };
 		1217F2DA2C6158750046D9E5 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1217F2D92C6158750046D9E5 /* Recipe.swift */; };
 		1217F2DC2C6158D60046D9E5 /* JournalEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1217F2DB2C6158D60046D9E5 /* JournalEntry.swift */; };
 		1217F2DF2C617F300046D9E5 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1217F2DE2C617F300046D9E5 /* Onboarding.swift */; };
@@ -27,6 +26,7 @@
 		123335E22C63E542000F3361 /* RecipeThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123335E12C63E542000F3361 /* RecipeThumbnail.swift */; };
 		1233D6552C7E895D00B73071 /* Featured.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1233D6542C7E895D00B73071 /* Featured.swift */; };
 		1233D6592C7EABE600B73071 /* FeaturedRecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1233D6582C7EABE600B73071 /* FeaturedRecipesView.swift */; };
+		127D72592C828F9900520D1F /* SearchRecipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127D72582C828F9900520D1F /* SearchRecipes.swift */; };
 		127E54B62C800EF6001DCFF7 /* FeaturedRecipeDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127E54B52C800EF6001DCFF7 /* FeaturedRecipeDetails.swift */; };
 		127E54B82C801571001DCFF7 /* ComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127E54B72C801571001DCFF7 /* ComponentView.swift */; };
 		12A903362C793B8C000DC29A /* RecipeDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A903352C793B8C000DC29A /* RecipeDetails.swift */; };
@@ -41,7 +41,6 @@
 		1217F2C72C6153170046D9E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1217F2CA2C6153170046D9E5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1217F2CF2C6153170046D9E5 /* Diabetic_Wellness_Tracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Diabetic_Wellness_Tracker.xcdatamodel; sourceTree = "<group>"; };
-		1217F2D62C6157E00046D9E5 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		1217F2D92C6158750046D9E5 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		1217F2DB2C6158D60046D9E5 /* JournalEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntry.swift; sourceTree = "<group>"; };
 		1217F2DE2C617F300046D9E5 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
@@ -57,6 +56,7 @@
 		123335E12C63E542000F3361 /* RecipeThumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeThumbnail.swift; sourceTree = "<group>"; };
 		1233D6542C7E895D00B73071 /* Featured.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Featured.swift; sourceTree = "<group>"; };
 		1233D6582C7EABE600B73071 /* FeaturedRecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedRecipesView.swift; sourceTree = "<group>"; };
+		127D72582C828F9900520D1F /* SearchRecipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecipes.swift; sourceTree = "<group>"; };
 		127E54B52C800EF6001DCFF7 /* FeaturedRecipeDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedRecipeDetails.swift; sourceTree = "<group>"; };
 		127E54B72C801571001DCFF7 /* ComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentView.swift; sourceTree = "<group>"; };
 		12A903352C793B8C000DC29A /* RecipeDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetails.swift; sourceTree = "<group>"; };
@@ -117,7 +117,6 @@
 		1217F2D82C6158310046D9E5 /* DownloadModels */ = {
 			isa = PBXGroup;
 			children = (
-				1217F2D62C6157E00046D9E5 /* Ingredient.swift */,
 				1217F2D92C6158750046D9E5 /* Recipe.swift */,
 				1217F2E42C6291890046D9E5 /* JournalPrompts.swift */,
 				1217F2DB2C6158D60046D9E5 /* JournalEntry.swift */,
@@ -158,6 +157,7 @@
 				123335E12C63E542000F3361 /* RecipeThumbnail.swift */,
 				12A903352C793B8C000DC29A /* RecipeDetails.swift */,
 				12D1B6112C79174900429FA8 /* RecipeEditor.swift */,
+				127D72582C828F9900520D1F /* SearchRecipes.swift */,
 			);
 			path = Recipe;
 			sourceTree = "<group>";
@@ -165,10 +165,10 @@
 		12D7EFFA2C65836E00934890 /* Journal */ = {
 			isa = PBXGroup;
 			children = (
-				123335DB2C63DCDD000F3361 /* SearchJournals.swift */,
 				1217F2EA2C62ABF90046D9E5 /* Journals.swift */,
 				1217F2F22C631CD30046D9E5 /* JournalThumbnail.swift */,
 				12C004732C63264200D7C102 /* JournalEditor.swift */,
+				123335DB2C63DCDD000F3361 /* SearchJournals.swift */,
 			);
 			path = Journal;
 			sourceTree = "<group>";
@@ -251,7 +251,6 @@
 				123335E02C63E204000F3361 /* RecipesView.swift in Sources */,
 				12C004742C63264200D7C102 /* JournalEditor.swift in Sources */,
 				1217F2DC2C6158D60046D9E5 /* JournalEntry.swift in Sources */,
-				1217F2D72C6157E00046D9E5 /* Ingredient.swift in Sources */,
 				1217F2DF2C617F300046D9E5 /* Onboarding.swift in Sources */,
 				12D1B6122C79174900429FA8 /* RecipeEditor.swift in Sources */,
 				12A903362C793B8C000DC29A /* RecipeDetails.swift in Sources */,
@@ -259,6 +258,7 @@
 				1217F2D02C6153170046D9E5 /* Diabetic_Wellness_Tracker.xcdatamodeld in Sources */,
 				123335E22C63E542000F3361 /* RecipeThumbnail.swift in Sources */,
 				1217F2E32C6189D30046D9E5 /* ContentView.swift in Sources */,
+				127D72592C828F9900520D1F /* SearchRecipes.swift in Sources */,
 				1217F2C42C6153150046D9E5 /* Diabetic_Wellness_TrackerApp.swift in Sources */,
 				12D7EFFE2C66977800934890 /* SettingsView.swift in Sources */,
 				1217F2E12C6187E10046D9E5 /* Home.swift in Sources */,

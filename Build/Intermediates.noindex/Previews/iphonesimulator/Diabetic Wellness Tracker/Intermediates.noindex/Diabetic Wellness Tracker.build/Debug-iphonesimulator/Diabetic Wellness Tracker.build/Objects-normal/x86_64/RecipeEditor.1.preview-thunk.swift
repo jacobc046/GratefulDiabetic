@@ -13,31 +13,31 @@ extension RecipeEditor {
         #sourceLocation(file: "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/Recipe/RecipeEditor.swift", line: 56)
         NavigationStack {
                 Form {
-                    TextField(__designTimeString("#11450.[1].[10].property.[0].[0].arg[0].value.[0].arg[0].value.[0].arg[0].value", fallback: "Title"), text: $title)
+                    TextField(__designTimeString("#3877.[1].[10].property.[0].[0].arg[0].value.[0].arg[0].value.[0].arg[0].value", fallback: "Title"), text: $title)
                         .textInputAutocapitalization(.words)
                         .textFieldStyle(.roundedBorder)
                         .font(.title)
-                        .padding([.trailing, .bottom], __designTimeInteger("#11450.[1].[10].property.[0].[0].arg[0].value.[0].arg[0].value.[0].modifier[3].arg[1].value", fallback: 15))
+                        .padding([.trailing, .bottom], __designTimeInteger("#3877.[1].[10].property.[0].[0].arg[0].value.[0].arg[0].value.[0].modifier[3].arg[1].value", fallback: 15))
                     
-                    Section(__designTimeString("#11450.[1].[10].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value", fallback: "Ingredients")) {
+                    Section(__designTimeString("#3877.[1].[10].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value", fallback: "Ingredients")) {
                         TextEditor(text: $ingredients)
                             .onKeyPress(.return) {
-                                ingredients += __designTimeString("#11450.[1].[10].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[1].value.[0].modifier[0].arg[1].value.[0].[0]", fallback: "• ")
+                                ingredients += "\n• "
                                 return .ignored
                             }
                             .border(.gray)
                     }
                     
-                    Section(__designTimeString("#11450.[1].[10].property.[0].[0].arg[0].value.[0].arg[0].value.[2].arg[0].value", fallback: "Steps")) {
+                    Section(__designTimeString("#3877.[1].[10].property.[0].[0].arg[0].value.[0].arg[0].value.[2].arg[0].value", fallback: "Steps")) {
                         TextEditor(text: $steps)
                             .onKeyPress(.return) {
-                                steps += __designTimeString("#11450.[1].[10].property.[0].[0].arg[0].value.[0].arg[0].value.[2].arg[1].value.[0].modifier[0].arg[1].value.[0].[0]", fallback: "• ")
+                                steps += "\n• "
                                 return .ignored
                             }
                             .border(.gray)
-                            .frame(minHeight: __designTimeInteger("#11450.[1].[10].property.[0].[0].arg[0].value.[0].arg[0].value.[2].arg[1].value.[0].modifier[2].arg[0].value", fallback: 40), maxHeight: __designTimeInteger("#11450.[1].[10].property.[0].[0].arg[0].value.[0].arg[0].value.[2].arg[1].value.[0].modifier[2].arg[1].value", fallback: 400))
+                            .frame(minHeight: __designTimeInteger("#3877.[1].[10].property.[0].[0].arg[0].value.[0].arg[0].value.[2].arg[1].value.[0].modifier[2].arg[0].value", fallback: 40), maxHeight: __designTimeInteger("#3877.[1].[10].property.[0].[0].arg[0].value.[0].arg[0].value.[2].arg[1].value.[0].modifier[2].arg[1].value", fallback: 400))
                     }
-                    Section(__designTimeString("#11450.[1].[10].property.[0].[0].arg[0].value.[0].arg[0].value.[3].arg[0].value", fallback: "Notes")) {
+                    Section(__designTimeString("#3877.[1].[10].property.[0].[0].arg[0].value.[0].arg[0].value.[3].arg[0].value", fallback: "Notes")) {
                         TextEditor(text: $notes)
                             .border(.gray)
                     }
@@ -47,24 +47,23 @@ extension RecipeEditor {
             
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    Button(__designTimeString("#11450.[1].[10].property.[0].[0].arg[0].value.[0].modifier[2].arg[0].value.[0].arg[1].value.[0].arg[0].value", fallback: "Cancel")) {
-                        if title.isEmpty {
+                    Button(__designTimeString("#3877.[1].[10].property.[0].[0].arg[0].value.[0].modifier[2].arg[0].value.[0].arg[1].value.[0].arg[0].value", fallback: "Cancel")) {
+                        if title.isEmpty && ingredients == "• " && steps == "• " && notes.isEmpty {
                             dismiss()
                         } else {
                             showAlert.toggle()
                         }
                     }
-                    .alert(__designTimeString("#11450.[1].[10].property.[0].[0].arg[0].value.[0].modifier[2].arg[0].value.[0].arg[1].value.[0].modifier[0].arg[0].value", fallback: "Confirm"), isPresented: $showAlert) {
-                        Button(__designTimeString("#11450.[1].[10].property.[0].[0].arg[0].value.[0].modifier[2].arg[0].value.[0].arg[1].value.[0].modifier[0].arg[2].value.[0].arg[0].value", fallback: "Delete"), role: .destructive) {
-                            // Add logic to clean up if necessary
+                    .alert(__designTimeString("#3877.[1].[10].property.[0].[0].arg[0].value.[0].modifier[2].arg[0].value.[0].arg[1].value.[0].modifier[0].arg[0].value", fallback: "Confirm"), isPresented: $showAlert) {
+                        Button(__designTimeString("#3877.[1].[10].property.[0].[0].arg[0].value.[0].modifier[2].arg[0].value.[0].arg[1].value.[0].modifier[0].arg[2].value.[0].arg[0].value", fallback: "Delete"), role: .destructive) {
                             dismiss()
                         }
                     } message: {
-                        Text(__designTimeString("#11450.[1].[10].property.[0].[0].arg[0].value.[0].modifier[2].arg[0].value.[0].arg[1].value.[0].modifier[0].arg[3].value.[0].arg[0].value", fallback: "Are you sure you want to cancel your changes?"))
+                        Text(__designTimeString("#3877.[1].[10].property.[0].[0].arg[0].value.[0].modifier[2].arg[0].value.[0].arg[1].value.[0].modifier[0].arg[3].value.[0].arg[0].value", fallback: "Are you sure you want to cancel your changes?"))
                     }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(__designTimeString("#11450.[1].[10].property.[0].[0].arg[0].value.[0].modifier[2].arg[0].value.[1].arg[1].value.[0].arg[0].value", fallback: "Save")) {
+                    Button(__designTimeString("#3877.[1].[10].property.[0].[0].arg[0].value.[0].modifier[2].arg[0].value.[1].arg[1].value.[0].arg[0].value", fallback: "Save")) {
                         saveRecipe()
                         dismiss()
                     }

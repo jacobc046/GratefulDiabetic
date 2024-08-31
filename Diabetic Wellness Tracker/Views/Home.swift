@@ -8,25 +8,13 @@
 import SwiftUI
 import CoreData
 
-struct Home: View {
-    let manager = CoreDataManager.instance
-    
-    init() {
-        manager.downloadJournalPrompts()
-    }
-    
+struct Home: View {    
     @State var date = Date()
         .formatted(date: .complete, time: .omitted)
-    @State var showSidebar: NavigationSplitViewVisibility = .all
-    
     @State var prompt: String = "SOMETHING"
-    
-    @FetchRequest(entity: RecipeEntity.entity(), sortDescriptors: CoreDataManager.instance.getRecipeSortDescriptors(), animation: .default) private var recipes: FetchedResults<RecipeEntity>
-    
-    
+
     var body: some View {
         NavigationStack {
-            
             ZStack {
                 //background
                 Background()

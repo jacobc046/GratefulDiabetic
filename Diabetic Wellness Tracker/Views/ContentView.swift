@@ -17,7 +17,7 @@ enum SelectedTab: String {
 
 struct ContentView: View {
     
-    @StateObject var manager = CoreDataManager.instance
+    let manager = CoreDataManager.instance
     @State private var selectedTab: SelectedTab = .home
     @State private var showJournalEditor: Bool = false
     
@@ -63,15 +63,6 @@ struct ContentView: View {
                 .ignoresSafeArea()
             }
         }
-    }
-    
-    func createNewRecipe() -> RecipeEntity {
-        let newRecipe = RecipeEntity(context: manager.context)
-        newRecipe.name = ""
-        newRecipe.ingredients = "• "
-        newRecipe.steps = "• "
-        newRecipe.notes = ""
-        return newRecipe
     }
 }
 

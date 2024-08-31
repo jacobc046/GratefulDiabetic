@@ -27,7 +27,7 @@ struct JournalThumbnail: View {
                         Text(journal.name ?? "Title")
                             .font(.title)
                         Spacer()
-                        Text(journal.date?.formatted(date: .numeric, time: .omitted) ?? "Date")
+                        Text(journal.date?.formatted(date: .numeric, time: .omitted) ?? Date().formatted(date: .numeric, time: .omitted))
                             .frame(alignment: .trailing)
                     }
                     .padding([.leading, .trailing], 15)

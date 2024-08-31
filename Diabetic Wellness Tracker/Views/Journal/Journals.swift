@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct Journals: View {
     
@@ -20,7 +21,11 @@ struct Journals: View {
                 //foreground
                 ScrollView {
                     ForEach(journals) { journal in
-                        JournalThumbnail(journal: journal)
+                        NavigationLink {
+                            JournalEditor(journal: journal)
+                        } label: {
+                            JournalThumbnail(journal: journal)
+                        }
                     }
                     .navigationTitle("Journals")
                     .navigationBarTitleDisplayMode(.inline)

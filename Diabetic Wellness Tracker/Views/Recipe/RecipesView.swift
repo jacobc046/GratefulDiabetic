@@ -36,7 +36,7 @@ struct RecipesView: View {
                     .toolbar {
                         ToolbarItem(placement: .topBarLeading) {
                             NavigationLink {
-                                EmptyView()
+                                SearchRecipes()
                             } label: {
                                 Image(systemName: "magnifyingglass")
                             }

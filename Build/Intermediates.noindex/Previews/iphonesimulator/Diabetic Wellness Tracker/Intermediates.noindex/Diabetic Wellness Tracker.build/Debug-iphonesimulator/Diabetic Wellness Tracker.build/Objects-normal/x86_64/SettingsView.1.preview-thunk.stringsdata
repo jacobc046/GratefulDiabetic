@@ -12,6 +12,10 @@
       },
       {
         "comment": "",
+        "key": "Delete all featured recipes"
+      },
+      {
+        "comment": "",
         "key": "Logout"
       }
     ]

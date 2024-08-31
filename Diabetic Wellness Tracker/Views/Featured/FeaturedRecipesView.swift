@@ -8,11 +8,6 @@
 import SwiftUI
 
 struct FeaturedRecipesView: View {
-    
-    let manager = CoreDataManager.instance
-    init() {
-        manager.downloadFeaturedRecipes()
-    }
     @FetchRequest(entity: FeaturedRecipeEntity.entity(), sortDescriptors: CoreDataManager.instance.getRecipeSortDescriptors()) var featuredRecipes: FetchedResults<FeaturedRecipeEntity>
     
     
