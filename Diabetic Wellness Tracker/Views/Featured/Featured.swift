@@ -9,15 +9,25 @@ import SwiftUI
 import SafariServices
 
 struct Featured: View {
+    @State var showAlert: Bool = false
     var body: some View {
         ZStack {
             Background()
             
             List {
                 HStack {
-                    Link(destination: URL(string: "https://www.google.com/?client=safari")!, label: {
-                        Text("Newsletter")
-                    })
+                    Text("Newsletter")
+                    .onTapGesture {
+                        showAlert.toggle()
+                    }
+                    .alert("You are about to navigate away from the app!", isPresented: $showAlert) {
+                        Link(destination: URL(string: "https://www.google.com/?client=safari")!, label: {
+                            Text("Confirm")
+                        })
+                        Button("Cancel") {
+                            showAlert = false
+                        }
+                    }
                     Spacer()
                     Image(systemName: "chevron.right")
                 }

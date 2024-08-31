@@ -1,12 +1,5 @@
 {
   "source": "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/Recipe/SearchRecipes.swift",
-  "tables": {
-    "Localizable": [
-      {
-        "comment": "",
-        "key": "Search by name, or text"
-      }
-    ]
-  },
+  "tables": {},
   "version": 1
 }

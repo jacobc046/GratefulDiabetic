@@ -9,11 +9,11 @@ import SwiftUI
 
 struct FeaturedRecipesView: View {
     @FetchRequest(entity: FeaturedRecipeEntity.entity(), sortDescriptors: CoreDataManager.instance.getRecipeSortDescriptors()) var featuredRecipes: FetchedResults<FeaturedRecipeEntity>
-    
+    @State var searchText: String = ""
     
     var body: some View {
         List {
-            ForEach(featuredRecipes) { recipe in
+            ForEach(filteredRecipes) { recipe in
                 NavigationLink {
                     FeaturedRecipeDetails(recipe: recipe)
                 } label: {
@@ -24,6 +24,14 @@ struct FeaturedRecipesView: View {
         }
         .scrollContentBackground(.hidden)
         .listStyle(.grouped)
+    }
+    var filteredRecipes: [FeaturedRecipeEntity] {
+        let featuredRecpiesList = featuredRecipes.map { $0 } as [FeaturedRecipeEntity]
+        if searchText.isEmpty {
+            return featuredRecpiesList
+        } else {
+            return featuredRecpiesList.filter { $0.name!.localizedCaseInsensitiveContains(searchText) }
+        }
     }
 }
 

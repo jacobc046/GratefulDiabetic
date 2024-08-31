@@ -4,7 +4,15 @@
     "Localizable": [
       {
         "comment": "",
-        "key": "Newsletter"
+        "key": "News"
+      },
+      {
+        "comment": "",
+        "key": ""
+      },
+      {
+        "comment": "",
+        "key": "Confirm"
       },
       {
         "comment": "",

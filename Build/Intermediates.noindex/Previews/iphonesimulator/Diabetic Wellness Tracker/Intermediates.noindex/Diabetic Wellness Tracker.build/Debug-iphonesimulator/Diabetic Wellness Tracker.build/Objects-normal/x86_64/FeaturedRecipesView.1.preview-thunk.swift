@@ -10,7 +10,7 @@ import SwiftUI
 
 extension FeaturedRecipeThumbnail {
     @_dynamicReplacement(for: body) private var __preview__body: some View {
-        #sourceLocation(file: "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/Featured/FeaturedRecipesView.swift", line: 33)
+        #sourceLocation(file: "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/Featured/FeaturedRecipesView.swift", line: 41)
         HStack {
             AsyncImage(url: URL(string: recipe.image ?? __designTimeString("#6059.[2].[1].property.[0].[0].arg[0].value.[0].arg[0].value.arg[0].value.[0]", fallback: ""))) { image in
                 image
@@ -29,15 +29,29 @@ extension FeaturedRecipeThumbnail {
 }
 
 extension FeaturedRecipesView {
+    @_dynamicReplacement(for: filteredRecipes) private var __preview__filteredRecipes: [FeaturedRecipeEntity] {
+        #sourceLocation(file: "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/Featured/FeaturedRecipesView.swift", line: 29)
+        let featuredRecpiesList = featuredRecipes.map { $0 } as [FeaturedRecipeEntity]
+        if searchText.isEmpty {
+            return featuredRecpiesList
+        } else {
+            return featuredRecpiesList.filter { $0.name!.localizedCaseInsensitiveContains(searchText) }
+        }
+    
+#sourceLocation()
+    }
+}
+
+extension FeaturedRecipesView {
     @_dynamicReplacement(for: body) private var __preview__body: some View {
         #sourceLocation(file: "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/Featured/FeaturedRecipesView.swift", line: 15)
         List {
-            ForEach(featuredRecipes) { recipe in
+            ForEach(filteredRecipes) { recipe in
                 NavigationLink {
                     FeaturedRecipeDetails(recipe: recipe)
                 } label: {
                     FeaturedRecipeThumbnail(recipe: recipe)
-                        .frame(height: __designTimeInteger("#6059.[1].[1].property.[0].[0].arg[0].value.[0].arg[1].value.[0].arg[1].value.[0].modifier[0].arg[0].value", fallback: 100))
+                        .frame(height: __designTimeInteger("#6059.[1].[2].property.[0].[0].arg[0].value.[0].arg[1].value.[0].arg[1].value.[0].modifier[0].arg[0].value", fallback: 100))
                 }
             }
         }
