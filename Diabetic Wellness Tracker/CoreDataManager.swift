@@ -31,20 +31,32 @@ class CoreDataManager: ObservableObject {
     }
     
     func downloadJournalPrompts() {
-        deleteAllEntities(entityName: "PromptEntity", context: self.context)
+        //deleteAllEntities(entityName: "PromptEntity", context: self.context)
         
         guard let url = URL(string: "https://raw.githubusercontent.com/jacobc046/WellnessData/main/JournalPrompts.json") else { return }
         let request = URLRequest(url: url)
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data {
+                let request = NSFetchRequest<PromptEntity>(entityName: "PromptEntity")
+                var promptStrings: [String] = []
+                
+                do {
+                    let fetchedPrompts = try self.context.fetch(request)
+                    promptStrings = fetchedPrompts.map { $0.prompt ?? ""}
+                } catch let error {
+                    print("error \(error)")
+                }
+                
                 do {
                     let promptsList = try JSONDecoder().decode(JournalPrompts.self, from: data)
                     let prompts = promptsList.prompts
                     
                     self.context.perform {
                         for prompt in prompts {
-                            let newPrompt = PromptEntity(context: self.context)
-                            newPrompt.prompt = prompt
+                            if !(promptStrings.contains(prompt)) {
+                                let newPrompt = PromptEntity(context: self.context)
+                                newPrompt.prompt = prompt
+                            }
                         }
                     }
                     self.saveData()

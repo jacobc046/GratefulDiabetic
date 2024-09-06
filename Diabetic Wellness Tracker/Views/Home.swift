@@ -14,7 +14,7 @@ struct Home: View {
     let manager = CoreDataManager.instance
     
     init() {
-        //getPrompt()
+        getPrompt()
     }
 
     var body: some View {
@@ -34,7 +34,8 @@ struct Home: View {
                         .minimumScaleFactor(0.7)
                         .padding([.leading, .trailing], 15)
                     
-                    Text("Journal about **\(UserDefaults.standard.string(forKey: kJournalPrompt) ?? "anything")** today")
+                    Text("Journal about **\(UserDefaults.standard.string(forKey: kJournalPrompt)?.lowercased() ?? "anything")** today")
+                        .frame(alignment: .center)
                 }
             }
             .toolbar {
@@ -56,16 +57,25 @@ struct Home: View {
         var todaysPrompt: String = UserDefaults.standard.string(forKey: kJournalPrompt) ?? ""
         let currentDate: String = Date().formatted(date: .numeric, time: .omitted)
         let todaysDate: String = UserDefaults.standard.string(forKey: kTodaysDate) ?? currentDate
-        print("todays prompt \(todaysPrompt)")
+        print(currentDate)
+        print(todaysDate)
         
         //if the date at initalization of view is not the current date or the daily phrase has not been set, set the phrase
         if todaysDate != currentDate || todaysPrompt.isEmpty {
             manager.downloadJournalPrompts()
             
-            @FetchRequest(entity: PromptEntity.entity(), sortDescriptors: []) var prompts: FetchedResults<PromptEntity>
+            let request = NSFetchRequest<PromptEntity>(entityName: "PromptEntity")
+            var promptStrings: [String] = []
             
-            let availablePrompts = prompts.filter { $0.prompt != todaysPrompt }
-            todaysPrompt = availablePrompts.randomElement()?.prompt ?? ""
+            do {
+                let fetchedPrompts = try manager.context.fetch(request)
+                promptStrings = fetchedPrompts.map { $0.prompt ?? ""}
+            } catch let error {
+                print("error \(error)")
+            }
+            
+            let availablePrompts = promptStrings.filter { $0 != todaysPrompt }
+            todaysPrompt = availablePrompts.randomElement() ?? ""
             UserDefaults.standard.set(todaysPrompt, forKey: kJournalPrompt)
         }
     }
