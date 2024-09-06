@@ -35,7 +35,10 @@ struct RecipeDetails: View {
             .toolbarBackground(.visible, for: .navigationBar)
             .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
             .toolbar {
-                ToolbarItem {
+                ToolbarItem(placement: .topBarTrailing) {
+                    ShareLink(item: "\(recipe.name ?? "") \n\n INGREDIENTS: \n\(recipe.ingredients ?? "") \n\nSTEPS: \n\(recipe.steps ?? "") \n\nNOTES: \n\(recipe.notes ?? "")")
+                }
+                ToolbarItem(placement: .topBarTrailing) {
                     Button("Edit") {
                         isEditing.toggle()
                     }

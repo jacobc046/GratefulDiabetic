@@ -4,11 +4,15 @@
     "Localizable": [
       {
         "comment": "",
-        "key": "News"
+        "key": "Newsletter"
       },
       {
         "comment": "",
-        "key": ""
+        "key": "You are about to navigate away from the app!"
+      },
+      {
+        "comment": "",
+        "key": "Cancel"
       },
       {
         "comment": "",

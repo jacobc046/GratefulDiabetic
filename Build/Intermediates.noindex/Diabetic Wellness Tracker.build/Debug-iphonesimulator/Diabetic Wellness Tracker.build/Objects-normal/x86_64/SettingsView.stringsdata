@@ -17,6 +17,14 @@
       {
         "comment": "",
         "key": "Logout"
+      },
+      {
+        "comment": "",
+        "key": "Confirm"
+      },
+      {
+        "comment": "",
+        "key": "Are you sure you'd like to log out?"
       }
     ]
   },

@@ -17,6 +17,7 @@ enum SelectedTab: String {
 
 struct ContentView: View {
     
+    @Environment(\.dismiss) var dismiss
     let manager = CoreDataManager.instance
     @State private var selectedTab: SelectedTab = .home
     @State private var showJournalEditor: Bool = false
@@ -61,6 +62,11 @@ struct ContentView: View {
                 .frame(maxWidth: .infinity, minHeight: 65)
                 .background(.secondary1)
                 .ignoresSafeArea()
+            }
+        }
+        .onAppear {
+            if !UserDefaults.standard.bool(forKey: kIsLoggedIn) {
+                dismiss()
             }
         }
     }

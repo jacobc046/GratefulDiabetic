@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import CoreTransferable
 
-struct JournalEntry: Decodable {
+struct JournalEntry {
     let name: String
-    let date: String
+    let date: Date
     let image: String
     let text: String
 }

@@ -63,6 +63,9 @@ struct JournalEditor: View {
                     
                 }
                 ToolbarItem(placement: .topBarTrailing) {
+                    ShareLink(item: "\(title) \n\n \(text) ")
+                }
+                ToolbarItem(placement: .topBarTrailing) {
                     Button("Save") {
                         saveJournal()
                         dismiss()

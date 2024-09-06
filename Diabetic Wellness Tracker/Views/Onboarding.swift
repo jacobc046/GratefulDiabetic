@@ -10,6 +10,8 @@ import SwiftUI
 let kFirstName = "first name key"
 let kLastName = "last name key"
 let kIsLoggedIn = "login key"
+let kJournalPrompt = "journal prompt"
+let kTodaysDate = "todays date"
 
 struct Onboarding: View {
     
@@ -65,10 +67,10 @@ struct Onboarding: View {
                 evaluateFields()
             })
             .navigationDestination(isPresented: $isLoggedIn, destination: { 
-                ContentView().environment(\.managedObjectContext, CoreDataManager.instance.context)
+                ContentView()
+                    .environment(\.managedObjectContext, CoreDataManager.instance.context)
             })
         }
-        
         .onAppear {
             if UserDefaults.standard.bool(forKey: kIsLoggedIn) {
                 isLoggedIn = true
@@ -89,6 +91,8 @@ struct Onboarding: View {
         UserDefaults.standard.set(firstName, forKey: kFirstName)
         UserDefaults.standard.set(lastName, forKey: kLastName)
         UserDefaults.standard.set(true, forKey: kIsLoggedIn)
+        UserDefaults.standard.set("", forKey: kJournalPrompt)
+        UserDefaults.standard.set(Date().formatted(date: .numeric, time: .omitted), forKey: kTodaysDate)
     }
 }
 

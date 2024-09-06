@@ -10,8 +10,31 @@ import CoreData
 import SwiftUI
 
 extension Home {
+    @_dynamicReplacement(for: getPrompt()) private func __preview__getPrompt() {
+        #sourceLocation(file: "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/Home.swift", line: 56)
+        var todaysPrompt: String = UserDefaults.standard.string(forKey: kJournalPrompt) ?? __designTimeString("#9276.[2].[4].[0].value.[0]", fallback: "")
+        let currentDate: String = Date().formatted(date: .numeric, time: .omitted)
+        let todaysDate: String = UserDefaults.standard.string(forKey: kTodaysDate) ?? currentDate
+        print("todays prompt \(todaysPrompt)")
+        
+        //if the date at initalization of view is not the current date or the daily phrase has not been set, set the phrase
+        if todaysDate != currentDate || todaysPrompt.isEmpty {
+            manager.downloadJournalPrompts()
+            
+            @FetchRequest(entity: PromptEntity.entity(), sortDescriptors: []) var prompts: FetchedResults<PromptEntity>
+            
+            let availablePrompts = prompts.filter { $0.prompt != todaysPrompt }
+            todaysPrompt = availablePrompts.randomElement()?.prompt ?? __designTimeString("#9276.[2].[4].[4].[0].[3].[0]", fallback: "")
+            UserDefaults.standard.set(todaysPrompt, forKey: kJournalPrompt)
+        }
+    
+#sourceLocation()
+    }
+}
+
+extension Home {
     @_dynamicReplacement(for: body) private var __preview__body: some View {
-        #sourceLocation(file: "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/Home.swift", line: 23)
+        #sourceLocation(file: "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/Home.swift", line: 21)
         NavigationStack {
             ZStack {
                 //background
@@ -19,16 +42,16 @@ extension Home {
                 
                 //foreground
                 VStack {
-                    Text("Hey \(UserDefaults.standard.string(forKey: kFirstName) ?? __designTimeString("#1423.[2].[4].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[0].arg[0].value.[1].value.arg[0].value.[0]", fallback: "there"))!")
+                    Text("Hey \(UserDefaults.standard.string(forKey: kFirstName) ?? __designTimeString("#9276.[2].[3].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[0].arg[0].value.[1].value.arg[0].value.[0]", fallback: "there"))!")
                         .font(.largeTitle)
                     
                     Text("Today is \(date)")
-                        .lineLimit(__designTimeInteger("#1423.[2].[4].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[1].modifier[0].arg[0].value", fallback: 1))
+                        .lineLimit(__designTimeInteger("#9276.[2].[3].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[1].modifier[0].arg[0].value", fallback: 1))
                         .font(.title)
-                        .minimumScaleFactor(__designTimeFloat("#1423.[2].[4].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[1].modifier[2].arg[0].value", fallback: 0.7))
-                        .padding([.leading, .trailing], __designTimeInteger("#1423.[2].[4].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[1].modifier[3].arg[1].value", fallback: 15))
+                        .minimumScaleFactor(__designTimeFloat("#9276.[2].[3].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[1].modifier[2].arg[0].value", fallback: 0.7))
+                        .padding([.leading, .trailing], __designTimeInteger("#9276.[2].[3].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[1].modifier[3].arg[1].value", fallback: 15))
                     
-                    Text("Journal about **\(prompt)** today")
+                    Text("Journal about **\(UserDefaults.standard.string(forKey: kJournalPrompt) ?? __designTimeString("#9276.[2].[3].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[2].arg[0].value.[1].value.arg[0].value.[0]", fallback: "anything"))** today")
                 }
             }
             .toolbar {
@@ -36,7 +59,7 @@ extension Home {
                     NavigationLink {
                         SettingsView()
                     } label: {
-                        Image(systemName: __designTimeString("#1423.[2].[4].property.[0].[0].arg[0].value.[0].modifier[0].arg[0].value.[0].arg[1].value.[0].arg[1].value.[0].arg[0].value", fallback: "gear"))
+                        Image(systemName: __designTimeString("#9276.[2].[3].property.[0].[0].arg[0].value.[0].modifier[0].arg[0].value.[0].arg[1].value.[0].arg[1].value.[0].arg[0].value", fallback: "gear"))
                             .foregroundStyle(.white)
                     }
 

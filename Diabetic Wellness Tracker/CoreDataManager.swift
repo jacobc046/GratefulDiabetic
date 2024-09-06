@@ -33,62 +33,58 @@ class CoreDataManager: ObservableObject {
     func downloadJournalPrompts() {
         deleteAllEntities(entityName: "PromptEntity", context: self.context)
         
-        DispatchQueue.global(qos: .background).async {
-            guard let url = URL(string: "https://raw.githubusercontent.com/jacobc046/WellnessData/main/JournalPrompts.json") else { return }
-            let request = URLRequest(url: url)
-            let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                if let data = data {
-                    do {
-                        let promptsList = try JSONDecoder().decode(JournalPrompts.self, from: data)
-                        let prompts = promptsList.prompts
-                        
-                        self.context.perform {
-                            for prompt in prompts {
-                                let newPrompt = PromptEntity(context: self.context)
-                                newPrompt.prompt = prompt
-                            }
-                            self.saveData()
+        guard let url = URL(string: "https://raw.githubusercontent.com/jacobc046/WellnessData/main/JournalPrompts.json") else { return }
+        let request = URLRequest(url: url)
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                do {
+                    let promptsList = try JSONDecoder().decode(JournalPrompts.self, from: data)
+                    let prompts = promptsList.prompts
+                    
+                    self.context.perform {
+                        for prompt in prompts {
+                            let newPrompt = PromptEntity(context: self.context)
+                            newPrompt.prompt = prompt
                         }
-                    } catch {
-                        debugPrint("Error downloading prompts: \n \(error)")
                     }
+                    self.saveData()
+                } catch {
+                    debugPrint("Error downloading prompts: \n \(error)")
                 }
             }
-            task.resume()
         }
+        task.resume()
     }
     
     func downloadFeaturedRecipes() {
         deleteAllEntities(entityName: "FeaturedRecipeEntity", context: self.context)
         
-        DispatchQueue.global(qos: .background).async {
-            guard let url = URL(string: "https://raw.githubusercontent.com/jacobc046/WellnessData/main/Recipes.json") else { return }
-            let request = URLRequest(url: url)
-            let task = URLSession.shared.dataTask(with: request) {data, response, error in
-                if let data = data {
-                    let decoder = JSONDecoder()
-                    do {
-                        let recipeList = try decoder.decode(Recipes.self, from: data)
-                        let recipes = recipeList.recipes
-                        
-                        self.context.perform {
-                            for recipe in recipes {
-                                let newRecipe = FeaturedRecipeEntity(context: self.context)
-                                newRecipe.name = recipe.name
-                                newRecipe.image = recipe.image
-                                newRecipe.ingredients = recipe.ingredients
-                                newRecipe.steps = recipe.steps
-                                newRecipe.notes = recipe.notes
-                            }
+        guard let url = URL(string: "https://raw.githubusercontent.com/jacobc046/WellnessData/main/Recipes.json") else { return }
+        let request = URLRequest(url: url)
+        let task = URLSession.shared.dataTask(with: request) {data, response, error in
+            if let data = data {
+                let decoder = JSONDecoder()
+                do {
+                    let recipeList = try decoder.decode(Recipes.self, from: data)
+                    let recipes = recipeList.recipes
+                    
+                    self.context.perform {
+                        for recipe in recipes {
+                            let newRecipe = FeaturedRecipeEntity(context: self.context)
+                            newRecipe.name = recipe.name
+                            newRecipe.image = recipe.image
+                            newRecipe.ingredients = recipe.ingredients
+                            newRecipe.steps = recipe.steps
+                            newRecipe.notes = recipe.notes
                         }
-                        self.saveData()
-                    } catch {
-                        print("Error decoding JSON: \(error)")
                     }
+                    self.saveData()
+                } catch {
+                    print("Error decoding JSON: \(error)")
                 }
             }
-            task.resume()
         }
+        task.resume()
     }
     
     func saveData() {
@@ -114,7 +110,7 @@ class CoreDataManager: ObservableObject {
     
     func deleteAllEntities(entityName: String, context: NSManagedObjectContext) {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
-        fetchRequest.includesPropertyValues = false // Optimize fetch since we only care about the existence of the objects
+        fetchRequest.includesPropertyValues = false
         
         do {
             if let objects = try context.fetch(fetchRequest) as? [NSManagedObject] {

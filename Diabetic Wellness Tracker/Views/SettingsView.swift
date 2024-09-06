@@ -9,6 +9,9 @@ import SwiftUI
 
 struct SettingsView: View {
     @StateObject var manager = CoreDataManager.instance
+    @Environment(\.dismiss) var dismiss
+    @State var showAlert: Bool = false
+    
     var body: some View {
         Button("Delete all recipes") {
             manager.deleteAllEntities(entityName: "RecipeEntity", context: manager.context)
@@ -20,7 +23,15 @@ struct SettingsView: View {
             manager.deleteAllEntities(entityName: "FeaturedRecipeEntity", context: manager.context)
         }
         Button("Logout") {
-            UserDefaults.standard.set(false, forKey: kIsLoggedIn)
+            showAlert.toggle()
+        }
+        .alert("Confirm", isPresented: $showAlert) {
+            Button("Logout", role: .destructive) {
+                UserDefaults.standard.set(false, forKey: kIsLoggedIn)
+                dismiss()
+            }
+        } message: {
+            Text("Are you sure you'd like to log out?")
         }
     }
 }
