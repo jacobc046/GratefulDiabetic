@@ -77,6 +77,7 @@ struct Home: View {
             let availablePrompts = promptStrings.filter { $0 != todaysPrompt }
             todaysPrompt = availablePrompts.randomElement() ?? ""
             UserDefaults.standard.set(todaysPrompt, forKey: kJournalPrompt)
+            UserDefaults.standard.set(currentDate, forKey: kTodaysDate)
         }
     }
 }

@@ -1,0 +1,28 @@
+{
+  "source": "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Build/Intermediates.noindex/Previews/iphonesimulator/Diabetic Wellness Tracker/Intermediates.noindex/Diabetic Wellness Tracker.build/Debug-iphonesimulator/Diabetic Wellness Tracker.build/Objects-normal/x86_64/Featured.1.preview-thunk.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Newsletter"
+      },
+      {
+        "comment": "",
+        "key": "You are about to navigate away from the app!"
+      },
+      {
+        "comment": "",
+        "key": "Cancel"
+      },
+      {
+        "comment": "",
+        "key": "Confirm"
+      },
+      {
+        "comment": "",
+        "key": "Featured Recipes"
+      }
+    ]
+  },
+  "version": 1
+}

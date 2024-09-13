@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SafariServices
 
 struct Featured: View {
     @State var showAlert: Bool = false

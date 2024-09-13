@@ -40,11 +40,15 @@ struct Onboarding: View {
                 .textFieldStyle(.roundedBorder)
                 .padding()
                 .textInputAutocapitalization(.words)
+                .autocorrectionDisabled()
+            
+            
             TextField("Last Name", text: $lastName)
                 .font(.title)
                 .textFieldStyle(.roundedBorder)
                 .padding()
                 .textInputAutocapitalization(.words)
+                .autocorrectionDisabled()
             
             Button {
                 if fieldsAreComplete {

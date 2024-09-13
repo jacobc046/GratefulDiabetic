@@ -4,15 +4,39 @@
     "Localizable": [
       {
         "comment": "",
-        "key": "Delete all recipes"
+        "key": "User Information"
       },
       {
         "comment": "",
-        "key": "Delete all journals"
+        "key": "Notifications"
       },
       {
         "comment": "",
-        "key": "Delete all featured recipes"
+        "key": "User Data"
+      },
+      {
+        "comment": "",
+        "key": "First name"
+      },
+      {
+        "comment": "",
+        "key": "Reminders to journal"
+      },
+      {
+        "comment": "",
+        "key": "Newsletter updates"
+      },
+      {
+        "comment": "",
+        "key": "Delete all recipes..."
+      },
+      {
+        "comment": "",
+        "key": "Confirm"
+      },
+      {
+        "comment": "",
+        "key": "Delete all journals..."
       },
       {
         "comment": "",
@@ -20,7 +44,19 @@
       },
       {
         "comment": "",
-        "key": "Confirm"
+        "key": "Delete recipes"
+      },
+      {
+        "comment": "",
+        "key": "Are you sure you'd like to delete all your recipes? This action cannot be undone."
+      },
+      {
+        "comment": "",
+        "key": "Delete journals"
+      },
+      {
+        "comment": "",
+        "key": "Are you sure you'd like to delete all your journals? This action cannot be undone."
       },
       {
         "comment": "",

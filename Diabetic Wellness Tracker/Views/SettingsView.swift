@@ -10,29 +10,70 @@ import SwiftUI
 struct SettingsView: View {
     @StateObject var manager = CoreDataManager.instance
     @Environment(\.dismiss) var dismiss
-    @State var showAlert: Bool = false
+    
+    @State var showLoggoutAlert: Bool = false
+    @State var showDeleteRecipes: Bool = false
+    @State var showDeleteJournals: Bool = false
+    
+    @State var jounralReminders: Bool = true
+    @State var newsletterUpdates: Bool = true
     
     var body: some View {
-        Button("Delete all recipes") {
-            manager.deleteAllEntities(entityName: "RecipeEntity", context: manager.context)
-        }
-        Button("Delete all journals") {
-            manager.deleteAllEntities(entityName: "JournalEntryEntity", context: manager.context)
-        }
-        Button("Delete all featured recipes") {
-            manager.deleteAllEntities(entityName: "FeaturedRecipeEntity", context: manager.context)
-        }
-        Button("Logout") {
-            showAlert.toggle()
-        }
-        .alert("Confirm", isPresented: $showAlert) {
-            Button("Logout", role: .destructive) {
-                UserDefaults.standard.set(false, forKey: kIsLoggedIn)
-                dismiss()
+        @State var firstName: String = (UserDefaults.standard.string(forKey: kFirstName) ?? "")
+        @State var lastName: String = UserDefaults.standard.string(forKey: kLastName) ?? ""
+        
+        Form {
+            Section("User Information") {
+                TextField("First name", text: $firstName)
+                TextField("First name", text: $lastName)
             }
-        } message: {
-            Text("Are you sure you'd like to log out?")
+            
+            Section("Notifications") {
+                Toggle("Reminders to journal", isOn: $jounralReminders)
+                Toggle("Newsletter updates", isOn: $newsletterUpdates)
+            }
+            
+            Section("User Data") {
+                Button("Delete all recipes...") {
+                    showDeleteRecipes.toggle()
+                }
+                .alert("Confirm", isPresented: $showDeleteRecipes) {
+                    Button("Delete recipes", role: .destructive) {
+                        manager.deleteAllEntities(entityName: "RecipeEntity", context: manager.context)
+                    }
+                } message: {
+                    Text("Are you sure you'd like to delete all your recipes? This action cannot be undone.")
+                }
+                
+                Button("Delete all journals...") {
+                    showDeleteJournals.toggle()
+                }
+                .alert("Confirm", isPresented: $showDeleteJournals) {
+                    Button("Delete journals", role: .destructive) {
+                        manager.deleteAllEntities(entityName: "JournalEntryEntity", context: manager.context)
+                    }
+                } message: {
+                    Text("Are you sure you'd like to delete all your journals? This action cannot be undone.")
+                }
+                
+                Button("Logout", role: .destructive) {
+                    showLoggoutAlert.toggle()
+                }
+                .alert("Confirm", isPresented: $showLoggoutAlert) {
+                    Button("Logout", role: .destructive) {
+                        UserDefaults.standard.set(false, forKey: kIsLoggedIn)
+                        dismiss()
+                    }
+                } message: {
+                    Text("Are you sure you'd like to log out?")
+                }
+            }
         }
+        .onDisappear(perform: {
+            UserDefaults.standard.set(firstName, forKey: kFirstName)
+            UserDefaults.standard.set(lastName, forKey: kLastName)
+            //TODO: update reminders and newsletters
+        })
     }
 }
 
