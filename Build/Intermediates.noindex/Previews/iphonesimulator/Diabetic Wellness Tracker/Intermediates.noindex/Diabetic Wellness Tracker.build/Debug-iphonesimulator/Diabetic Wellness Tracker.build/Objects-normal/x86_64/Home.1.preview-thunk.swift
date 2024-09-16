@@ -11,7 +11,7 @@ import SwiftUI
 
 extension Home {
     @_dynamicReplacement(for: getPrompt()) private func __preview__getPrompt() {
-        #sourceLocation(file: "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/Home.swift", line: 57)
+        #sourceLocation(file: "/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Views/Home.swift", line: 58)
         var todaysPrompt: String = UserDefaults.standard.string(forKey: kJournalPrompt) ?? __designTimeString("#11989.[2].[4].[0].value.[0]", fallback: "")
         let currentDate: String = Date().formatted(date: .numeric, time: .omitted)
         let todaysDate: String = UserDefaults.standard.string(forKey: kTodaysDate) ?? currentDate
@@ -62,7 +62,8 @@ extension Home {
                         .padding([.leading, .trailing], __designTimeInteger("#11989.[2].[3].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[1].modifier[3].arg[1].value", fallback: 15))
                     
                     Text("Journal about **\(UserDefaults.standard.string(forKey: kJournalPrompt)?.lowercased() ?? __designTimeString("#11989.[2].[3].property.[0].[0].arg[0].value.[0].arg[0].value.[1].arg[0].value.[2].arg[0].value.[1].value.arg[0].value.[0]", fallback: "anything"))** today")
-                        .frame(alignment: .center)
+                        .multilineTextAlignment(.center)
+                        .padding()
                 }
             }
             .toolbar {

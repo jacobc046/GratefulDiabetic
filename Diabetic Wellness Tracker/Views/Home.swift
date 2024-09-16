@@ -12,6 +12,7 @@ struct Home: View {
     var date = Date()
         .formatted(date: .complete, time: .omitted)
     let manager = CoreDataManager.instance
+    let notificationManager = NotificationManager.instance
     
     init() {
         getPrompt()
@@ -35,7 +36,8 @@ struct Home: View {
                         .padding([.leading, .trailing], 15)
                     
                     Text("Journal about **\(UserDefaults.standard.string(forKey: kJournalPrompt)?.lowercased() ?? "anything")** today")
-                        .frame(alignment: .center)
+                        .multilineTextAlignment(.center)
+                        .padding()
                 }
             }
             .toolbar {
