@@ -70,10 +70,13 @@ struct Onboarding: View {
             .background(fieldsAreComplete ? .primary1 : .gray)
             .clipShape(RoundedRectangle(cornerRadius: 10.0))
             .padding()
-            .onChange(of: [firstName, lastName], { oldValue, newValue in
+            
+            .onChange(of: [firstName, lastName], { _, _ in
                 evaluateFields()
+                
             })
-            .navigationDestination(isPresented: $isLoggedIn, destination: { 
+            
+            .navigationDestination(isPresented: $isLoggedIn, destination: {
                 ContentView()
                     .environment(\.managedObjectContext, CoreDataManager.instance.context)
             })
@@ -87,19 +90,21 @@ struct Onboarding: View {
     
     
     func evaluateFields() {
-        if isValid(name: firstName) || isValid(name: lastName) {
+        if isValid(name: firstName) && isValid(name: lastName) {
             withAnimation(.linear) {
                 fieldsAreComplete = true
             }
         } else {
-            fieldsAreComplete = false
+            withAnimation(.linear) {
+                fieldsAreComplete = false
+            }
         }
     }
     func isValid(name: String) -> Bool {
         guard !name.isEmpty else { return false }
+        
         let nameValidationRegex = "^[\\p{L}0-9!#$%&'*+\\/=?^_`{|}~-][\\p{L}0-9.!#$%&'*+\\/=?^_`{|}~-]{0,63}@[\\p{L}0-9-]+(?:\\.[\\p{L}0-9-]{2,7})*$"
-        let nameValidationPredicate = NSPredicate(format: "SELF MATCHES %@", nameValidationRegex)
-        return nameValidationPredicate.evaluate(with: name)
+        return !name.contains(nameValidationRegex)
     }
 
     
@@ -112,10 +117,8 @@ struct Onboarding: View {
         UserDefaults.standard.set(true, forKey: kJournalReminderNotifications)
         UserDefaults.standard.set(true, forKey: kNewsletterUpdateNotifications)
         
-        var journalReminderDateComponents = DateComponents()
-        journalReminderDateComponents.hour = 19
-        journalReminderDateComponents.minute = 00
-        UserDefaults.standard.set(journalReminderDateComponents, forKey: kJournalReminderTime)
+        let journalReminderDate = Calendar.current.date(bySettingHour: 19, minute: 0, second: 0, of: Date())! as NSDate
+        UserDefaults.standard.set(journalReminderDate, forKey: kJournalReminderTime)
     }
 }
 

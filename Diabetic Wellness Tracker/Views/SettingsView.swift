@@ -81,9 +81,8 @@ struct SettingsView: View {
                 UserDefaults.standard.set(newsletterUpdates, forKey: kNewsletterUpdateNotifications)
                 UserDefaults.standard.set(jounralReminders, forKey: kJournalReminderNotifications)
                 
-                let calendar = Calendar.current
-                let dateComponents: DateComponents = calendar.dateComponents([.hour, .minute], from: reminderDate)
-                UserDefaults.standard.set(dateComponents, forKey: kJournalReminderTime)
+                let NSReminderDate = reminderDate as NSDate
+                UserDefaults.standard.set(NSReminderDate, forKey: kJournalReminderTime)
         })
     }
 }
