@@ -10,12 +10,17 @@ import SwiftUI
 struct Featured: View {
     @State var showAlert: Bool = false
     var body: some View {
-        ZStack {
-            Background()
-            
-            List {
-                HStack {
-                    Text("Newsletter")
+        NavigationStack {
+            ZStack {
+                Background()
+                
+                List {
+                    //MARK: Newsletter
+                    NavigationLink {
+                        
+                    } label: {
+                        Text("Newsletter")
+                    }
                     .onTapGesture {
                         showAlert.toggle()
                     }
@@ -27,25 +32,24 @@ struct Featured: View {
                             showAlert = false
                         }
                     }
-                    Spacer()
-                    Image(systemName: "chevron.right")
-                }
-                .listRowBackground(Color.clear)
-                .frame(idealHeight: 60)
+                    .listRowBackground(Color.clear)
+                    .frame(idealHeight: 60)
 
-                NavigationLink {
-                    FeaturedRecipesView()
-                } label: {
-                    Text("Featured Recipes")
-                }
-                .listRowBackground(Color.clear)
-                .frame(idealHeight: 60)
+                    //MARK: Featured recipes
+                    NavigationLink {
+                        FeaturedRecipesView()
+                    } label: {
+                        Text("Featured Recipes")
+                    }
+                    .listRowBackground(Color.clear)
+                    .frame(idealHeight: 60)
 
+                }
+                .scrollContentBackground(.hidden)
+                .listStyle(.inset)
+                
+                .navigationBarBackButtonHidden()
             }
-            .scrollContentBackground(.hidden)
-            .listStyle(.inset)
-            
-            .navigationBarBackButtonHidden()
         }
     }
 }

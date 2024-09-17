@@ -59,8 +59,6 @@ struct Home: View {
         var todaysPrompt: String = UserDefaults.standard.string(forKey: kJournalPrompt) ?? ""
         let currentDate: String = Date().formatted(date: .numeric, time: .omitted)
         let todaysDate: String = UserDefaults.standard.string(forKey: kTodaysDate) ?? currentDate
-        print(currentDate)
-        print(todaysDate)
         
         //if the date at initalization of view is not the current date or the daily phrase has not been set, set the phrase
         if todaysDate != currentDate || todaysPrompt.isEmpty {
