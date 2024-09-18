@@ -36,7 +36,18 @@
 		</dict>
 	</array>
 	<key>images</key>
-	<array/>
+	<array>
+		<dict>
+			<key>catalogPath</key>
+			<string>/Users/jacobc/Development/swift/Diabetic Wellness Tracker/Diabetic Wellness Tracker/Assets.xcassets</string>
+			<key>objcSymbol</key>
+			<string>ACImageNameGratefullyDiabeticLogo</string>
+			<key>relativePath</key>
+			<string>./GratefullyDiabeticLogo.imageset</string>
+			<key>swiftSymbol</key>
+			<string>gratefullyDiabeticLogo</string>
+		</dict>
+	</array>
 	<key>symbols</key>
 	<array/>
 </dict>

@@ -40,6 +40,9 @@ extension DeveloperToolsSupport.ColorResource {
 @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 extension DeveloperToolsSupport.ImageResource {
 
+    /// The "GratefullyDiabeticLogo" asset catalog image resource.
+    static let gratefullyDiabeticLogo = DeveloperToolsSupport.ImageResource(name: "GratefullyDiabeticLogo", bundle: resourceBundle)
+
 }
 
 // MARK: - Color Symbol Extensions -
@@ -151,6 +154,15 @@ extension SwiftUI.ShapeStyle where Self == SwiftUI.Color {
 @available(macCatalyst, unavailable)
 extension AppKit.NSImage {
 
+    /// The "GratefullyDiabeticLogo" asset catalog image.
+    static var gratefullyDiabeticLogo: AppKit.NSImage {
+#if !targetEnvironment(macCatalyst)
+        .init(resource: .gratefullyDiabeticLogo)
+#else
+        .init()
+#endif
+    }
+
 }
 #endif
 
@@ -158,6 +170,15 @@ extension AppKit.NSImage {
 @available(iOS 17.0, tvOS 17.0, *)
 @available(watchOS, unavailable)
 extension UIKit.UIImage {
+
+    /// The "GratefullyDiabeticLogo" asset catalog image.
+    static var gratefullyDiabeticLogo: UIKit.UIImage {
+#if !os(watchOS)
+        .init(resource: .gratefullyDiabeticLogo)
+#else
+        .init()
+#endif
+    }
 
 }
 #endif
@@ -279,6 +300,26 @@ extension DeveloperToolsSupport.ImageResource {
     }
 
 }
+
+#if canImport(AppKit)
+@available(macOS 14.0, *)
+@available(macCatalyst, unavailable)
+extension AppKit.NSImage {
+
+    private convenience init?(thinnableResource: DeveloperToolsSupport.ImageResource?) {
+#if !targetEnvironment(macCatalyst)
+        if let resource = thinnableResource {
+            self.init(resource: resource)
+        } else {
+            return nil
+        }
+#else
+        return nil
+#endif
+    }
+
+}
+#endif
 
 #if canImport(UIKit)
 @available(iOS 17.0, tvOS 17.0, *)

@@ -18,4 +18,7 @@ static NSString * const ACColorNamePrimary1 AC_SWIFT_PRIVATE = @"Primary 1";
 /// The "Secondary 1" asset catalog color resource.
 static NSString * const ACColorNameSecondary1 AC_SWIFT_PRIVATE = @"Secondary 1";
 
+/// The "GratefullyDiabeticLogo" asset catalog image resource.
+static NSString * const ACImageNameGratefullyDiabeticLogo AC_SWIFT_PRIVATE = @"GratefullyDiabeticLogo";
+
 #undef AC_SWIFT_PRIVATE

@@ -31,12 +31,9 @@ struct Onboarding: View {
                 .font(.largeTitle)
                 .multilineTextAlignment(.center)
         
-            ZStack {
-                Rectangle()
-                    .frame(width: 200, height: 200)
-                    .foregroundStyle(.primary1)
-                Text("logo here")
-            }
+            Image("GratefullyDiabeticLogo")
+                .resizable()
+                .scaledToFit()
             
             TextField("First Name", text: $firstName)
                 .font(.title)

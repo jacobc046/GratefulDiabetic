@@ -34,7 +34,12 @@ struct SettingsView: View {
                 Section("Notifications") {
                     Toggle("Newsletter updates", isOn: $newsletterUpdates)
                     Toggle("Reminders to journal", isOn: $jounralReminders)
+                    
                     DatePicker("Reminder time", selection: $reminderDate, displayedComponents: .hourAndMinute)
+                        .onChange(of: reminderDate) { _, _ in
+                            UserDefaults.standard.set(jounralReminders, forKey: kJournalReminderNotifications)
+                            notificationsManager.scheduleDailyJounralReminders()
+                        }
                 }
                 
                 Section("User Data") {
@@ -76,14 +81,25 @@ struct SettingsView: View {
                 }
             }
             .onDisappear(perform: {
-                UserDefaults.standard.set(firstName, forKey: kFirstName)
-                UserDefaults.standard.set(lastName, forKey: kLastName)
-                UserDefaults.standard.set(newsletterUpdates, forKey: kNewsletterUpdateNotifications)
-                UserDefaults.standard.set(jounralReminders, forKey: kJournalReminderNotifications)
-                
-                let NSReminderDate = reminderDate as NSDate
-                UserDefaults.standard.set(NSReminderDate, forKey: kJournalReminderTime)
+                saveData()
         })
+    }
+    
+    func saveData() {
+        UserDefaults.standard.set(firstName, forKey: kFirstName)
+        UserDefaults.standard.set(lastName, forKey: kLastName)
+        UserDefaults.standard.set(newsletterUpdates, forKey: kNewsletterUpdateNotifications)
+        
+        let NSReminderDate = reminderDate as NSDate
+        UserDefaults.standard.set(NSReminderDate, forKey: kJournalReminderTime)
+        
+        if !newsletterUpdates {
+            notificationsManager.disableNewsletterUpdateNotifications()
+        }
+        
+        if !jounralReminders {
+            notificationsManager.disableJournalReminders()
+        }
     }
 }
 
