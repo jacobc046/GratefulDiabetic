@@ -1,6 +1,6 @@
 # Grateful Diabetic
 
-**Grateful Diabetic** is an iOS app designed to promote holistic wellness by allowing users to journal their thoughts, track their favorite recipes, and explore a variety of diabetic-friendly recipes. The app integrates with a RESTful API for recipe downloads, provides a weekly wellness newsletter, and supports easy sharing via iMessage. Built with **Swift** and **SwiftUI**, the app ensures a seamless and persistent user experience with local storage.
+**Grateful Diabetic** is an iOS app designed to promote holistic wellness by allowing users to journal their thoughts, track their favorite recipes, and explore a variety of diabetic-friendly recipes. The app integrates a RESTful API for recipe downloads, provides a weekly wellness newsletter, and supports easy journal and recipe sharing via iMessage. Built with **Swift** and **SwiftUI**, the app ensures a seamless and persistent user experience with local storage.
 
 ## Features
 
